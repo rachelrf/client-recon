@@ -9,3 +9,4 @@ node_modules/*
 /server/helpers/weather-api-key.js
 
 keys.sh
+keys.js
