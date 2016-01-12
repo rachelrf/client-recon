@@ -1,5 +1,5 @@
-var accountKey = require('../../keys.js')
-//var accountKey = process.env.BING_NEWS_API
+var accountKey = require('./amazon-api-key.js')
+//var accountKey = process.env.AMAZON_API
 var amazon = require('amazon-product-api');
 
 module.exports = function(queryStr, callback){
@@ -10,10 +10,8 @@ module.exports = function(queryStr, callback){
   });
 
   client.itemSearch({
-    director: 'Quentin Tarantino',
-    actor: 'Samuel L. Jackson',
-    searchIndex: 'DVD',
-    audienceRating: 'R',
+    keywords: queryStr,
+    searchIndex: 'All',
     responseGroup: 'ItemAttributes,Offers,Images'
   }, function(err, results) {
     if (err) {
@@ -26,4 +24,4 @@ module.exports = function(queryStr, callback){
 };
 
 //for testing purposes
-module.exports(null, function() {});
+//module.exports('Harry Potter', function() {});

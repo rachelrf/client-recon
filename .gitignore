@@ -5,6 +5,7 @@
 bower_components
 node_modules/*
 
+/server/helpers/amazon-api-key.js
 /server/helpers/bing-search-api-key.js
 /server/helpers/weather-api-key.js
 
