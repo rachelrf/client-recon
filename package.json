@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/urbantumbleweed/client-recon#readme",
   "dependencies": {
+    "amazon-product-api": "^0.3.5",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
