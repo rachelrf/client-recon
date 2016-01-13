@@ -30,10 +30,5 @@ angular.module('client-recon.client-profile.feed', [])
 
       //should input client_interest? or client_team || whatever you want
     });
-
-
-
-
-    
   });
 
