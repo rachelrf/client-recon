@@ -9,9 +9,9 @@ var path = require('path');
  * @type {Object}
  */
 module.exports = {
-
-  getAllClients: sqlLoad(path.join(__dirname, './get-all-clients')),
-  editOneClient: sqlLoad(path.join(__dirname, './edit-one-client')),
+  getOneFriend: sqlLoad(path.join(__dirname, './get-one-client')),
+  getAllFriends: sqlLoad(path.join(__dirname, './get-all-clients')),
+  editOneFriend: sqlLoad(path.join(__dirname, './edit-one-client')),
   insertFriend: sqlLoad(path.join(__dirname, './insertUser.sql')),
   insertFriendUsers: sqlLoad(path.join(__dirname, './insertClientSales.sql'))
 };
