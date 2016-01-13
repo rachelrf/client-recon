@@ -13,7 +13,7 @@ angular.module('client-recon.services', [])
     }
 
     var addOne = function(user_id, clientObj){
-      console.log("posting to server with clientObj:", clientObj);
+      console.log('posting to server with clientObj:', clientObj);
       return $http.post('/api/users/' + user_id + '/clients', clientObj)
         .then(function(res){
           return res.data;
@@ -22,6 +22,7 @@ angular.module('client-recon.services', [])
 
     var editOne = function(user_id, editedClient){
       //currently user is hard coded
+      console.log('PUT-ing to server with clientObj:', editedClient);
       return $http.put('/api/users/' + user_id + '/clients/' + editedClient.client_id, editedClient)
         .then(function(res){
           return res.data;
