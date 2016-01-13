@@ -8,4 +8,15 @@ var db = pgp(connectionString);
 module.exports = db;
 
 //to test locally you must create a database 'recon' in postgres
+//lunchy start postgres
+//postgresql icon > open psql
+//create database recon;
 
+//server will not crash
+
+//\c recon (use recon db)
+//\d (show tables)
+
+//lunchy stop postgres
+
+// 

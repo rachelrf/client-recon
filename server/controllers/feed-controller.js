@@ -17,8 +17,7 @@ module.exports = {
     });
   
   },
-  //
-
+  
   getAmazon: function(likes, cb) {
     amazonApi(likes, function(result) {
       cb(result);
@@ -32,7 +31,9 @@ module.exports = {
   },
 
   getWeather: function(zipcode, cb){
+    
   	weatherApi(zipcode, function(result){
+      console.log('yeeeee')
   		cb(result);
   	});
   },
@@ -51,7 +52,6 @@ module.exports = {
         feedResults.weather = weatherResults;
         module.exports.getAmazon(likes, function(amazonResults) {
           feedResults.amazon = amazonResults;
-
           // feedResults.message
           feedResults.message = params[0].client_name+"'s birthday is "+ getBirthdayMessage(params[0].client_birthday) +'! Think about '
           + 'how you can make their day special.'
