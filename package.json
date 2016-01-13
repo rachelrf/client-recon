@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/urbantumbleweed/client-recon#readme",
   "dependencies": {
+    "agenda": "^0.7.6",
     "amazon-product-api": "^0.3.5",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
@@ -43,6 +44,7 @@
     "request-promise": "^1.0.2",
     "sql-load": "0.0.2",
     "sugar": "^1.4.1",
+    "twilio": "^2.8.0",
     "url": "^0.11.0",
     "weather": "^0.1.0"
   },
