@@ -12,13 +12,18 @@ module.exports = function(app, express) {
 	// ROUTE FOR CREATING A NEW FRIEND
 	app.post('/api/users/:friend_id/clients', function(req,res){
 		 //controller.user.post(req,res);
-		 controller.friend.post(req, res, req.params.friend_id);
+		 controller.friend.post(res, req.body, req.params.friend_id);
 	});
 
 	// ROUTE FOR DISPLAYING PARTICULAR CLIENT
 	app.get('/api/users/:user_id/clients/:friend_id', function(req,res){
 		//controller.client.get(req,res);
 		controller.friend.get(res, req.params.friend_id, req.params.user_id);
+	});
+
+	// ROUTE FOR UPDATING A PARTICULAR CLIENT'S INFORMATION
+	app.put('/api/users/:user_id/clients/:friend_id', function(req, res){
+		controller.friend.put(req, req.body, req.params.friend_id, req.params.user_id);
 	});
 
 	// ROUTE FOR CREATING A NEW CLIENT
