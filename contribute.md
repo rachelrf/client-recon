@@ -1,5 +1,8 @@
-
 ##Project tools
+
+####Initial Set-Up
+
+Clone down the repo and head over to [Initial Set-Up](https://github.com/laudatory-flannel/client-recon/blob/master/setup.md) for step-by-step instructions to get Rapport running on your machine.
 
 ####Git-Splainin
 
