@@ -1,4 +1,0 @@
-# set the runtime language; this should be "node" for Node.js workers
-runtime "node"
-# exec is the file that will be executed when you queue a task
-exec "twilio_worker.js" # replace with your file

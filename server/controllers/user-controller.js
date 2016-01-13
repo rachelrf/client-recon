@@ -1,4 +1,3 @@
-
 var userModel = require('../models/user-model.js');
 
 module.exports.post = function(req, res) {
