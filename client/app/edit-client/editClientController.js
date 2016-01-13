@@ -9,6 +9,7 @@ angular.module('client-recon.edit-client', [])
 
   this.putClient = function () {
     //DETECT USER ID FROM APP STATE
+    console.log('about to send updated client to server');
     ClientsApi.editOne(1, currentClient).then(function(res){
       // CALLED AFTER SUCCESSFUL POST
       successfulPost = true;
