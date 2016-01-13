@@ -2,7 +2,7 @@
 
 module.exports = {
   // user: require('./user-model'),
-  Client: require('./client-model'),
+  friend: require('./friend-model'),
   user: require('./user-model'),
   subscription: require('./subscription-model')
 };
