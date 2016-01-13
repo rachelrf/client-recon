@@ -9,9 +9,10 @@ module.exports = function(app, express) {
 		controller.dashboard.get(req,res);
 	});
 
-	// ROUTE FOR CREATING A NEW USER
+	// ROUTE FOR CREATING A NEW FRIEND
 	app.post('/api/users/:user_id/clients', function(req,res){
-		 controller.user.post(req,res);
+		 //controller.user.post(req,res);
+		 controller.friend.post(req, res, req.params.user_id);
 	});
 
 	// ROUTE FOR DISPLAYING PARTICULAR CLIENT

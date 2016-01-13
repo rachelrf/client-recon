@@ -7,7 +7,7 @@
  */
 module.exports = {
 	dashboard: require('./dashboard-controller'),
+	friend: require('./friend-controller'),
 	user: require('./user-controller'),
-	client: require('./client-controller'),
 	feed:require('./feed-controller')
 };
