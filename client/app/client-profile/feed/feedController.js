@@ -8,15 +8,11 @@ angular.module('client-recon.client-profile.feed', [])
     
     ClientsApi.getFeed(1,AppState.state.currentClient.client_id)
     .then(function(receivedFeed){
-
       ClientsApi.getTickets('seattle-seahawks')
       .then(function(data){
         feed.subscriptions.events = data.events; //Would it 
-        console.log('FEED DATA',feed.subscriptions.events);
+        //console.log('FEED DATA',feed.subscriptions.events);
       });
-
-
-
       
       feed.loading = false;
       AppState.state.currentClient.feed = receivedFeed;

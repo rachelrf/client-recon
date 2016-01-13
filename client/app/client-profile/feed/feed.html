@@ -26,5 +26,18 @@
       </div>  
     </div>
   </div>
+  <div class='client-container row'>
+    <div class="col-sm-12">
+      <h4 class="feed-headline">Suggested Gifts:<h4>
+      <div class="row">
+        <div ng-repeat="item in feed.subscriptions.amazon" class="col-sm-12 article">
+          <a href="{{item.DetailPageURL[0]}}" target="_blank" class="article-headline">
+            <img src="{{item.SmallImage[0].URL[0]}}">
+          </a>
+          //<p class="article-description">{{item.OfferSummary}}</p>
+        </div>
+      </div>  
+    </div>
+  </div>
 </div>
 </div>
