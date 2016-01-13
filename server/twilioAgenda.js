@@ -6,7 +6,12 @@ var agenda = new Agenda({db: {address: "mongodb://127.0.0.1/agenda"}});
 
 // Define a type of job - we can schedule these with their
 // own unique data (passed to 'job.attrs.data') later
-agenda.define('send_twilio_text', function(job, done) {
+agenda.define('test', function(job, done) {
+  console.log("Test successful");
+  done();
+});
+
+agenda.define(twilio, function(job, done) {
   console.log("Sms sent, here is the completed job info: ", job.attrs.data);
   done();
 });
@@ -29,14 +34,12 @@ setTimeout(function() {
 
 	// period of time, job name, job data
 	console.log("Scheduling a job!");
-	agenda.schedule('in 5 seconds', 'send_twilio_text', {message: "Hi!", phoneNumber: '+16506468235'});
+	agenda.schedule('in 5 seconds', 'test');
 
 
-	var sixSecondsInTheFuture = new Date(Date.now() + 6000);
+	var sixSecondsInTheFuture = new Date(Date.now() + 50000);
 
-	agenda.schedule(sixSecondsInTheFuture, twilio, messageOptions);
-
-
+	agenda.schedule('in 10 seconds', twilio, messageOptions);
 
 }, 4000);
 
