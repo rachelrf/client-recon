@@ -22,8 +22,7 @@ function sendMessage (options) {
 
   var message = 'This is a reminder that ' + options.clientName + '\'s ' //add event
   + options.clientEvent +' event is tomorrow! Check out our suggested gifts for them in the Rappo.rt app :)';
-
-  var client = require('twilio')('ACc3a74cb5d7b8dfbb9048dcb26e669810', 'a5a7ceaa0bf84eb37eab559afb0026f1');
+  
 
   client.sendMessage({
       to: options.clientNumber,
@@ -33,12 +32,10 @@ function sendMessage (options) {
       if (err) {
           console.log('Error sending SMS reminder', err);
       } 
-      console.log('SMS to ' + options.clientName + ' send successfully: ' + result.body); // result.body should equal message
+      console.log('SMS to ' + options.clientName + ' send successfully!'); // result.body should equal message
   });
 
 }
-
-sendMessage(messageOptions)
 
 module.exports = sendMessage;
 
