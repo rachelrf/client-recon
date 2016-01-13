@@ -72,24 +72,25 @@ module.exports = {
   getWeather: function(zipcode, cb){
     
   	weatherApi(zipcode, function(result){
-      console.log('yeeeee')
   		cb(result);
   	});
   },
 
   get: function(req, res, params, callback) {
     //dummy value, while frontend for client's likes are not built out
-    var likes = 'Beyonce';
+    //var likes = 'Beyonce';
     //
     var feedResults = {};
     var zipcode = params[0].client_zipcode;
     var company = params[0].client_company;
+    var interests = params[0].client_interests;
+    console.log('interests:', interests);
     module.exports.getBing(company, function(bingResults) {
       // console.log("bing results are:", bingResults);
       feedResults.bing = formatBing(bingResults);
       module.exports.getWeather(zipcode, function(weatherResults) {
         feedResults.weather = formatWeather(weatherResults);
-        module.exports.getAmazon(likes, function(amazonResults) {
+        module.exports.getAmazon(interests, function(amazonResults) {
           feedResults.amazon = formatAmazon(amazonResults);
 
           // feedResults.message

@@ -13,6 +13,7 @@ angular.module('client-recon.services', [])
     }
 
     var addOne = function(user_id, clientObj){
+      console.log("posting to server with clientObj:", clientObj);
       return $http.post('/api/users/' + user_id + '/clients', clientObj)
         .then(function(res){
           return res.data;
