@@ -3,18 +3,21 @@
 </div>
 <div class="col-sm-8 box-style" ng-show=!feed.loading>
 <div class='article-container'>
+  <!-- Upcoming events -->
   <div class='client-container row'>
     <div class="col-sm-12">
       <h4 class="feed-headline">Upcoming:<h4>
         <h5>{{feed.subscriptions.message}} <a target="_blank" href="{{feed.subscriptions.events[0].url}}">Get tickets for upcoming events here.</a><h5>
     </div>
   </div>
+  <!-- Weather -->
   <div class='client-container row' ng-show=feed.weatherShow>
     <div class='col-sm-12'>
       <h4 class="feed-headline">Weather in {{feed.subscriptions.weather.name}}:</h4>
-      <img src="{{feed.subscriptions.weather.weather[0].iconUrl}}"></img>{{feed.subscriptions.weather.main.convertedTemp}} F, {{feed.subscriptions.weather.weather[0].description}}
+      <img src="{{feed.subscriptions.weather.iconUrl}}"></img>{{feed.subscriptions.weather.temp}} F, {{feed.subscriptions.weather.description}}
     </div>
   </div>
+  <!-- Company news -->
   <div class='client-container row'>
     <div class="col-sm-12">
       <h4 class="feed-headline">Company News:<h4>
@@ -26,6 +29,7 @@
       </div>  
     </div>
   </div>
+  <!-- Amazon suggestions -->
   <div class='client-container row'>
     <div class="col-sm-12">
       <h4 class="feed-headline">Suggested Gifts:<h4>
@@ -34,7 +38,7 @@
           <a href="{{item.DetailPageURL[0]}}" target="_blank" class="article-headline">
             <img src="{{item.SmallImage[0].URL[0]}}">
           </a>
-          //<p class="article-description">{{item.OfferSummary}}</p>
+          <p class="article-description">{{item.OfferSummary}}</p>
         </div>
       </div>  
     </div>

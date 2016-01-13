@@ -7,6 +7,11 @@ var Client = require('../models').Client;
 var moment = require('moment');
 var getBirthdayMessage = require('../helpers/birthdateCalc.js');
 
+var kelvinToFahrenheit = function(kelvin) {
+  var fah = (kelvin - 273) * 1.8 + 32;
+  return Math.floor(fah).toString();
+};
+
 module.exports = {
   // FOR TESTING DELETE THIS LATER
   getOneClient: function(req,res){
@@ -46,10 +51,16 @@ module.exports = {
     var zipcode = params[0].client_zipcode;
     var company = params[0].client_company;
     module.exports.getBing(company, function(bingResults) {
-      console.log("bing results are:", bingResults);
+      // console.log("bing results are:", bingResults);
       feedResults.bing = bingResults;
       module.exports.getWeather(zipcode, function(weatherResults) {
-        feedResults.weather = weatherResults;
+        weatherResults = JSON.parse(weatherResults);
+        feedResults.weather = {
+          temp: kelvinToFahrenheit(weatherResults.main.temp),
+          name: weatherResults.name,
+          description: weatherResults.weather[0].description,
+          iconUrl: 'http://openweathermap.org/img/w/' + weatherResults.weather[0].icon + '.png'
+        };
         module.exports.getAmazon(likes, function(amazonResults) {
           feedResults.amazon = amazonResults;
           // feedResults.message
