@@ -64,9 +64,9 @@ Type in the terminal: ionic start myproject. You can now cd in myproject and it 
 — if you CD into my app and type ionic serve it will load the app in your web browser. It is also a live reload server so if you change something, it will automatically reload. 
 
 
-Ionic help lists out all the commands and descriptions. You can also type ionic help <aSpecificCommandHere> to learn more about what specific command you typed it.
+Ionic help lists out all the commands and descriptions. You can also type ionic help <aSpecificCommandHere> to learn more about what specific command you typed it
 
-## SOME COOL COMMANDS
+## SOME COOL TERMINAL COMMANDS WITH IONIC
 R in the terminal, it will reload the page. 
 C in the terminal, it enable or disable console logs. 
 Q in the terminal, it allows you to quit. 
@@ -85,6 +85,11 @@ Command that registers your app with the ionic platform
 ionic io init - It gives you and app ID and api key. This can be found at .io.config.json file. You can also find your app id in the ionic.project file.
 
 
+
+## Reference to ionic documentation
+http://ionicframework.com/docs/api/
+
+## BASIC CONCEPTS
 <ion-pane> is the canvass
 <ion-header-bar> is the header bar
 <ion content> holds the content
