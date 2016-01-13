@@ -4,9 +4,9 @@ var amazon = require('amazon-product-api');
 
 module.exports = function(queryStr, callback){
   var client = amazon.createClient({
-    awsId: accountKey.AMAZON_ACCESS_KEY_ID,
-    awsSecret: accountKey.AMAZON_SECRET_KEY,
-    awsTag: accountKey.AMAZON_ASSOCIATE_TAG
+    awsId: accountKey.ACCESS_KEY_ID,
+    awsSecret: accountKey.SECRET_KEY,
+    awsTag: accountKey.ASSOCIATE_TAG
   });
 
   client.itemSearch({
