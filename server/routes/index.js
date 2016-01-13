@@ -33,7 +33,6 @@ module.exports = function(app, express) {
 		// LOOK AT THE COLUMNS IN THE CLIENT RECORD, CREATE A PARAMS OBJECT BASED ON THAT
 		// SEND THAT TO CONTROLLER.FEED.GET
 		// PARAMS OBJ: {'client_company':'Togos', 'client_zipcode':'94303'}
-
 		controller.feed.getOneClient(req,res);
 	})
 };

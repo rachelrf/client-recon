@@ -1,5 +1,6 @@
 var accountKey = require('./weather-api-key.js');
 // var accountKey = process.env.OPEN_WEATHER_ACCOUNT_KEY;
+
 var request = require('request');
 
 module.exports = function(zipCode, callback){

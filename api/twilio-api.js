@@ -9,6 +9,8 @@ var fromNumber = process.env.TWILLIO_PHONE_NUMBER;
 var toNumber = process.env.TWILLIO_TEST_NUMBER;
 var url = 'https://api.twilio.com/2010-04-01/Accounts/'+ appId +'/Messages.json';
 
+// all this does currently is to post an sms message on addition of a user. That functionality
+// is pretty useless. Can change to send on 24hrs before the event?
 
 function sendMessage (opts) {
   var date = moment(opts.eventDate).year(moment(Date.now()).year()).fromNow();

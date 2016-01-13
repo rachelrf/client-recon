@@ -32,10 +32,13 @@ module.exports = {
   },
 
   getWeather: function(zipcode, cb){
+    
   	weatherApi(zipcode, function(result){
+      console.log('yeeeee')
   		cb(result);
   	});
   },
+<<<<<<< 8e376f3e03f7e7eb91861c14d7a65c4b4e0a1559
 
   get: function(req, res, params, callback) {
     //dummy value, while frontend for client's likes are not built out
@@ -52,6 +55,18 @@ module.exports = {
         module.exports.getAmazon(likes, function(amazonResults) {
           feedResults.amazon = amazonResults;
 
+=======
+  get:function(req, res, params, callback) {
+      var feedResults = {};
+      var zipcode = params[0].client_zipcode;
+      var company = params[0].client_company;
+      module.exports.getBing(company, function(bingResults) {
+        // console.log("bing results are:", bingResults);
+        feedResults.bing = bingResults;
+        module.exports.getWeather(zipcode, function(weatherResults) {
+          feedResults.weather = weatherResults;
+          console.log('Got here wooo')
+>>>>>>> configuration
           // feedResults.message
           feedResults.message = params[0].client_name+"'s birthday is "+ getBirthdayMessage(params[0].client_birthday) +'! Think about '
           + 'how you can make their day special.'

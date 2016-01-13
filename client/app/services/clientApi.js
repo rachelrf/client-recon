@@ -29,6 +29,8 @@ angular.module('client-recon.services', [])
 
     var getFeed = function(user_id, client_id) {
       //currently user is hard coded
+        console.log('here: ', user_id, client_id)
+      
       return $http.get('/api/users/' + user_id + '/clients/' + client_id + '/feed')
         .then(function(res){
           return res.data;
