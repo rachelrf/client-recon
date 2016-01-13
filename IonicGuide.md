@@ -1,8 +1,8 @@
 ## STEP 1.
-Make sure your operating system is at least Yosemite. You should have node. If not $brew install node.
+Make sure your operating system is at least Yosemite. My computer's operating system is El Capitan. You should have node. If not $brew install node.
 
 ## STEP 2.
-Since ionic is based on “cordova” you need to install it. FYI cordova is what makes JS, HTML, CSS work on mobile.  Type in the terminal $npm -g install cordova ionic. This will install Cordova and Ionic. 
+Since ionic is based on “cordova” you need to install it. FYI cordova is what makes JS, HTML, CSS work on mobile.  Type in the terminal $npm -g install cordova ionic. This will install both cordova and Ionic. 
 
 ## STEP 3.
 To make sure ionic has installed correctly run "ionic info" in the terminal.
@@ -24,10 +24,17 @@ Xcode version: Xcode 6.4 Build version 6E35b
 --Note you may have a dependency warning, for stuff like  ios-sim and ios-deploy. To install those do npm install -g ios-sim and npm install -g ios-deploy. (You may have to use sudo)
 
 ## STEP 4.
-You should have Xcode install on your computer. You should all have it. If you don't. You can download and install Xcode from the Mac App Store by searchingfor xcode.
+You should have Xcode installed on your computer. If you don't. You can download and install Xcode from the Mac App Store or just going to the website and clicking download. The reason we need Xcode is to run an emulator on the computer.  I downloaded the 7.3 beta version. You can get away with not downloading Xcode and seeing the app in your normal chrome browser, however, it may not look/interact the same if you uploaded it to the app store.
+
+You can see if your emulator is working by typing. 
+ionic emulate
+
+If not, try typing in the following command and it should work.
+sudo xcode-select -s /Applications/Xcode-Beta.app/Contents/Developer
 
 ## STEP 5.
 As well as the Xcode IDE you will also need to install the command line tools, this will allow ionic to build our ios application from the terminal. The first time ionic will try to run any of the required command line tools a window will popup asking for you to install them. If for some reason it doesn’t open a popup type this into the terminal:
+
 $ xcode-select --install
 
 ## STEP 6.
@@ -71,12 +78,11 @@ ionic serve --lab in the terminal, it allows you see side by side, the android a
 
 ## ANOTHER WAY TO VIEW AN IONIC APP
 Go to Plaforms -> iOS -> then <whateverYourAppIsCalled.xcodeproj>
-This will open up xCode. Look it the top left corner, there will be a Bulldozer button. Which will allow you to select which 
+This will open up xCode. Look it the top left corner, there will be a Bulldozer button. Which will allow you to select the screen size of your choosing.
 
 
 Command that registers your app with the ionic platform
-ionic io init 
-It gives you and app ID and api key. This can be found at .io.config.json file. You can also find your app id in the ionic.project file.
+ionic io init - It gives you and app ID and api key. This can be found at .io.config.json file. You can also find your app id in the ionic.project file.
 
 
 <ion-pane> is the canvass
@@ -84,13 +90,13 @@ It gives you and app ID and api key. This can be found at .io.config.json file. 
 <ion content> holds the content
 <ion list> creates a list
 <ion avatar> makes the icon smaller
-ionic.Platform.ready(callback function)
+ionic.Platform.ready(callback function)  -- similar to jquery's document.ready method or windows onload method. 
 
 show-delete="whatever the scope"
 show-reorder="whatever in the scope"
 
-ionic plugin add cordova-plugin-media
-scoll allows the image to be draggable
+ionic plugin add cordova-plugin-media  -- can add music to your app.
+scoll allows the image to be draggable 
 padding class adds a small amount of padding as a default
 
 
@@ -115,11 +121,24 @@ SIMILAR TO NG-VIEW
 
 
 STANDARD NAV BAR
+There are many classes in ionic as well. Bar-positive makes the bar blue. Fun fact is that ionic changes the
+color of the font in the header correlate well with the background color.
 <ion-nav-bar class="bar-positive">
 	<ion-nav-back-button></ion-nav-back-button>
 </ion-nav-bar>
 
 
-class="list-card"
+IONIC LOADING INDICATOR
+$ionicLoading can be imported as a service.
+example $ionicLoading.show({template: "Loading feed..."})
 
+Clicking into an image and going to another route.
+<div class="list card"
+	ng-repeat="post in feed.posts"
+	ui-sref="<Name of the Function Of The State We Want To Enter">
+
+
+ALLOWS THE USER TO GO BACK
+<ion-nav-back-button class="hide"></ion-nav-back-button>
+You must put in the nav-view-direction property of the view to forward.
 
