@@ -46,7 +46,6 @@ module.exports.getFriends = function (friendId, userId, callback) {
 
 // THIS METHOD UPDATES THE DATA OF A FRIEND ASSOCIATED WITH A GIVEN USER.
 module.exports.updateFriend = function (data, friendId, userId, callback) {
-
   // take the data and make the SQL arguments
   var init = { columns: [], values: [] };
   var query = _.reduce(data, function(acc, val, key) {
