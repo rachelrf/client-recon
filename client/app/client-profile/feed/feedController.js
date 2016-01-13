@@ -15,7 +15,7 @@ angular.module('client-recon.client-profile.feed', [])
     
     feed.loading = false;
     AppState.state.currentClient.feed = receivedFeed;
-    feed.subscriptions = AppState.state.currentClient.feed;
+    feed.subscriptions = receivedFeed;
     if (feed.subscriptions.weather) {
       feed.weatherShow = true;
     }

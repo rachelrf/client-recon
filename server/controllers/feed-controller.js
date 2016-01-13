@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('underscore');
 var db = require('../../db');
 var amazonApi = require('../helpers/amazon-api.js');
 var bingApi = require('../helpers/bing-search-api.js');
@@ -6,6 +7,28 @@ var weatherApi = require('../helpers/weather-api.js');
 var Client = require('../models').Client;
 var moment = require('moment');
 var getBirthdayMessage = require('../helpers/birthdateCalc.js');
+
+// ---- Helpers to format data from APIs ----
+var formatAmazon = function(amazonObj) {
+  return _.map(amazonObj, function(item) {
+    return {
+      title: item.ItemAttributes[0].Title[0],
+      type: item.ItemAttributes[0].ProductGroup[0],
+      price: '$' + item.OfferSummary[0].LowestNewPrice[0].Amount[0] / 100,
+      imageUrl: item.SmallImage[0].URL[0],
+      pageUrl: item.DetailPageURL[0]
+    };
+  })
+};
+
+var formatBing = function(bingObj) {
+  return _.map(bingObj, function(item) {
+    return {
+      title: item.Title,
+      description: item.Description
+    };
+  });
+};
 
 var formatWeather = function(weatherJson) {
   var kelvinToFahrenheit = function(kelvin) {
@@ -21,6 +44,7 @@ var formatWeather = function(weatherJson) {
     iconUrl: 'http://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png'
   };
 };
+// ---- end helpers ----
 
 module.exports = {
   // FOR TESTING DELETE THIS LATER
@@ -62,11 +86,12 @@ module.exports = {
     var company = params[0].client_company;
     module.exports.getBing(company, function(bingResults) {
       // console.log("bing results are:", bingResults);
-      feedResults.bing = bingResults;
+      feedResults.bing = formatBing(bingResults);
       module.exports.getWeather(zipcode, function(weatherResults) {
         feedResults.weather = formatWeather(weatherResults);
         module.exports.getAmazon(likes, function(amazonResults) {
-          feedResults.amazon = amazonResults;
+          feedResults.amazon = formatAmazon(amazonResults);
+
           // feedResults.message
           feedResults.message = params[0].client_name+"'s birthday is "+ getBirthdayMessage(params[0].client_birthday) +'! Think about '
           + 'how you can make their day special.'
