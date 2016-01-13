@@ -7,9 +7,19 @@ var Client = require('../models').Client;
 var moment = require('moment');
 var getBirthdayMessage = require('../helpers/birthdateCalc.js');
 
-var kelvinToFahrenheit = function(kelvin) {
-  var fah = (kelvin - 273) * 1.8 + 32;
-  return Math.floor(fah).toString();
+var formatWeather = function(weatherJson) {
+  var kelvinToFahrenheit = function(kelvin) {
+    var fah = (kelvin - 273) * 1.8 + 32;
+    return Math.floor(fah).toString();
+  };
+
+  var weatherObj = JSON.parse(weatherJson);
+  return {
+    temp: kelvinToFahrenheit(weatherObj.main.temp),
+    name: weatherObj.name,
+    description: weatherObj.weather[0].description,
+    iconUrl: 'http://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png'
+  };
 };
 
 module.exports = {
@@ -54,13 +64,7 @@ module.exports = {
       // console.log("bing results are:", bingResults);
       feedResults.bing = bingResults;
       module.exports.getWeather(zipcode, function(weatherResults) {
-        weatherResults = JSON.parse(weatherResults);
-        feedResults.weather = {
-          temp: kelvinToFahrenheit(weatherResults.main.temp),
-          name: weatherResults.name,
-          description: weatherResults.weather[0].description,
-          iconUrl: 'http://openweathermap.org/img/w/' + weatherResults.weather[0].icon + '.png'
-        };
+        feedResults.weather = formatWeather(weatherResults);
         module.exports.getAmazon(likes, function(amazonResults) {
           feedResults.amazon = amazonResults;
           // feedResults.message
