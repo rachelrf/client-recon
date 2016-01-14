@@ -28,6 +28,17 @@ angular.module('starter.controllers', [])
       }
     ];
 
+    $scope.showRemove = false;
+
+    $scope.destroyFriend = function($index){
+      $scope.friends.splice($index, 1);
+    };
+
+    $scope.moveFriend = function (friend, fromWhere, toWhere){
+      $scope.friends.splice(fromWhere, 1);
+      $scope.friends.splice(toWhere, 0, friend);
+    };
+
 })
 
 
@@ -36,14 +47,12 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('FriendsCtrl', function(){
+
+
+})
+
 .controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
