@@ -34,11 +34,14 @@ module.exports.getFriends = function (friendId, userId, callback) {
       callback(err, null)
     });
   } else {
+    console.log('looking for one friend with id:', friendId);
     return db.query(queryString.getOneFriend, [userId, friendId])
     .then(function (friend) {
+      console.log('friend found:', friend);
       callback(null, friend);
     })
     .catch(function (err) {
+      console.log('error finding one friend');
       callback(err, null);
     });
   };
@@ -68,23 +71,3 @@ module.exports.updateFriend = function (data, friendId, userId, callback) {
       callback(err, null);
     });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
