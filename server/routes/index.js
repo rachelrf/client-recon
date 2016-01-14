@@ -5,31 +5,37 @@ var helpers = require('../helpers');
 
 module.exports = function(app, express) {
 	// ROUTE FOR DISPLAYING DASHBOARD
-	app.get('/api/users/:user_id/clients', function(req,res){
+	app.get('/api/users/:user_id/clients', function (req,res) {
 		controller.dashboard.get(req,res);
 	});
 
+
+
+
+
+/* =============== FRIEND ROUTES ============= */
 	// ROUTE FOR CREATING A NEW FRIEND
-	app.post('/api/users/:friend_id/clients', function(req,res){
-		 //controller.user.post(req,res);
+	app.post('/api/users/:friend_id/clients', function (req,res) {
 		 controller.friend.post(res, req.body, req.params.friend_id);
 	});
 
-	// ROUTE FOR DISPLAYING PARTICULAR CLIENT
-	app.get('/api/users/:user_id/clients/:friend_id', function(req,res){
+	// ROUTE FOR DISPLAYING PARTICULAR FRIEND
+	app.get('/api/users/:user_id/clients/:friend_id', function (req,res) {
 		//controller.client.get(req,res);
 		controller.friend.get(res, req.params.friend_id, req.params.user_id);
 	});
 
-	// ROUTE FOR UPDATING A PARTICULAR CLIENT'S INFORMATION
-	app.put('/api/users/:user_id/clients/:friend_id', function(req, res){
-		controller.friend.put(req, req.body, req.params.friend_id, req.params.user_id);
+	// ROUTE FOR UPDATING A PARTICULAR FRIENDS'S INFORMATION
+	app.put('/api/users/:user_id/clients/:friend_id', function (req, res) {
+		controller.friend.put(res, req.body, req.params.friend_id, req.params.user_id);
 	});
 
-	// ROUTE FOR CREATING A NEW CLIENT
-	// app.post('/api/users/:user_id/clients', function(req,res){
-	// 	controller.client.post(req,res);
-	// })
+
+/* ================ USER ROUTES ================= */
+	// ROUTE FOR CREATING A NEW USER
+	app.post('/api/createUser', function (req, res) {
+		controller.user.post(res, req.body.username);
+	});
 
   // ROUTE FOR UPDATING A CLIENT
 	//app.put('/api/users/:user_id/clients/:client_id', controller.client.put);
