@@ -1,6 +1,6 @@
 <ion-view class="pane" view-title="Legacy">
   <ion-content>
-    <ion-list show-delete="false" show-reorder="false" can-swipe="true" class="card" ng-repeat="data in friends" ui-sref="friends({id:friends.name})">
+    <ion-list show-delete="false" show-reorder="false" can-swipe="true" class="card" ng-repeat="data in friends" ui-sref="friends({id: data.id})">
       <ion-item class="item item-thumbnail-left item-remove-animate" href="#">
       <img src="{{data.img}}"/>
       <h2>{{data.name}}</h2>

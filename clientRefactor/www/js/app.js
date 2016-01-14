@@ -12,7 +12,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+
+
+  $ionicConfigProvider.backButton.previousTitleText(false);
+  $ionicConfigProvider.backButton.icon('ion-chevron-left');
+  $ionicConfigProvider.backButton.text('');
 
   $stateProvider
 
@@ -20,13 +26,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: "/login",
     templateUrl: "templates/login.html",
     controller: 'LoginCtrl'
-  })
-
-  .state('friends', {
-    url: "/friends",
-    templateUrl: "templates/friends.html",
-    controller: 'FriendsCtrl',
-    // authenticate: true
   })
 
   .state('tab', {
@@ -46,6 +45,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('friends', {
+    url: "/friends/:id",
+    templateUrl: "templates/friends.html",
+    controller: 'FriendsCtrl',
+    // authenticate: true
+  })
+
   .state('tab.account', {
     url: '/account',
     views: {
@@ -56,10 +62,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 
-  // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
+
 });
+
 
 
 /*
