@@ -52,10 +52,26 @@ module.exports.updateFriend = function (data, friendId, userId, callback) {
   // take the data and make the SQL arguments
   var init = { columns: [], values: [] };
   var query = _.reduce(data, function(acc, val, key) {
-    acc.columns.push(key);
-    acc.values.push(val);
-    return acc;
+    if (key !== 'feed' && key !== 'salesperson_id') {
+        acc.columns.push(key);
+        acc.values.push(val);
+      }
+      return acc;
   }, init);
+
+    // stringify the arguments
+    var columns = query.columns.join(', ');
+    var values = _.map(query.values, function(value) {
+      if (value === null) {
+        return "''";
+      } else if (typeof value === 'string') {
+        return "'" + value + "'";
+      } else {
+        return value;
+      }
+    }).join(', ');
+    console.log("COLUMNS:", "typeof", typeof columns, columns);
+    console.log("VALUES:", "typeof", typeof values, values);
 
     // stringify the arguments
   // var columns = query.columns.join(', ');
@@ -63,7 +79,7 @@ module.exports.updateFriend = function (data, friendId, userId, callback) {
 
     // performe the db transaction
     // return a promise
-  return db.query(queryString.editOneFriend, [userId, friendId, query.columns, query.values])
+  return db.query(queryString.editOneFriend, [userId, friendId, columns, values])
     .then(function(friend){
       callback(null, friend);
     })
