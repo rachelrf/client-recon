@@ -1,0 +1,37 @@
+<ion-view class="pane" view-title="Legacy">
+  <ion-content>
+    <ion-list show-delete="false" show-reorder="false" can-swipe="true" class="card" ng-repeat="data in friends" ui-sref="friends({id:friends.name})">
+      <ion-item class="item item-thumbnail-left item-remove-animate" href="#">
+      <img src="{{data.img}}"/>
+      <h2>{{data.name}}</h2>
+      <p>{{data.email}}</p>
+      <p>{{data.phone}}</p>
+      </a>
+      <ion-option-button class="button-assertive icon ion-trash-a" ng-click="destroyFriend($index)"></ion-option-button>
+      <ion-reorder-button class="ion-navicon" on-reorder="moveFriend(friend, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+
+
+<!-- 
+  <div class='client-wrapper container box-style'>
+    <div class='client-container row' ng-repeat="client in dashboard.data.clients" ng-click="dashboard.storeClient($index)">
+      <div class="col-sm-2">
+        <img class='clientImage' src='{{client.client_image}}'></img>
+      </div>
+      <div class="col-sm-10 client-text-summary clientInfo">
+          <h4 class='clientName'>{{client.client_name}}</h4>
+          <span><a href="mailto:alan@gmail.com" class='clientEmail'><span>{{client.client_email}}</span></a></span>
+          <div class='clientTitle'>{{client.client_title}}</div>
+          <div class='clientCompany'>{{client.client_company}}</div>
+      </div>
+    </div>
+    <div class="add-new row client-container" ng-click="dashboard.addNew()">
+      +
+    </div>
+  </div>
+
+ -->
