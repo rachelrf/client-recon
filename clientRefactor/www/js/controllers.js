@@ -1,33 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope) {
-    $scope.friends = [
-      {
-      img: "/img/rachel.jpg",
-      name: "Rachel RoseFigura",
-      email: "rachel@gmail.com",
-      phone: "650-713-1142"
-      },
-      {
-      img: "/img/gloria.jpg",
-      name: "Gloria Ma",
-      email: "gloria@gmail.com",
-      phone: "214-421-1112"
-      },
-      {
-      img: "/img/max.jpg",
-      name: "Max O'Connell",
-      email: "max@gmail.com",
-      phone: "609-838-2212"
-      },
-      {
-      img: "/img/greg.jpg",
-      name: "Greg Domorski",
-      email: "greg.domorski@gmail.com",
-      phone: "908-601-6910"
-      }
-    ];
+.controller('HomeCtrl', function($scope, FriendsService) {
 
+    $scope.friends = FriendsService.friends;
     $scope.showRemove = false;
 
     $scope.destroyFriend = function($index){
@@ -39,36 +14,23 @@ angular.module('starter.controllers', [])
       $scope.friends.splice(toWhere, 0, friend);
     };
 
-
 })
-
 
 .controller('LoginCtrl', function(){
 
 
 })
 
-.controller('FriendsCtrl', function(){
-
-
-})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('FriendsCtrl', function($scope, $stateParams, FriendsService){
+  $scope.friendId = $stateParams.id;
+  $scope.friends = FriendsService.getFriend($stateParams.id);
 })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
+
 
   function shuffle(o){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -142,4 +104,3 @@ angular.module('starter.controllers', [])
     imageUrl: 'http://i.imgur.com/RMUDK4n.png' } ]);
 
 });
-

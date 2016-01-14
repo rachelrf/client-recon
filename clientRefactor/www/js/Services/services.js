@@ -1,50 +1,48 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.service('FriendsService', function() {
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+  this.friends = [
+      {
+      id: 1,
+      img: "/img/rachel.jpg",
+      name: "Rachel RoseFigura",
+      email: "rachel@gmail.com",
+      phone: "650-713-1142"
+      },
+      {
+      id: 2,
+      img: "/img/gloria.jpg",
+      name: "Gloria Ma",
+      email: "gloria@gmail.com",
+      phone: "214-421-1112"
+      },
+      {
+      id: 3,
+      img: "/img/max.jpg",
+      name: "Max O'Connell",
+      email: "max@gmail.com",
+      phone: "609-838-2212"
+      },
+      {
+      id: 4,
+      img: "/img/greg.jpg",
+      name: "Greg Domorski",
+      email: "greg.domorski@gmail.com",
+      phone: "908-601-6910"
+      }
+    ];
 
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+
+
+    this.getFriend = function (id) {
+      for (var i = 0; i < this.friends.length; i++) {
+        var entry = this.friends[i];
+        if (entry.id === parseInt(id)) {
+          return entry;
         }
       }
       return null;
-    }
-  };
+    };
+
 });
