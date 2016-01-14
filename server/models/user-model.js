@@ -12,3 +12,14 @@ module.exports.insertUser = function (data, callback) {
 		callback(err, null);
 	});
 };
+
+//GET USER FROM DATABASE
+module.exports.getUserById = function (id, callback) {
+	db.query(queryString.getUserById, id)
+	.then(function (result) {
+		callback(null, result);
+	})
+	.catch(function (err) {
+		callback(err, null);
+	});
+};

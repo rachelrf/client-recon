@@ -10,10 +10,18 @@ module.exports = function(app, express) {
 	});
 
 
+/* =============== LOGIN & AUTHENTICATION ================ */
+	app.get('/login', function (req, res) {
+
+	});
+
+	app.get('/login-verify', function (req, res) {
+
+	});
 
 
 
-/* =============== FRIEND ROUTES ============= */
+/* =============== FRIEND ROUTES ========================= */
 	// ROUTE FOR CREATING A NEW FRIEND
 	app.post('/api/users/:friend_id/clients', function (req,res) {
 		 controller.friend.post(res, req.body, req.params.friend_id);
@@ -21,7 +29,6 @@ module.exports = function(app, express) {
 
 	// ROUTE FOR DISPLAYING PARTICULAR FRIEND
 	app.get('/api/users/:user_id/clients/:friend_id', function (req,res) {
-		//controller.client.get(req,res);
 		controller.friend.get(res, req.params.friend_id, req.params.user_id);
 	});
 
@@ -34,7 +41,11 @@ module.exports = function(app, express) {
 /* ================ USER ROUTES ================= */
 	// ROUTE FOR CREATING A NEW USER
 	app.post('/api/createUser', function (req, res) {
-		controller.user.post(res, req.body.username);
+		controller.user.post(res, req.body);
+	});
+
+	app.get('/api/createUser/:id', function (req, res) {
+		controller.user.getById(res, req.params.id);
 	});
 
   // ROUTE FOR UPDATING A CLIENT
@@ -52,4 +63,11 @@ module.exports = function(app, express) {
 	app.get('/api/users/:user_id/clients/:client_id/gifts', function(req, res) {
 		controller.feed.getOneFriend(req, res, controller.feed.getGifts);
 	});
+};
+
+/* ============= AUTHENTICAITON HELPER ============= */
+	function ensureAuthenticated(req, res, next) {
+	  if (req.isAuthenticated()) { return next(); }
+	  res.redirect('/login');
+	}
 };

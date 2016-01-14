@@ -12,5 +12,17 @@ module.exports = {
 				res.json(response);
 			}
 		});
+	},
+
+	//FIND A USER BY ID
+	getById: function (res, id) {
+		User.getUserById(id, function (err, response) {
+			if (err) {
+				console.log("Error finding user: ", err);
+			} else {
+				console.log("User found! ", response);
+				res.json(response);
+			}
+		});
 	}
 };
