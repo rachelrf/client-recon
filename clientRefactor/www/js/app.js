@@ -40,14 +40,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // authenticate: true
   })
 
-
   .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
 
-  // Each tab has its own nav history stack:
   .state('tab.home', {
     url: '/home',
     views: {
@@ -57,36 +55,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         // authenticate: true
       }
     }
+  })
+
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
+      }
+    }
   });
-
-  // .state('tab.chats', {
-  //     url: '/chats',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/login.html',
-  //         controller: 'ChatsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.friends', {
-  //     url: '/friends/:friendId',
-  //     views: {
-  //       'friends': {
-  //         templateUrl: 'templates/friends.html',
-  //         controller: 'FriendCtrl'
-  //       }
-  //     }
-  //   })
-
-  // .state('tab.account', {
-  //   url: '/account',
-  //   views: {
-  //     'tab-account': {
-  //       templateUrl: 'templates/tab-account.html',
-  //       controller: 'AccountCtrl'
-  //     }
-  //   }
-  // });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

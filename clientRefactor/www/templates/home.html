@@ -1,4 +1,11 @@
 <ion-view class="pane" view-title="Legacy">
+<!--   <ion-nav-buttons side="secondary" >
+    <button class="button button-clear"
+            ng-click="logout()">Logout
+    </button>
+</ion-nav-buttons> -->
+
+
   <ion-content class="padding">
     <div class="card" ng-repeat="data in friends" ui-sref="friends({id:friends.name})">
       <a class="item item-thumbnail-left" href="#">
