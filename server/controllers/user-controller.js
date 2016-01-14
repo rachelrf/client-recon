@@ -1,7 +1,7 @@
 var User = require('../models/user-model.js');
 
 module.exports = {
-	//THIS METHOD POSTS A NEW USER TO THE DATABASE
+	//POST A NEW USER TO THE DATABASE
 	post: function (res, data) {
 		User.insertUser(data, function (err, response) {
 			if (err) {

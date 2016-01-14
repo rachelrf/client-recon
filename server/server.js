@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-auth').OAuth2Strategy;
 
 var app = express();
 
