@@ -1,5 +1,7 @@
 'use strict';
 
+var SERVER_ROOT = 'http://localhost:3000';
+
 angular.module('client-recon.services', [])
   .factory('ClientsApi', function($http, $q){
 
@@ -27,6 +29,7 @@ angular.module('client-recon.services', [])
         });
     }
 
+    //Gets Amazon, Bing, and Weather results
     var getFeed = function(user_id, client_id) {
       //currently user is hard coded
         console.log('here: ', user_id, client_id)
@@ -45,11 +48,20 @@ angular.module('client-recon.services', [])
         });
     }
 
+    // Gets Amazon results (only)
+    var getGifts = function(user_id, client_id) {
+      return $http.get(SERVER_ROOT + '/api/users/' + user_id + '/clients/' + client_id + '/gifts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
+
     return {
       getAll: getAll,
       addOne: addOne,
       editOne: editOne,
       getFeed: getFeed,
-      getTickets: getTickets
+      getTickets: getTickets,
+      getGifts: getGifts
     }
   });

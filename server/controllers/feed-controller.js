@@ -49,15 +49,15 @@ var formatWeather = function(weatherJson) {
 
 module.exports = {
   // FOR TESTING DELETE THIS LATER
-  getOneClient: function(req,res){
+  getOneFriend: function(req,res, callback){
     //Client.getOne(req.params.client_id, function(result){ 
     Friend.getFriends(req.params.client_id, USER_ID, function(err, friends) {
+      if (err) {
+        throw err;
+      }
       var friend = friends[0];
-      module.exports.get(req, res, friend, function(feedResult){
-        res.json(feedResult);
-      });
+      callback(req, res, friend);
     });
-  
   },
   
   getAmazon: function(likes, cb) {
@@ -79,7 +79,8 @@ module.exports = {
   	});
   },
 
-  get: function(req, res, friend, callback) {
+  // Gets Amazon, Bing, and Weather results
+  getFeed: function(req, res, friend) {
     //dummy value, while frontend for client's likes are not built out
     //var likes = 'Beyonce';
     //
@@ -87,7 +88,7 @@ module.exports = {
     var zipcode = friend.client_zipcode;
     var company = friend.client_company;
     var interests = friend.client_interests;
-    console.log('interests:', interests);
+    // console.log('interests:', interests);
     module.exports.getBing(company, function(bingResults) {
       // console.log("bing results are:", bingResults);
       feedResults.bing = formatBing(bingResults);
@@ -102,6 +103,20 @@ module.exports = {
           res.json(feedResults);
         });
       });
+    });
+  },
+
+  getGifts: function(req, res, friend) {
+    console.log('trying to get gifts');
+    var interests = friend.client_interests;
+    module.exports.getAmazon(interests, function(amazonResults) {
+      var data = {
+        amazon: formatAmazon(amazonResults),
+        message: friend.client_name+"'s birthday is "+ getBirthdayMessage(friend.client_birthday) +'! Think about '
+          + 'how you can make their day special.'
+      };
+      console.log('got gifts data');
+      res.json(data);
     });
   }
 };

@@ -1,4 +1,8 @@
-angular.module('starter.controllers', [])
+//default - should be modified for production
+var USER_ID = 1;
+var CLIENT_ID = 1;
+
+angular.module('starter.controllers', ['client-recon.services'])
 
 .controller('HomeCtrl', function($scope, FriendsService) {
 
@@ -24,6 +28,22 @@ angular.module('starter.controllers', [])
 .controller('FriendsCtrl', function($scope, $stateParams, FriendsService){
   $scope.friendId = $stateParams.id;
   $scope.friends = FriendsService.getFriend($stateParams.id);
+})
+
+.controller('GiftsCtrl', function($scope, ClientsApi) {
+  $scope.loading = true;
+  $scope.gifts = 'Lol';
+  //$scope.subscriptions = AppState.state.currentClient.feed;
+  
+  console.log('running');
+  ClientsApi.getGifts(USER_ID, CLIENT_ID)
+  .then(function(gifts) {
+    console.log('got gifts');
+    $scope.loading = false;
+    $scope.gifts = gifts;
+
+    //should input client_interest? or client_team || whatever you want
+  });
 })
 
 .controller('AccountCtrl', function($scope) {
