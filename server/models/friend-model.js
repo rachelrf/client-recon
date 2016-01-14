@@ -34,14 +34,14 @@ module.exports.getFriends = function (friendId, userId, callback) {
       callback(err, null)
     });
   } else {
-    console.log('looking for one friend with id:', friendId);
+    // console.log('looking for one friend with id:', friendId);
     return db.query(queryString.getOneFriend, [userId, friendId])
     .then(function (friend) {
-      console.log('friend found:', friend);
+      // console.log('friend found:', friend);
       callback(null, friend);
     })
     .catch(function (err) {
-      console.log('error finding one friend');
+      // console.log('error finding one friend');
       callback(err, null);
     });
   };
@@ -70,12 +70,8 @@ module.exports.updateFriend = function (data, friendId, userId, callback) {
         return value;
       }
     }).join(', ');
-    console.log("COLUMNS:", "typeof", typeof columns, columns);
-    console.log("VALUES:", "typeof", typeof values, values);
-
-    // stringify the arguments
-  // var columns = query.columns.join(', ');
-  // var values = query.values.join(', ');
+    // console.log("COLUMNS:", "typeof", typeof columns, columns);
+    // console.log("VALUES:", "typeof", typeof values, values);
 
     // performe the db transaction
     // return a promise
