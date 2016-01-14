@@ -41,7 +41,7 @@ module.exports = function(app, express) {
 /* ================ USER ROUTES ================= */
 	// ROUTE FOR CREATING A NEW USER
 	app.post('/api/createUser', function (req, res) {
-		controller.user.post(res, req.body);
+		controller.user.post(res, req.body.arr);
 	});
 
 	app.get('/api/createUser/:id', function (req, res) {

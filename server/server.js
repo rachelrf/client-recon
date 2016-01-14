@@ -1,12 +1,12 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var User = require('controllers/user-controller.js');
+var User = require('./controllers/user-controller.js');
 
 
 /* ============= GOOGLE AUTHENTICATION & PASSPORT CONFIG ================= */
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-auth').OAuth2Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // GOOGLE CREDENTIALS
 var GOOGLE_CLIENT_ID = "615669438819-m1ilq060a5u3grritkida3edigottqa0.apps.googleusercontent.com";
@@ -16,7 +16,7 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-	
+
 });
 
 passport.use(new GoogleStrategy({

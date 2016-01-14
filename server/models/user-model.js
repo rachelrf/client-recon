@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 //SAVES NEW USER TO THE DATABASE.
 module.exports.insertUser = function (data, callback) {
-	db.query(queryString.insertUser, [data])
+	db.query(queryString.insertUser, data)
 	.then(function (result) {
 		callback(null, result);
 	})
