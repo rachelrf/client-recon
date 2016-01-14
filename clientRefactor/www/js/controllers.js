@@ -34,10 +34,11 @@ angular.module('starter.controllers', [])
       $scope.friends.splice($index, 1);
     };
 
-    $scope.moveFriend = function (friend, fromWhere, toWhere){
+    $scope.moveFriend = function (friend, fromIndex, toIndex){
       $scope.friends.splice(fromWhere, 1);
       $scope.friends.splice(toWhere, 0, friend);
     };
+
 
 })
 
