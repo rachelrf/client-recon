@@ -1,16 +1,16 @@
-var userModel = require('../models/user-model.js');
+var User = require('../models/user-model.js');
 
-module.exports.post = function(req, res) {
-			// This is where we call the DB function for creating new user
-			// TO DO: Make sure you send a response
-			// Love your comments Rebecca!
-			var salesID = req.params.user_id;
-			console.log('in controller, SALES ID is', salesID);
-			
-			userModel.insertUser(req.body, salesID, function(user) {
-				console.log('user is inserted, req.body is:', req.body);
-				res.send(201, user);
-			});
-
-		};
-	
+module.exports = {
+	//THIS METHOD POSTS A NEW USER TO THE DATABASE
+	post: function (res, data) {
+		User.insertUser(data, function (err, response) {
+			if (err) {
+				console.log("Error saving user: ", err);
+				res.send(500);
+			} else {
+				console.log("User saved! ", response);
+				res.json(response);
+			}
+		});
+	}
+};
