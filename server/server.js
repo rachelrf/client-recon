@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var User = require('./controllers/user-controller.js');
+var User = require('./models/user-model.js');
 
 
 /* ============= GOOGLE AUTHENTICATION & PASSPORT CONFIG ================= */
@@ -12,11 +12,13 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var GOOGLE_CLIENT_ID = "615669438819-m1ilq060a5u3grritkida3edigottqa0.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "EF8r-qDLn-4LQ0UnuYwJ9aKs";
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
-passport.deserializeUser(function(id, done) {
-
+passport.deserializeUser(function (id, done) {
+  User.getUserById(id, function (err, user) {
+  	done(err, user);
+  });
 });
 
 passport.use(new GoogleStrategy({
@@ -52,7 +54,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 //Set up routes
-require('./routes/index.js')(app, express);
+require('./routes/index.js')(app, express, passport);
 
 
 //Set up static files

@@ -3,7 +3,7 @@
 var controller = require('../controllers');
 var helpers = require('../helpers');
 
-module.exports = function(app, express) {
+module.exports = function(app, express, passport) {
 	// ROUTE FOR DISPLAYING DASHBOARD
 	app.get('/api/users/:user_id/clients', function (req,res) {
 		controller.dashboard.get(req,res);
@@ -11,13 +11,15 @@ module.exports = function(app, express) {
 
 
 /* =============== LOGIN & AUTHENTICATION ================ */
-	app.get('/login', function (req, res) {
+	app.get('/login', passport.authenticate('google', 
+		{ scope: ['https://www.googleapis.com/auth/userinfo.profile']}),
+		function (req, res){});
 
-	});
-
-	app.get('/login-verify', function (req, res) {
-
-	});
+	app.get('/login-verify', passport.authenticate('google', 
+		{
+			successRedirect: '/home',
+			failureRedirect: '/login'
+		}));
 
 
 
