@@ -1,11 +1,4 @@
 <ion-view class="pane" view-title="Legacy">
-<!--   <ion-nav-buttons side="secondary" >
-    <button class="button button-clear"
-            ng-click="logout()">Logout
-    </button>
-</ion-nav-buttons> -->
-
-
   <ion-content>
     <ion-list show-delete="false" can-swipe="true" class="card" ng-repeat="data in friends" ui-sref="friends({id:friends.name})">
       <ion-item class="item item-thumbnail-left" href="#">
@@ -13,7 +6,7 @@
       <h2>{{data.name}}</h2>
       <p>{{data.email}}</p>
       <p>{{data.phone}}</p>
-      <ion-option-button class="button-assertive icon ion-trash-a" ng-click"destroyFriend($index)"></ion-option-button>
+      <ion-option-button class="button-assertive icon ion-trash-a" ng-click="destroyFriend($index)"></ion-option-button>
 <!--       <ion-delete-button class="ion-minus-circled"><ion-delete-button> -->
 <!--       <ion-reorder-button class="ion-navicon"></ion-reorder-button> -->
       </a>
