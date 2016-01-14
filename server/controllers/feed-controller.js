@@ -1,10 +1,11 @@
 'use strict';
+var USER_ID = 1;
 var _ = require('underscore');
 var db = require('../../db');
 var amazonApi = require('../helpers/amazon-api.js');
 var bingApi = require('../helpers/bing-search-api.js');
 var weatherApi = require('../helpers/weather-api.js');
-var Client = require('../models').Client;
+var Friend = require('../models').friend;
 var moment = require('moment');
 var getBirthdayMessage = require('../helpers/birthdateCalc.js');
 
@@ -49,8 +50,10 @@ var formatWeather = function(weatherJson) {
 module.exports = {
   // FOR TESTING DELETE THIS LATER
   getOneClient: function(req,res){
-    Client.getOne(req.params.client_id, function(result){ 
-      module.exports.get(req,res, result,function(feedResult){
+    //Client.getOne(req.params.client_id, function(result){ 
+    Friend.getFriends(req.params.client_id, USER_ID, function(err, friends) {
+      var friend = friends[0];
+      module.exports.get(req, res, friend, function(feedResult){
         res.json(feedResult);
       });
     });
@@ -76,14 +79,14 @@ module.exports = {
   	});
   },
 
-  get: function(req, res, params, callback) {
+  get: function(req, res, friend, callback) {
     //dummy value, while frontend for client's likes are not built out
     //var likes = 'Beyonce';
     //
     var feedResults = {};
-    var zipcode = params[0].client_zipcode;
-    var company = params[0].client_company;
-    var interests = params[0].client_interests;
+    var zipcode = friend.client_zipcode;
+    var company = friend.client_company;
+    var interests = friend.client_interests;
     console.log('interests:', interests);
     module.exports.getBing(company, function(bingResults) {
       // console.log("bing results are:", bingResults);
@@ -94,7 +97,7 @@ module.exports = {
           feedResults.amazon = formatAmazon(amazonResults);
 
           // feedResults.message
-          feedResults.message = params[0].client_name+"'s birthday is "+ getBirthdayMessage(params[0].client_birthday) +'! Think about '
+          feedResults.message = friend.client_name+"'s birthday is "+ getBirthdayMessage(friend.client_birthday) +'! Think about '
           + 'how you can make their day special.'
           res.json(feedResults);
         });
