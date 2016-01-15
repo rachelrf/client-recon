@@ -15,5 +15,6 @@ module.exports = {
   getAllFriendsForUser: sqlLoad(path.join(__dirname, './getAllFriendsForUser.sql')),
   getOneFriend: sqlLoad(path.join(__dirname, './getOneFriend.sql')),
   updateOneFriend: sqlLoad(path.join(__dirname, './updateOneFriend.sql')),
+  deleteOneFriend: sqlLoad(path.join(__dirname, './deleteOneFriend.sql'))
 };
 
