@@ -25,9 +25,13 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('FriendsCtrl', function($scope, $stateParams, FriendsService){
-  $scope.friendId = $stateParams.id;
-  $scope.friends = FriendsService.getFriend($stateParams.id);
+.controller('EditCtrl', function($stateParams, $scope) {
+
+})
+
+.controller('PostsCtrl', function($stateParams, $scope, FriendsService){
+  $scope.friendId = $stateParams.friendId;
+  $scope.friends = FriendsService.getFriend($stateParams.friendId);
 
   // rachel's code for a dummy data
   $scope.settings = {
@@ -108,15 +112,12 @@ angular.module('starter.controllers', ['client-recon.services'])
   // end rachel's code
 })
 
-.controller('EditCtrl', function($scope) {
+.controller('EventsCtrl', function($stateParams, $scope) {
 
 })
 
-.controller('EventsCtrl', function($scope) {
-
-})
-
-.controller('GiftsCtrl', function($scope, ClientsApi) {
+.controller('GiftsCtrl', function($stateParams, $scope, ClientsApi) {
+  $scope.client_id = $stateParams.friendId;
   $scope.loading = true;
   $scope.gifts = 'Loading gift suggestions...';
   //$scope.subscriptions = AppState.state.currentClient.feed;
