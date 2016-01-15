@@ -45,4 +45,16 @@ angular.module('starter.services', [])
       return null;
     };
 
+    this.getPosts = function(friendId) {  
+      return $http({
+        method: 'GET',
+        url: '/api/clients/:' + friendId + '/posts'
+      })
+      .then(function (resp) {
+        return resp.data;
+      });
+
+
+    };
+
 });

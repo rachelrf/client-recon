@@ -1,4 +1,4 @@
-var accountKey = require('./amazon-api-key.js')
+var accountKey = require('./amazon-api-key.js');
 //var accountKey = process.env.AMAZON_API
 var amazon = require('amazon-product-api');
 

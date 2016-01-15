@@ -56,12 +56,20 @@ angular.module('client-recon.services', [])
       });
     };
 
+    var getPosts = function(friend_id) {
+      return $http.get(SERVER_ROOT + '/api/clients/' + friend_id + '/posts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
+
     return {
       getAll: getAll,
       addOne: addOne,
       editOne: editOne,
       getFeed: getFeed,
       getTickets: getTickets,
-      getGifts: getGifts
+      getGifts: getGifts,
+      getPosts: getPosts
     }
   });
