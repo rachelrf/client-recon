@@ -72,7 +72,7 @@ angular.module('client-recon.services', [])
 
     return {
       addOne: addOne,
-      getAllForUser: getAlForUser,
+      getAllForUser: getAllForUser,
       getOne: getOne,
       updateOne: updateOne,
       deleteOne: deleteOne,

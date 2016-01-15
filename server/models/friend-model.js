@@ -13,7 +13,7 @@ var callCallbackOnResults = function(promise, callback) {
   });
 };
 
-// --- Pure db interaction ----
+// ---- Export functions ----
 exports.addOne = function (userId, friendObj, callback) {
 	var queryParameters = [
     userId,
@@ -29,17 +29,17 @@ exports.addOne = function (userId, friendObj, callback) {
   ];
 
   var promise = db.query(queryString.addOneFriend, queryParameters);
-  return callCallbackOnResults(promise);
+  return callCallbackOnResults(promise, callback);
 };
 
 exports.getAllForUser = function(userId, callback) {
   var promise = db.query(queryString.getAllFriendsForUser, userId)
-  return callCallbackOnResults(promise);
+  return callCallbackOnResults(promise, callback);
 };
 
 exports.getOne = function (friendId, callback) {
   var promise = db.query(queryString.getOneFriend, friendId)
-  return callCallbackOnResults(promise);
+  return callCallbackOnResults(promise, callback);
 };
 
 exports.updateOne = function (data, friendId, callback) {
@@ -67,20 +67,10 @@ exports.updateOne = function (data, friendId, callback) {
 
   // performe the db transaction
   var promise = db.query(queryString.updateOneFriend, [userId, friendId, columns, values]);
-  return callCallbackOnResults(promise);
+  return callCallbackOnResults(promise, callback);
 };
 
 exports.deleteOne = function(friendId, callback) {
   var promise = db.query(queryString.deleteOneFriend, friendId);
-  return callCallbackOnResults(promise);
-};
-
-// ---- External APIs ----
-
-exports.getPosts = function(friendId) {
-
-};
-
-exports.getGifts = function(friendId) {
-
+  return callCallbackOnResults(promise, callback);
 };

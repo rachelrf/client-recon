@@ -56,11 +56,11 @@ module.exports = function(app, express, passport) {
 	});	
 
 	app.get('/api/friends/:friendId/posts', function(req, res) {
-		controller.friends.getPosts(req.params.friendId, res);
+		controller.friend.getPosts(req.params.friendId, res);
 	});
 
 	app.get('/api/friends/:friendId/gifts', function(req, res) {
-		controller.friends.getGifts(req.params.friendId, res);
+		controller.friend.getGifts(req.params.friendId, res);
 	});
 	
 /* ============= AUTHENTICATION HELPER ============= */

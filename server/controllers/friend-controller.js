@@ -1,4 +1,5 @@
 var Friend = require('../models/friend-model.js');
+var amazon = require('../helpers/amazon-api.js');
 
 var makeCallback = function(res, actionString) {
   actionString = actionString || '';
@@ -39,7 +40,24 @@ module.exports = {
   },
   
   getGifts: function(friendId, res) {
-    Friend.getGifts(friendId, makeCallback(res, 'get gifts for friend'));
+    var actionString = 'get gifts for friend';
+    Friend.getOne(friendId, function(err, results) {
+      if (err) {
+        console.log(actionString, 'failed:', err);
+        res.send(500);
+      } else {
+        console.log(actionString, 'succeeded:', results);
+        actionString = 'search amazon for gifts';
+        amazon.request(results[0].interests, function(err, results) {
+          if (err) {
+            console.log(actionString, 'failed:', err);
+          } else {
+            console.log(actionString, 'succeeded:', results);
+            res.json(amazon.format(results));
+          }
+        })
+      }
+    });
   }
 };
 

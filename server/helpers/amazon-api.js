@@ -1,8 +1,21 @@
 var accountKey = require('./amazon-api-key.js');
 //var accountKey = process.env.AMAZON_API
 var amazon = require('amazon-product-api');
+var _ = require('underscore');
 
-module.exports = function(queryStr, callback){
+exports.format = function(amazonObj) {
+  return _.map(amazonObj, function(item) {
+    return {
+      title: item.ItemAttributes[0].Title[0],
+      type: item.ItemAttributes[0].ProductGroup[0],
+      price: '$' + item.OfferSummary[0].LowestNewPrice[0].Amount[0] / 100,
+      imageUrl: item.SmallImage[0].URL[0],
+      pageUrl: item.DetailPageURL[0]
+    };
+  })
+};
+
+exports.request = function(queryStr, callback){
   var client = amazon.createClient({
     awsId: accountKey.ACCESS_KEY_ID,
     awsSecret: accountKey.SECRET_KEY,
@@ -13,14 +26,7 @@ module.exports = function(queryStr, callback){
     keywords: queryStr,
     searchIndex: 'All',
     responseGroup: 'ItemAttributes,Offers,Images'
-  }, function(err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(results);
-      callback(results);
-    }
-  });
+  }, callback);
 };
 
 //for testing purposes
