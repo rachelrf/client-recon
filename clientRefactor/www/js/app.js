@@ -66,7 +66,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/tabs.html'
   })
 
-  // Home page that displays their latest social media
+  // Edit page that allows updating of their information
+  .state('tab.edit', {
+    // url: '/friends/:id/edit',
+    url: '/edit',
+    views: {
+      'tab-edit': {
+        templateUrl: 'templates/tab-edit.html',
+        controller: 'EditCtrl',
+        // authenticate: true
+      }
+    }
+  })
+
+  // Social media page that displays their recent posts
   .state('tab.friends', {
     // url: '/friends/:id',
     url: '/friends',
@@ -79,30 +92,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  // Edit page that allows updating of their information
-  // .state('tab.edit', {
-  //   url: '/friends/:id/edit',
-  //   views: {
-  //     'tab-edit': {
-  //       templateUrl: 'templates/tab-edit.html',
-  //       controller: 'EditCtrl',
-  //       // authenticate: true
-  //     }
-  //   }
-  // })
-
   // Events page that displays their upcoming events
   // Also allows user to add new events
-  // .state('tab.events', {
-  //   url: '/friends/:id/events',
-  //   views: {
-  //     'tab-events': {
-  //       templateUrl: 'templates/tab-events.html',
-  //       controller: 'EventsCtrl',
-  //       // authenticate: true
-  //     }
-  //   }
-  // })
+  .state('tab.events', {
+    // url: '/friends/:id/events',
+    url: '/events',
+    views: {
+      'tab-events': {
+        templateUrl: 'templates/tab-events.html',
+        controller: 'EventsCtrl',
+        // authenticate: true
+      }
+    }
+  })
 
   // Gifts page that displays suggested Amazon products
   .state('tab.gifts', {

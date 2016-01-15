@@ -4,6 +4,11 @@ var CLIENT_ID = 1;
 
 angular.module('starter.controllers', ['client-recon.services'])
 
+.controller('LoginCtrl', function(){
+
+
+})
+
 .controller('HomeCtrl', function($scope, FriendsService) {
 
     $scope.friends = FriendsService.friends;
@@ -17,11 +22,6 @@ angular.module('starter.controllers', ['client-recon.services'])
       $scope.friends.splice(fromWhere, 1);
       $scope.friends.splice(toWhere, 0, friend);
     };
-
-})
-
-.controller('LoginCtrl', function(){
-
 
 })
 
@@ -108,9 +108,17 @@ angular.module('starter.controllers', ['client-recon.services'])
   // end rachel's code
 })
 
+.controller('EditCtrl', function($scope) {
+
+})
+
+.controller('EventsCtrl', function($scope) {
+
+})
+
 .controller('GiftsCtrl', function($scope, ClientsApi) {
   $scope.loading = true;
-  $scope.gifts = 'Lol';
+  $scope.gifts = 'Loading gift suggestions...';
   //$scope.subscriptions = AppState.state.currentClient.feed;
   
   console.log('running');
