@@ -8,7 +8,7 @@
 
   <ion-content>
     <ion-list show-delete="false" show-reorder="showOrderButton" can-swipe="true" class="card">
-      <ion-item class="item item-thumbnail-left item-remove-animate" ng-repeat="data in friends" ui-sref="tab.friends({id: data.id})">
+      <ion-item class="item item-thumbnail-left item-remove-animate" ng-repeat="data in friends" ui-sref="tab.posts({id: data.id})">
       <img src="{{data.img}}"/>
       <h2>{{data.name}}</h2>
       <p>{{data.email}}</p>

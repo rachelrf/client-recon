@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tempTab.home', {
-    url: '/home',
+    url: '/home/:id', //user id
     views: {
       'home': {
         templateUrl: 'templates/home.html',
@@ -61,10 +61,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.friends', {
-    url: '/friends/:id',
+  .state('tab.posts', {
+    url: '/posts/:id',
     views: {
-      'tab-friends': {
+      'tab-posts': {
         templateUrl: 'templates/tab-posts.html',
         controller: 'PostsCtrl',
         // authenticate: true
@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.events', {
-    url: '/edit/:id',
+    url: '/events/:id',
     views: {
       'tab-events': {
         templateUrl: 'templates/tab-events.html',

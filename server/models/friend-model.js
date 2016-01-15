@@ -1,5 +1,5 @@
 var queryString = require('../../db/psql/index.js');
-var db = require('../../db/config.js');
+var db = require('../../db');
 var _ = require('lodash');
 
 // helper function

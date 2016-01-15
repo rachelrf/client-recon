@@ -40,7 +40,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	app.get('/api/users/:userId/friends', function (req, res) {
-		controller.friend.getAll(req.params.userId, res);
+		controller.friend.getAllForUser(req.params.userId, res);
 	});
 
 	app.get('/api/friends/:friendId', function (req, res) {

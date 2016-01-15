@@ -5,7 +5,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('HomeCtrl', function($scope, FriendsService) {
+.controller('HomeCtrl', function($scope, $stateParams, Friends) {
 
   $scope.moveText = "Move";
 
@@ -20,7 +20,11 @@ angular.module('starter.controllers', ['client-recon.services'])
       }
   };
 
-  $scope.friends = FriendsService.friends;
+  Friends.getAllForUser($stateParams.id)
+  .then(function(friends) {
+    console.dir(friends);
+    $scope.friends = friends;
+  });
 
   $scope.destroyFriend = function($index){
     $scope.friends.splice($index, 1);
@@ -58,51 +62,29 @@ angular.module('starter.controllers', ['client-recon.services'])
 //   };
 // })
 
-.controller('PostsCtrl', function($stateParams, $scope, FriendsService, Friends){
-  console.log('Friend ID' + $scope.friendsId);
-  $scope.friends = FriendsService.getFriend($stateParams.id);
+.controller('PostsCtrl', function($stateParams, $scope, Friends){
+  console.log('got to posts controller');
+  $scope.loading = true;
 
-  // Maybe needed? unclear from merge conflict
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+  })
+
+  // Eventually will just directly query server for posts
   // $scope.posts = Friends.getPosts($stateParams.friendId)
   // .then(function(posts) {
   //   $scope.loading = false;
   //   $scope.posts = posts;
   // });
-
-  function shuffle(o){
-    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-  }
-
-  // console.log('1. in js/controllers.js, about to call Friends.getPosts', $stateParams.friendId) // currently set to 1?
-  // $scope.posts = FriendsService.getPosts($stateParams.id)
-  // .then(function(posts) {
-  //   $scope.loading = false;
-  //   $scope.posts = posts;
-  // });
-
-  // images
-  // $scope.images = [{id: 0, src:'http://bit.ly/1PszWnJ'}, {id: 1, src:'http://bit.ly/1RFfeaG'},{id: 2, src:'http://bit.ly/1SjoUY3'},{id: 3, src:'//bit.ly/1OQefBQ'},{id: 4, src: 'http://bit.ly/1n0ynaa'}, {id: 5, src:'http://bit.ly/1RFfeaG'},{id: 6, src:'http://bit.ly/1SjoUY3'},{id: 7, src: 'http://bit.ly/1PszWnJ'},{id: 8, src:'//bit.ly/1OQefBQ'},{id: 9, src: 'http://bit.ly/1n0ynaa'}, {id: 10, src:'http://bit.ly/1RFfeaG'},{id: 11, src:'//bit.ly/1OQefBQ'},{id: 12, src:'http://bit.ly/1SjoUY3'},{id: 13, src:'//bit.ly/1OQefBQ'}];
-  
-  $scope.images = shuffle([ { source: 'twitter',
-    type: 'text',
-    text: 'I\'m the new spokesperson for ChapStick®, America’s favorite lip balm &lt;3 *smooches*',
-    imageUrl: 'http://i.imgur.com/kRkImN3.png' },
-  { source: 'instagram',
-    type: 'photo',
-    text: 'New Instagram post!',
-    imageUrl: 'https://scontent-sjc2-1.cdninstagram.com/hphotos-xpt1/t51.2885-15/s480x480/e35/12543392_1122857787724325_441795988_n.jpg' },
-  { source: 'tumblr',
-    type: 'text',
-    text: 'New post: Keen IO liked my tweet #famous',
-    imageUrl: 'http://i.imgur.com/RMUDK4n.png' }]);
 })
 
-.controller('EditCtrl', function($scope, $location, $stateParams, FriendsService, Friends) {
-
-  $scope.friendId = $stateParams.id;
-  console.log($stateParams);
-  $scope.friends = FriendsService.getFriend($stateParams.id);
+.controller('EditCtrl', function($scope, $location, $stateParams, Friends) {
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  })
 
   $scope.goHome = function(path){
      console.log("Going Home");
@@ -137,29 +119,30 @@ angular.module('starter.controllers', ['client-recon.services'])
   // end gloria
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, FriendsService) {
-  console.log($stateParams);
-  $scope.friendId = $stateParams.id;
-  $scope.friends = FriendsService.getFriend($stateParams.id);
-
+.controller('EventsCtrl', function($scope, $stateParams, Friends) {
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  })
 
 })
 
-.controller('GiftsCtrl', function($scope, $stateParams, FriendsService) {
+.controller('GiftsCtrl', function($scope, $stateParams, Friends) {
   $scope.loading = true;
   $scope.gifts = 'Loading gift suggestions...';
-  $scope.friendId = $stateParams.id;
-  console.log($stateParams);
-  $scope.friends = FriendsService.getFriend($stateParams.id);
-
 
   //$scope.subscriptions = AppState.state.currentClient.feed;
 
-  // Friends.getGifts($stateParams.friendId) somethign like that
-  // console.log('running');
-  // ClientsApi.getGifts(USER_ID, CLIENT_ID)
-  // .then(function(gifts) {
-  //   $scope.loading = false;
-  //   $scope.gifts = gifts;
-  // });
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  });
+
+  Friends.getGifts($stateParams.id)
+  .then(function(gifts) {
+    $scope.loading = false;
+    $scope.gifts = gifts;
+  });
 });

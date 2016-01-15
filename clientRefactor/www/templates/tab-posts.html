@@ -1,33 +1,27 @@
-<!-- <ion-view view-title="{{friends.name}}">
-  <ion-content>
-
-  </ion-content>
-</ion-view>
- -->
- <ion-view view-title="Friend">
-  
+<ion-view view-title="Posts">
+ 
   <ion-nav-buttons side="primary">
-    <button class="button button-clear" ui-sref="tempTab.home"> <i class="icon ion-home"></i></button>
+    <button class="button button-clear" ui-sref="tempTab.home({id: friend.userid})"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
   <ion-content>
     <ion-list>
-      <ul class="firendHeader">
+      <ul class="friendHeader">
         <li class="friendInfo">
-           <a class="item item-thumbnail-left" href="#">
-            <img ng-src="{{friends.img}}"> 
-            <h2>{{friends.name}}</h2> 
-            <p>{{friends.company}}</p> 
-            <p>{{friends.birthday}}</p> 
+           <a class="item item-thumbnail-left" ui-sref="tab.posts({id: friend.id})">
+            <img ng-src="{{friend.img}}"> 
+            <h2>{{friend.name}}</h2> 
+            <p>{{friend.email}}</p> 
+            <p>{{friend.birthday}}</p> 
           </a>
         </li>
       </ul>
   </ion-list>
 
     <div class="button-bar">
-      <a class="button" ui-sref="tab.edit({id: friends.id})">Social</a>
-      <a class="button" ui-sref="tab.events({id: friends.id})">Events</a>
-      <a class="button" ui-sref="tab.gifts({id: friends.id})">Gifts</a>
+      <a class="button" ui-sref="tab.posts({id: friend.id})">Posts</a>
+      <a class="button" ui-sref="tab.events({id: friend.id})">Events</a>
+      <a class="button" ui-sref="tab.gifts({id: friend.id})">Gifts</a>
     </div>
 
 <!-- .................................. -->
