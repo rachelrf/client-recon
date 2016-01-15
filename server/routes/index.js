@@ -74,22 +74,20 @@ module.exports = function(app, express, passport) {
 		controller.feed.getOneFriend(req, res, controller.feed.getGifts);
 	});
 	
-/* ============= AUTHENTICAITON HELPER ============= */
-	function ensureAuthenticated(req, res, next) {
-	  if (req.isAuthenticated()) { return next(); }
-	  res.redirect('/login');
-	}
-};
-
 	app.get('/api/clients/:client_id/posts', function(req, res) {
 		controller.feed.getOneFriend(req, res, controller.feed.getPosts);
 	});
 
+/* ============= AUTHENTICAITON HELPER ============= */
 
-
-/* ================================================= */
-
-
+	function ensureAuthenticated(req, res, next) {
+	  if (req.isAuthenticated()) { return next(); }
+	  res.redirect('/login');
+	};
 
 };
+
+
+
+
 
