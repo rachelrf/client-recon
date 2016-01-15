@@ -11,16 +11,21 @@ module.exports = function(app, express, passport) {
 
 
 /* =============== LOGIN & AUTHENTICATION ================ */
+	// THIS ROUTE WILL REDIRECT THE USER TO GOOGLE'S LOGIN PAGE
 	app.get('/login', passport.authenticate('google', 
 		{ scope: ['https://www.googleapis.com/auth/userinfo.profile']}),
 		function (req, res){});
 
+	// AFTER SUBMITTING THEIR CREDENTIALS, GOOGLE WILL REDIRECT THE USER TO '/login-verify'. IF THE LOGIN
+	// WAS SUCCESSFUL, THE USER WILL THEN BE REDIRECTED TO THE URL SPECIFIED BY 'successRedirect'. IF NOT, THEY
+	// WILL BE REDIRECTED TO THE URL SPECIFIED BY 'failureRedirect'.
 	app.get('/login-verify', passport.authenticate('google', 
 		{
 			successRedirect: 'http://localhost:3000/home',
 			failureRedirect: '/'
 		}));
 
+	// THIS IS JUNK I CONJURED UP FOR THE SAKE OF FIXING THE ERROR
 	app.get('/api/loginfo', function (req, res) {
 		console.log(req.session.passport.user);
 		res.redirect('/home');

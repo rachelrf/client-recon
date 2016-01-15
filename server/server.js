@@ -13,28 +13,23 @@ var GOOGLE_CLIENT_ID = "615669438819-m1ilq060a5u3grritkida3edigottqa0.apps.googl
 var GOOGLE_CLIENT_SECRET = "LHzp14JwYUpuKn50eAbr4Xn3";
 
 passport.serializeUser(function (user, done) {
-  console.log(user);
   done(null, user);
 });
 passport.deserializeUser(function (id, done) {
-  console.log("DESERIALIZING!!!!! ", id);
   User.getUserById(id, function (err, user) {
   	done(err, user);
   });
-//done(null, user);
 });
 
+// WELCOME TO HELL
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/login-verify"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
   	User.getUserById(profile.id, function (err, result) {
-      console.log("RESULT IS NOW: ", result);
   		if (result.length === 0) {
-        console.log('... inserting');
   			User.insertUser([profile.displayName ,profile.id], function (err, result) {
           if (err) {
             console.log("ERROR: ", err);
