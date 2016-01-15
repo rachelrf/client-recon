@@ -76,7 +76,7 @@ module.exports = function(app, express, passport) {
 	}
 };
 
-	app.get('/api/clients/:client_id/gifts', function(req, res) {
+	app.get('/api/clients/:client_id/posts', function(req, res) {
 		controller.feed.getOneFriend(req, res, controller.feed.getPosts);
 	});
 
