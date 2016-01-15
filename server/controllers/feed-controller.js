@@ -8,6 +8,7 @@ var weatherApi = require('../helpers/weather-api.js');
 var Friend = require('../models').friend;
 var moment = require('moment');
 var getBirthdayMessage = require('../helpers/birthdateCalc.js');
+var socialMediaAggregator = require('../helpers/socialMediaAggregator.js');
 
 // ---- Helpers to format data from APIs ----
 var formatAmazon = function(amazonObj) {
@@ -66,6 +67,12 @@ module.exports = {
     });
   },
 
+  getSocialMedia: function(usernames, cb) {
+    socialMediaAggregator(usernames, function(result) {
+      cb(result);
+    });
+  },
+
   getBing: function(company, cb){
   	bingApi(company, function(result){
   		cb(result.d.results);
@@ -118,5 +125,31 @@ module.exports = {
       // console.log('got gifts data');
       res.json(formatAmazon(amazonResults));
     });
+  },
+
+  getPosts: function(req, res, friend) {
+    console.log('trying to get friend social media posts');
+    var usernames = friend.client_usernames // object 
+
+    module.exports.getSocialMedia(usernames, function(socialMediaResults) {
+      console.log('got social media data');
+      res.json(socialMediaResults); // array
+    });
+
   }
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
