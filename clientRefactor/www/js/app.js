@@ -15,18 +15,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
 
-
-  $ionicConfigProvider.backButton.previousTitleText(false);
-  $ionicConfigProvider.backButton.icon('ion-chevron-left');
-  $ionicConfigProvider.backButton.text('');
-
   $stateProvider
 
-  // ---- App-wide pages ----
-
-  // Navigation bar on non-friend-specific pages
-  // Used solely for navigation while testing
-  // Will not exist in production
   .state('tempTab', {
     url: '/tempTab',
     abstract: true, // indicates this is not a stand-alone page
@@ -56,8 +46,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  // ---- end app-wide pages ----
-
   // ---- Friend-specific pages ----
 
   .state('tab', {
@@ -69,7 +57,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Edit page that allows updating of their information
   .state('tab.edit', {
     // url: '/friends/:id/edit',
-    url: '/friends/:friendId/edit',
+
+    url: '/edit/:id',
+
     views: {
       'tab-edit': {
         templateUrl: 'templates/tab-edit.html',
@@ -79,9 +69,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  // Posts page that displays their recent social media posts
-  .state('tab.posts', {
-    url: '/friends/:friendId/posts',
+
+  // Social media page that displays their recent posts
+  .state('tab.friends', {
+    url: '#/tab/friends/:id',
+    // url: '/friends',
+
     views: {
       'tab-posts': {
         templateUrl: 'templates/tab-posts.html',
@@ -94,7 +87,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Events page that displays their upcoming events
   // Also allows user to add new events
   .state('tab.events', {
-    url: '/friends/:friendId/events',
+    // url: '/friends/:id/events',
+    url: '/edit/:id',
+
     views: {
       'tab-events': {
         templateUrl: 'templates/tab-events.html',
@@ -106,7 +101,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Gifts page that displays suggested Amazon products
   .state('tab.gifts', {
-    url: '/friends/:friendId/gifts',
+
+    url: '/gifts/:id',
+
     views: {
       'tab-gifts': {
         templateUrl: 'templates/tab-gifts.html',
@@ -116,9 +113,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 
-  // ---- end friend-specific pages ----
 
-  $urlRouterProvider.otherwise('/tempTab/login');
+
+  $urlRouterProvider.otherwise('tempTab/login');
+
 
 
 });

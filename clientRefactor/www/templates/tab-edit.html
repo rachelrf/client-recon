@@ -1,22 +1,28 @@
 <ion-view view-title="Edit">
-  <ion-nav-buttons side="secondary">
-    <button class="button button-clear" ng-click="logout()"> Logout </button>
+ 
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ui-sref="tempTab.home"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
+
+
+<!-- <i class="icon ion-home"></i>  -->
 
   <ion-content>
     <ion-list>
       <ul class="friendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" href="#">
-            <img ng-src="./img/gloria.jpg">
-            <h2>Namey Namerson</h2>
-            <p>Hack Reactor</p>
-            <p>January 1st, 1991</p>
+            <img ng-src="{{friends.img}}">
+            <h2>{{friends.name}}</h2>
+            <p>{{friends.company}}</p>
+            <p>{{friends.birthday}}</p>
           </a>
+          
         </li>
       </ul>
     </ion-list>
 
+<<<<<<< d0488f2ff80791b285db2f707b9bd5833267bf13
     <!-- Edit Form -->
     <div class="container box-style">
       <form class="new-client-form" name='editClientForm'>
@@ -80,6 +86,15 @@
       </div>
     <div>
     <!-- end Edit Form -->
+=======
+    <div class="button-bar">
+      <a class="button" ui-sref="tab.edit({id: friends.id})">Social</a>
+      <a class="button" ui-sref="tab.events({id: friends.id})">Events</a>
+      <a class="button" ui-sref="tab.gifts({id: friends.id})">Gifts</a>
+    </div>
+
+
+>>>>>>> Completed working routes
   </ion-content>
     
 </ion-view>
