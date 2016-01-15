@@ -42,7 +42,7 @@ exports.getOne = function (friendId, callback) {
   return callCallbackOnResults(promise, callback);
 };
 
-exports.updateOne = function (data, friendId, callback) {
+exports.updateOne = function (friendId, data, callback) {
   // take the data and make the SQL arguments
   var init = { columns: [], values: [] };
   var query = _.reduce(data, function(acc, val, key) {
@@ -55,7 +55,7 @@ exports.updateOne = function (data, friendId, callback) {
   var columns = query.columns.join(', ');
   var values = _.map(query.values, function(value) {
     if (value === null) {
-      return "''";
+      return "null";
     } else if (typeof value === 'string') {
       return "'" + value + "'";
     } else {
@@ -66,7 +66,7 @@ exports.updateOne = function (data, friendId, callback) {
   // console.log("VALUES:", "typeof", typeof values, values);
 
   // performe the db transaction
-  var promise = db.query(queryString.updateOneFriend, [userId, friendId, columns, values]);
+  var promise = db.query(queryString.updateOneFriend, [friendId, columns, values]);
   return callCallbackOnResults(promise, callback);
 };
 

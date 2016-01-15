@@ -1,9 +1,7 @@
 //INDEX INTERACTS WITH CONTROLLER FILE IN SERVER
 
-//init db
-require('./schema.js');
-
-var db = require('./config');
+//initializes db with schemas
+var db = require('./schema.js');
 
 //export functions to interact with controller
 module.exports = {

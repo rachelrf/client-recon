@@ -1,6 +1,5 @@
 var db = require('./config.js');
 
-
 //SCHEMAS ---------------------------------------------
 //Cannot use USER as a table name || forbidden words: http://www.postgresql.org/docs/current/interactive/sql-keywords-appendix.html
 db.query(
@@ -48,3 +47,4 @@ db.query(
   console.log(error);
 });
 
+module.exports = db;

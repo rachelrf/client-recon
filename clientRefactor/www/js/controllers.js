@@ -58,7 +58,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 //   };
 // })
 
-.controller('PostsCtrl', function($stateParams, $scope, FriendsService){
+.controller('PostsCtrl', function($stateParams, $scope, FriendsService, Friends){
   console.log('Friend ID' + $scope.friendsId);
   $scope.friends = FriendsService.getFriend($stateParams.id);
 
@@ -147,7 +147,7 @@ angular.module('starter.controllers', ['client-recon.services'])
     imageUrl: 'http://i.imgur.com/RMUDK4n.png' } ]);
 })
 
-.controller('EditCtrl', function($scope, $location, $stateParams, FriendsService) {
+.controller('EditCtrl', function($scope, $location, $stateParams, FriendsService, Friends) {
 
   $scope.friendId = $stateParams.id;
   console.log($stateParams);
@@ -158,6 +158,32 @@ angular.module('starter.controllers', ['client-recon.services'])
      $location.path(path);
   };
 
+  // gloria
+  // TEMPLATE FOR DATA
+  // var successfulPost = false;
+  // $scope.friend = null;
+  // Friends.getOne($stateParams.friendId)
+  // .then(function(res) {
+  //   console.log(res);
+  //   $scope.friend = res[0];
+  // })
+
+  // $scope.updateFriend = function () {
+  //   //DETECT USER ID FROM APP STATE
+  //   console.log('about to send updated client to server');
+  //   Friends.updateOne($stateParams.friendId, $scope.friend)
+  //   .then(function(res){
+  //     // CALLED AFTER SUCCESSFUL POST
+  //     successfulPost = true;
+
+  //     // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
+  //     // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
+  //     // $timeout(function(){
+  //     //   successfulPost = false;
+  //     //   $state.go('client-profile.bio');
+  //     // }, 2000);
+  //   })
+  // end gloria
 })
 
 .controller('EventsCtrl', function($scope, $stateParams, FriendsService) {
