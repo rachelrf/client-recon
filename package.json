@@ -46,7 +46,9 @@
     "request-promise": "^1.0.2",
     "sql-load": "0.0.2",
     "sugar": "^1.4.1",
+    "tumblr": "^0.4.1",
     "twilio": "^2.8.0",
+    "twitter": "^1.2.5",
     "url": "^0.11.0",
     "weather": "^0.1.0"
   },

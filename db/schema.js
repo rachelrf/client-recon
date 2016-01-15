@@ -3,39 +3,46 @@ var db = require('./config.js');
 
 //SCHEMAS ---------------------------------------------
 //Cannot use USER as a table name || forbidden words: http://www.postgresql.org/docs/current/interactive/sql-keywords-appendix.html
-db.query("CREATE TABLE IF NOT EXISTS salespersons (salesperson_name VARCHAR(255),salesperson_id VARCHAR(255) PRIMARY KEY);")
- .then(function(){
-   console.log('sales created');
-   return db.query("CREATE TABLE IF NOT EXISTS clients (client_name VARCHAR(40),"
-    + "client_email VARCHAR(40)," 
-    + "client_company VARCHAR(40),"
-   	+ "client_title VARCHAR(40)," 
-    + "client_zipcode VARCHAR(5)," 
-    + "client_birthday DATE,"
-    + "client_image VARCHAR(1000),"
-    + "client_interests VARCHAR(200),"
-   	+ "client_id SERIAL PRIMARY KEY)");
-   //if you want to add additional basic schema fields to the client such as info, add it to the string here
- })
- .then(function(){
-   console.log('clients created');
-
-   return db.query("CREATE TABLE IF NOT EXISTS clients_salespersons (salesperson_id int NOT NULL, client_id int NOT NULL, PRIMARY KEY (salesperson_id,client_id),"
-   + " FOREIGN KEY (salesperson_id) REFERENCES salespersons(salesperson_id), FOREIGN KEY (client_id) REFERENCES clients(client_id));");
- })
- .then(function(){
-   console.log('user client join created');
-   return db.query("CREATE TABLE IF NOT EXISTS subscriptions (subscription_id SERIAL PRIMARY KEY, subscription_type VARCHAR(40),"
-    + " subscription_name VARCHAR(1000))");
- })
- .then(function(){
-  console.log('subscription table created')
-  return db.query("CREATE TABLE IF NOT EXISTS subscriptions_clients (subscription_id int NOT NULL, client_id int NOT NULL, FOREIGN KEY (subscription_id)" 
-    + " REFERENCES salespersons(salesperson_id), FOREIGN KEY (client_id) REFERENCES clients(client_id));");
- })
- .then(function(){
-  console.log('subscription client join created')
- })
+db.query(
+  "CREATE TABLE IF NOT EXISTS users ("
+  + "id VARCHAR(255) PRIMARY KEY,"
+  + "name VARCHAR(255)"
+  + ");"
+)
+.then(function(){
+  console.log('users created');
+  return db.query(
+    "CREATE TABLE IF NOT EXISTS friends ("
+    + "id SERIAL PRIMARY KEY,"
+    + "userId VARCHAR(255),"
+    + "FOREIGN KEY (userId) REFERENCES users(id),"
+    + "name VARCHAR(40),"
+    + "email VARCHAR(40)," 
+    + "birthday DATE,"
+    + "zipcode VARCHAR(5)," 
+    + "imageUrl VARCHAR(1000),"
+    + "twitterUrl VARCHAR(1000),"
+    + "instagramUrl VARCHAR(1000),"
+    + "tumblrUrl VARCHAR(1000),"
+    + "interests VARCHAR(200)"
+    + ");"
+  );
+})
+.then(function(){
+  console.log('friends created');
+  return db.query(
+    "CREATE TABLE IF NOT EXISTS events ("
+    + "id SERIAL PRIMARY KEY,"
+    + "friendId INT,"
+    + "FOREIGN KEY (friendId) REFERENCES friends(id),"
+    + "name VARCHAR(255),"
+    + "date TIMESTAMP"
+    + ");"
+  );
+})
+.then(function(){
+  console.log('events created');
+})
 .catch(function(error){
   console.log('error creating tables');
   console.log(error);

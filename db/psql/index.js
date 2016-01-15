@@ -9,12 +9,11 @@ var path = require('path');
  * @type {Object}
  */
 module.exports = {
-  getUserById: sqlLoad(path.join(__dirname, './getUserById.sql')),
-  insertUser: sqlLoad(path.join(__dirname, './insertUser.sql')),
-  getOneFriend: sqlLoad(path.join(__dirname, './get-one-client')),
-  getAllFriends: sqlLoad(path.join(__dirname, './get-all-clients')),
-  editOneFriend: sqlLoad(path.join(__dirname, './edit-one-client')),
-  insertFriend: sqlLoad(path.join(__dirname, './insertClient.sql')),
-  insertFriendUsers: sqlLoad(path.join(__dirname, './insertClientSales.sql'))
+  addOneUser: sqlLoad(path.join(__dirname, './addOneUser.sql')),
+  getOneUser: sqlLoad(path.join(__dirname, './getOneUser.sql')),
+  addOneFriend: sqlLoad(path.join(__dirname, './addOneFriend.sql')),
+  getAllFriendsForUser: sqlLoad(path.join(__dirname, './getAllFriendsForUser.sql')),
+  getOneFriend: sqlLoad(path.join(__dirname, './getOneFriend.sql')),
+  updateOneFriend: sqlLoad(path.join(__dirname, './updateOneFriend.sql')),
+  deleteOneFriend: sqlLoad(path.join(__dirname, './deleteOneFriend.sql'))
 };
-
