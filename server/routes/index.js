@@ -51,11 +51,11 @@ module.exports = function(app, express, passport) {
 /* ================ USER ROUTES ================= */
 	// ROUTE FOR CREATING A NEW USER
 	app.post('/api/createUser', function (req, res) {
-		controller.user.post(res, req.body.arr);
+		controller.user.addOne(res, req.body.arr);
 	});
 
 	app.get('/api/createUser/:id', function (req, res) {
-		controller.user.getById(res, req.params.id);
+		controller.user.getOne(res, req.params.id);
 	});
 
   // ROUTE FOR UPDATING A CLIENT

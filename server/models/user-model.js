@@ -2,9 +2,8 @@ var queryString = require('../../db/psql/index.js');
 var db = require('../../db/config.js');
 var _ = require('lodash');
 
-//rename to addOne
-module.exports.addOne = function (data, callback) {
-	db.query(queryString.insertUser, data)
+exports.addOne = function (data, callback) {
+	db.query(queryString.addOneUser, data)
 	.then(function (result) {
 		callback(null, result);
 	})
@@ -13,9 +12,8 @@ module.exports.addOne = function (data, callback) {
 	});
 };
 
-//rename to getOne
-module.exports.getOne = function (userId, callback) {
-	db.query(queryString.getUserById, userId)
+exports.getOne = function (userId, callback) {
+	db.query(queryString.getOneUser, userId)
 	.then(function (result) {
 		callback(null, result);
 	})

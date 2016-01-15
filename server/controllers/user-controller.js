@@ -2,8 +2,8 @@ var User = require('../models/user-model.js');
 
 module.exports = {
 	//POST A NEW USER TO THE DATABASE
-	post: function (res, data) {
-		User.insertUser(data, function (err, response) {
+	addOne: function (res, data) {
+		User.addOne(data, function (err, response) {
 			if (err) {
 				console.log("Error saving user: ", err);
 				res.send(500);
@@ -15,8 +15,8 @@ module.exports = {
 	},
 
 	//FIND A USER BY ID
-	getById: function (res, id) {
-		User.getUserById(id, function (err, response) {
+	getOne: function (res, id) {
+		User.getOne(id, function (err, response) {
 			if (err) {
 				console.log("Error finding user: ", err);
 			} else {

@@ -22,7 +22,7 @@ exports.addOne = function (data, callback) {
 };
 
 exports.getAllForUser = function(userId, callback) {
-  return db.query(queryString.getAllFriends, userId)
+  return db.query(queryString.getAllFriendsForUser, userId)
     .then(function (friendsList) {
       callback(null, friendsList);
     })
@@ -86,7 +86,7 @@ exports.deleteOne = function(friendId, callback) {
 
 };
 
-// ---- External API ----
+// ---- External APIs ----
 
 exports.getPosts = function(friendId) {
 
