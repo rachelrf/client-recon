@@ -2,6 +2,17 @@ var queryString = require('../../db/psql/index.js');
 var db = require('../../db/config.js');
 var _ = require('lodash');
 
+// helper function
+var callCallbackOnResults = function(promise, callback) {
+  return promise
+  .then(function(results) {
+    callback(null, results);
+  })
+  .catch(function(err) {
+    callback(err, null);
+  });
+};
+
 // --- Pure db interaction ----
 exports.addOne = function (userId, friendObj, callback) {
 	var queryParameters = [
@@ -17,83 +28,51 @@ exports.addOne = function (userId, friendObj, callback) {
     friendObj.tumblrUrl
   ];
 
-    return db.query(queryString.addOneFriend, queryParameters)
-    .then(function (friends) {
-      friendId = friends[0].client_id;
-      return db.query(queryString.insertFriendUsers, [userId, friendId]);
-    })
-    .then(function (result) {
-      return callback(null, result);
-      })
-    .catch(function (error) {
-      return callback(error, null);
-      return error;
-    });
+  var promise = db.query(queryString.addOneFriend, queryParameters);
+  return callCallbackOnResults(promise);
 };
 
 exports.getAllForUser = function(userId, callback) {
-  return db.query(queryString.getAllFriendsForUser, userId)
-    .then(function (friendsList) {
-      callback(null, friendsList);
-    })
-    .catch(function (err) {
-      callback(err, null)
-    });
+  var promise = db.query(queryString.getAllFriendsForUser, userId)
+  return callCallbackOnResults(promise);
 };
 
-// THIS METHOD RETURNS FRIENDS ASSOCIATED WITH A GIVEN USER(userId).
 exports.getOne = function (friendId, callback) {
-  // console.log('looking for one friend with id:', friendId);
-  return db.query(queryString.getOneFriend, [userId, friendId])
-  .then(function (friend) {
-    // console.log('friend found:', friend);
-    callback(null, friend);
-  })
-  .catch(function (err) {
-    // console.log('error finding one friend');
-    callback(err, null);
-  });
+  var promise = db.query(queryString.getOneFriend, friendId)
+  return callCallbackOnResults(promise);
 };
 
-// THIS METHOD UPDATES THE DATA OF A FRIEND ASSOCIATED WITH A GIVEN USER.
 exports.updateOne = function (data, friendId, callback) {
   // take the data and make the SQL arguments
   var init = { columns: [], values: [] };
   var query = _.reduce(data, function(acc, val, key) {
-    if (key !== 'feed' && key !== 'salesperson_id') {
-        acc.columns.push(key);
-        acc.values.push(val);
-      }
-      return acc;
+    acc.columns.push(key);
+    acc.values.push(val);
+    return acc;
   }, init);
 
-    // stringify the arguments
-    var columns = query.columns.join(', ');
-    var values = _.map(query.values, function(value) {
-      if (value === null) {
-        return "''";
-      } else if (typeof value === 'string') {
-        return "'" + value + "'";
-      } else {
-        return value;
-      }
-    }).join(', ');
-    // console.log("COLUMNS:", "typeof", typeof columns, columns);
-    // console.log("VALUES:", "typeof", typeof values, values);
+  // stringify the arguments
+  var columns = query.columns.join(', ');
+  var values = _.map(query.values, function(value) {
+    if (value === null) {
+      return "''";
+    } else if (typeof value === 'string') {
+      return "'" + value + "'";
+    } else {
+      return value;
+    }
+  }).join(', ');
+  // console.log("COLUMNS:", "typeof", typeof columns, columns);
+  // console.log("VALUES:", "typeof", typeof values, values);
 
-    // performe the db transaction
-    // return a promise
-  return db.query(queryString.editOneFriend, [userId, friendId, columns, values])
-    .then(function(friend){
-      callback(null, friend);
-    })
-    .catch(function(err){
-      callback(err, null);
-    });
+  // performe the db transaction
+  var promise = db.query(queryString.updateOneFriend, [userId, friendId, columns, values]);
+  return callCallbackOnResults(promise);
 };
 
 exports.deleteOne = function(friendId, callback) {
-
+  var promise = db.query(queryString.deleteOneFriend, friendId);
+  return callCallbackOnResults(promise);
 };
 
 // ---- External APIs ----
