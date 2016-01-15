@@ -119,16 +119,10 @@ angular.module('starter.controllers', ['client-recon.services'])
 .controller('GiftsCtrl', function($stateParams, $scope, ClientsApi) {
   $scope.client_id = $stateParams.friendId;
   $scope.loading = true;
-  $scope.gifts = 'Loading gift suggestions...';
-  //$scope.subscriptions = AppState.state.currentClient.feed;
   
-  console.log('running');
   ClientsApi.getGifts(USER_ID, CLIENT_ID)
   .then(function(gifts) {
-    console.log('got gifts');
     $scope.loading = false;
     $scope.gifts = gifts;
-
-    //should input client_interest? or client_team || whatever you want
   });
 });

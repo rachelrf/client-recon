@@ -25,7 +25,7 @@
           <tr ng-repeat="item in gifts track by $index" class="col-sm-12 article">
             <td>
               <a href="{{item.pageUrl}}" target="_blank" class="article-headline">
-                <img src="{{item.imageUrl}}">
+                <img ng-src="{{item.imageUrl}}">
               </a>
             </td>
             <td class="article-description">
