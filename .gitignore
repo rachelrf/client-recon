@@ -9,6 +9,8 @@ node_modules/*
 /server/helpers/bing-search-api-key.js
 /server/helpers/weather-api-key.js
 /server/helpers/twilio-api-key.js
+/server/helpers/twitter-api-key.js
+/server/helpers/tumblr-api-key.js
 
 keys.sh
 keys.js

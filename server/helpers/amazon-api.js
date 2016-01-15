@@ -1,6 +1,6 @@
 var accountKey = require('./amazon-api-key.js');
 //var accountKey = process.env.AMAZON_API
-var amazon = require('amazon-product-api');
+var Amazon = require('amazon-product-api');
 var _ = require('underscore');
 
 exports.format = function(amazonObj) {
@@ -16,7 +16,7 @@ exports.format = function(amazonObj) {
 };
 
 exports.request = function(queryStr, callback){
-  var client = amazon.createClient({
+  var client = Amazon.createClient({
     awsId: accountKey.ACCESS_KEY_ID,
     awsSecret: accountKey.SECRET_KEY,
     awsTag: accountKey.ASSOCIATE_TAG

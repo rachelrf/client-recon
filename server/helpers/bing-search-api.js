@@ -1,9 +1,18 @@
 var accountKey = require('./bing-search-api-key.js')
 // var accountKey = process.env.BING_NEWS_API
-
 var Bing = require('node-bing-api')({ accKey: accountKey });
+var _ = require('underscore');
 
-module.exports = function(queryStr, callback){
+exports.format = function(bingObj) {
+  return _.map(bingObj, function(item) {
+    return {
+      title: item.Title,
+      description: item.Description
+    };
+  });
+};
+
+exports.request = function(queryStr, callback){
 	Bing.news(queryStr, {
 	    top: 5,  // Number of results (max 15)
 	    newsSortBy: "Date", //Choices are: Date, Relevance
@@ -25,6 +34,3 @@ module.exports = function(queryStr, callback){
 	  	}
 	  });
 }
-
-
-// ADD THIS FILE TO .GITIGNORE
