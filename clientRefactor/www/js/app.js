@@ -22,24 +22,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   $stateProvider
 
-  // Login page
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
-  })
+  // ---- App-wide pages ----
 
   // Navigation bar on non-friend-specific pages
   // Used solely for navigation while testing
   // Will not exist in production
-  .state('tab', {
-    url: '/tab',
+  .state('tempTab', {
+    url: '/tempTab',
     abstract: true, // indicates this is not a stand-alone page
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tempTabs.html'
+  })
+
+  // Login page
+  .state('tempTab.login', {
+    url: '/login',
+    views: {
+      'login': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
   })
 
   // Home page that shows all friends
-  .state('tab.home', {
+  .state('tempTab.home', {
     url: '/home',
     views: {
       'home': {
@@ -50,33 +56,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('friends', {
-    url: "/friends/:id",
-    templateUrl: "templates/friends.html",
-    controller: 'FriendsCtrl',
-    // authenticate: true
-  })
+  // ---- end app-wide pages ----
 
   // ---- Friend-specific pages ----
+
+  .state('tab', {
+    url: '/tab',
+    abstract: true, // indicates this is not a stand-alone page
+    templateUrl: 'templates/tabs.html'
+  })
+
   // Home page that displays their latest social media
-  // .state('fTab.friends', {
-  //   // url: '/friends/:id',
-  //   url: '/friends',
-  //   views: {
-  //     'friends': {
-  //       templateUrl: 'templates/friends.html',
-  //       controller: 'FriendsCtrl',
-  //       // authenticate: true
-  //     }
-  //   }
-  // })
+  .state('tab.friends', {
+    // url: '/friends/:id',
+    url: '/friends',
+    views: {
+      'tab-friends': {
+        templateUrl: 'templates/tab-friends.html',
+        controller: 'FriendsCtrl',
+        // authenticate: true
+      }
+    }
+  })
 
   // Edit page that allows updating of their information
-  // .state('fTab.edit', {
+  // .state('tab.edit', {
   //   url: '/friends/:id/edit',
   //   views: {
   //     'tab-edit': {
-  //       templateUrl: 'templates/edit.html',
+  //       templateUrl: 'templates/tab-edit.html',
   //       controller: 'EditCtrl',
   //       // authenticate: true
   //     }
@@ -85,11 +93,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Events page that displays their upcoming events
   // Also allows user to add new events
-  // .state('fTab.events', {
+  // .state('tab.events', {
   //   url: '/friends/:id/events',
   //   views: {
   //     'tab-events': {
-  //       templateUrl: 'templates/events.html',
+  //       templateUrl: 'templates/tab-events.html',
   //       controller: 'EventsCtrl',
   //       // authenticate: true
   //     }
@@ -97,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // })
 
   // Gifts page that displays suggested Amazon products
-  .state('fTab.gifts', {
+  .state('tab.gifts', {
     // url: '/friends/:id/gifts',
     url: '/gifts',
     views: {
@@ -107,18 +115,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         // authenticate: true
       }
     }
-  })
-
-  // Currently holding page to what will become /friends
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
   });
+
   // ---- end friend-specific pages ----
 
   $urlRouterProvider.otherwise('/login');
