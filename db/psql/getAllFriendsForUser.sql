@@ -1,5 +1,5 @@
--- $1 the salesperson_id
-SELECT * FROM client
-  INNER JOIN salesperson_client
-  ON (salesperson_client.client_id = client.client_id)
-  WHERE salesperson_client.salesperson_id = $1"
+-- $1 the user id
+SELECT * FROM friends
+  INNER JOIN users
+  ON friends.userId = users.id
+  WHERE user.id = $1;

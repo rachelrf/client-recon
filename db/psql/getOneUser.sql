@@ -1,3 +1,3 @@
--- $1 = salesperson(ie USER) id
-SELECT * FROM salespersons
-	WHERE salespersons.salesperson_id = $1;
+-- $1 user id
+SELECT * FROM users
+	WHERE id = $1;

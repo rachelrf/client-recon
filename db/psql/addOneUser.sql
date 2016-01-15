@@ -1,4 +1,3 @@
-INSERT INTO salespersons (salesperson_name, salesperson_id) 
-VALUES ($1, $2);
-
-SELECT salesperson_id from salespersons where salesperson_name = $1;
+INSERT INTO users (name, id) 
+  VALUES ($1, $2)
+  RETURNING *;
