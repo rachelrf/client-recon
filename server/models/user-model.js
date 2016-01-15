@@ -14,8 +14,8 @@ module.exports.insertUser = function (data, callback) {
 };
 
 //rename to getOne
-module.exports.getUserById = function (id, callback) {
-	db.query(queryString.getUserById, id)
+module.exports.getUserById = function (userId, callback) {
+	db.query(queryString.getUserById, userId)
 	.then(function (result) {
 		callback(null, result);
 	})
