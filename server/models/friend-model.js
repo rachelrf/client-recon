@@ -2,6 +2,7 @@ var queryString = require('../../db/psql/index.js');
 var db = require('../../db/config.js');
 var _ = require('lodash');
 
+// --- Pure db interaction ----
 exports.addOne = function (data, callback) {
 	var queryParameters = [friend.client_name, friend.client_email, friend.client_birthday, 
   friend.client_company, friend.client_zipcode, friend.client_title, friend.client_image, friend.client_interests];
@@ -82,5 +83,15 @@ exports.updateOne = function (data, friendId, callback) {
 };
 
 exports.deleteOne = function(friendId, callback) {
+
+};
+
+// ---- External API ----
+
+exports.getPosts = function(friendId) {
+
+};
+
+exports.getGifts = function(friendId) {
 
 };
