@@ -118,7 +118,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // ---- end friend-specific pages ----
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/tempTab/login');
 
 
 });
