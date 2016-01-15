@@ -25,6 +25,11 @@ var tumblrUsername = 'rachel6bilson';
 var twitterUsername = 'rachelbilson_6';
 var instagramUsername = 'rachel6bilson';
 
+function shuffle(o){
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+}
+
 async.parallel([
     function(callback) {
         console.log('IN TUMBLR')
@@ -56,7 +61,6 @@ async.parallel([
                   });
                 }
             })
-
 
         console.log('CALLING BACK NOW')
         callback()
