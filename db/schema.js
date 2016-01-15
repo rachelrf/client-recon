@@ -14,6 +14,7 @@ db.query(
   return db.query(
     "CREATE TABLE IF NOT EXISTS friends ("
     + "id SERIAL PRIMARY KEY,"
+    + "userId VARCHAR(255),"
     + "FOREIGN KEY (userId) REFERENCES users(id),"
     + "name VARCHAR(40),"
     + "email VARCHAR(40)," 
@@ -32,6 +33,7 @@ db.query(
   return db.query(
     "CREATE TABLE IF NOT EXISTS events ("
     + "id SERIAL PRIMARY KEY,"
+    + "friendId INT,"
     + "FOREIGN KEY (friendId) REFERENCES friends(id),"
     + "name VARCHAR(255),"
     + "date TIMESTAMP"

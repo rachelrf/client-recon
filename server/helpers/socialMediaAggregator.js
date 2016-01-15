@@ -7,7 +7,7 @@ var twitterClient = require('./twitter-api-key.js');
 ///////////////////////////////////////////////////////////////////
 
 
-Module.exports = function(username, smCallback) {
+module.exports = function(username, smCallback) {
   var oauth = {
     consumer_key: tumblrOath.CONSUMER_KEY,
     consumer_secret: tumblrOath.CONSUMER_SECRET,

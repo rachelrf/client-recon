@@ -1,5 +1,4 @@
 angular.module('starter.services', [])
-
 .service('FriendsService', function() {
 
   this.friends = [

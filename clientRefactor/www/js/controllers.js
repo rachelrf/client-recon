@@ -21,7 +21,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('EditCtrl', function($stateParams, $scope, $timeout, ClientsApi) {
+.controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
   // TEMPLATE FOR DATA
   //this.data = AppState.state;
   var successfulPost = this.success;
@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   this.putClient = function () {
     //DETECT USER ID FROM APP STATE
     console.log('about to send updated client to server');
-    ClientsApi.editOne($stateParams.friendId, currentClient)
+    Friends.updateOne($stateParams.friendId, currentClient)
     .then(function(res){
       // CALLED AFTER SUCCESSFUL POST
       successfulPost = true;
@@ -47,7 +47,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   };
 })
 
-.controller('PostsCtrl', function($stateParams, $scope, FriendsService){
+.controller('PostsCtrl', function($stateParams, $scope, FriendsService, Friends){
   $scope.friendId = $stateParams.friendId;
   $scope.friends = FriendsService.getFriend($stateParams.friendId);
 
@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['client-recon.services'])
     enableFriends: true
   };
  
-  $scope.posts = ClientsApi.getPosts($stateParams.friendId)
+  $scope.posts = Friends.getPosts($stateParams.friendId)
   .then(function(posts) {
     $scope.loading = false;
     $scope.posts = posts;
@@ -80,10 +80,10 @@ angular.module('starter.controllers', ['client-recon.services'])
 .controller('EventsCtrl', function($stateParams, $scope) {
 })
 
-.controller('GiftsCtrl', function($stateParams, $scope, ClientsApi) {
+.controller('GiftsCtrl', function($stateParams, $scope, Friends) {
   $scope.loading = true;
   
-  ClientsApi.getGifts($stateParams.userId, $stateParams.friendId)
+  Friends.getGifts($stateParams.friendId)
   .then(function(gifts) {
     $scope.loading = false;
     $scope.gifts = gifts;

@@ -2,8 +2,8 @@ var queryString = require('../../db/psql/index.js');
 var db = require('../../db/config.js');
 var _ = require('lodash');
 
-exports.addOne = function (data, callback) {
-	db.query(queryString.addOneUser, data)
+exports.addOne = function (userArr, callback) {
+	db.query(queryString.addOneUser, userArr)
 	.then(function (result) {
 		callback(null, result);
 	})

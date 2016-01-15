@@ -27,7 +27,7 @@ module.exports = function(app, express, passport) {
 
 /* ================ USER ROUTES ================= */
 	app.post('/api/users', function (req, res) {
-		controller.user.addOne(req.body, res);
+		controller.user.addOne(req.body.arr, res);
 	});
 
 	app.get('/api/users/:userId', function (req, res) {
@@ -64,10 +64,8 @@ module.exports = function(app, express, passport) {
 	});
 	
 /* ============= AUTHENTICATION HELPER ============= */
-
 	function ensureAuthenticated(req, res, next) {
 	  if (req.isAuthenticated()) { return next(); }
 	  res.redirect('/login');
 	};
-
 };

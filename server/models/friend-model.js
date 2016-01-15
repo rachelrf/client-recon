@@ -3,13 +3,23 @@ var db = require('../../db/config.js');
 var _ = require('lodash');
 
 // --- Pure db interaction ----
-exports.addOne = function (data, callback) {
-	var queryParameters = [friend.client_name, friend.client_email, friend.client_birthday, 
-  friend.client_company, friend.client_zipcode, friend.client_title, friend.client_image, friend.client_interests];
+exports.addOne = function (userId, friendObj, callback) {
+	var queryParameters = [
+    userId,
+    friendObj.name,
+    friendObj.email,
+    friendObj.birthday, 
+    friendObj.zipcode,
+    friendObj.imageUrl,
+    friendObj.interests,
+    friendObj.twitterUrl,
+    friendObj.instagramUrl,
+    friendObj.tumblrUrl
+  ];
 
-    return db.query(queryString.insertFriend, queryParameters)
-    .then(function (friend) {
-      friendId = friend[0].client_id;
+    return db.query(queryString.addOneFriend, queryParameters)
+    .then(function (friends) {
+      friendId = friends[0].client_id;
       return db.query(queryString.insertFriendUsers, [userId, friendId]);
     })
     .then(function (result) {
