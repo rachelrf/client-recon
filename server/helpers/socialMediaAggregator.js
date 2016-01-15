@@ -103,7 +103,7 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
     });
   },
 
-  function(callback) {
+  function(callback) { 
     console.log('IN INSTAGRAM')
     var url = instagramUrl;
 
@@ -132,4 +132,12 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
     smCallback(shuffle(results));
   });
 
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
 }; // final closing
+=======
+}; // final closing
+
+
+
+  
+>>>>>>> ionic styling posts

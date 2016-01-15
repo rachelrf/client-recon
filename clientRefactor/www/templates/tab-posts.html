@@ -31,17 +31,29 @@
     </div>
 
 <!-- .................................. -->
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
     <div class="row" ng-repeat="post in posts" ng-if="$index % 3 === 0">
  <!--        <div class="col col-33" ng-style= "{'background-image':'url(' + posts[$index].imageUrl + ')'}"  ng-if="$index < posts.length"> 
             <h11>{{posts[$index].text.substring(0,40)}} + ...</h11>
         </div> -->
+=======
+
+    <div class="row" ng-repeat="image in images" ng-if="$index % 3 === 0">
+ <!--        <div class="col col-33" ng-style= "{'background-image':'url(' + images[$index].imageUrl + ')'}"  ng-if="$index < images.length"> 
+            <h11>{{images[$index].text.substring(0,40)}} + ...</h11>
+B</div> -->
+>>>>>>> ionic styling posts
 
       
         <div class="col col-33" border-radius='15px' ng-if="$index < posts.length">
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;"> <!-- {{item.imageUrl}} -->
             <img ng-src="{{posts[$index].imageUrl}}" width="100%" />
             <div class='description'>
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
               <p class='description_content'>{{posts[$index].text.substring(0,25)}}...</p>
+=======
+              <p class='description_content'>"{{images[$index].text.substring(0,75)}}...</p>
+>>>>>>> ionic styling posts
             </div>
           </a>
         </div>
@@ -51,7 +63,11 @@
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
             <img ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
             <div class='description'>
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
               <p class='description_content'>{{posts[$index+1].text.substring(0,25)}}...</p>
+=======
+              <p class='description_content'>"{{images[$index+1].text.substring(0,75)}}...</p>
+>>>>>>> ionic styling posts
             </div>
           </a>
         </div>
@@ -60,7 +76,11 @@
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
             <img ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
             <div class='description'>
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
               <p class='description_content'>{{posts[$index+2].text.substring(0,25)}}...</p>
+=======
+              <p class='description_content'>"{{images[$index+2].text.substring(0,75)}}...</p>
+>>>>>>> ionic styling posts
             </div>
           </a>
         </div>

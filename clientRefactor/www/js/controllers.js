@@ -73,11 +73,20 @@ angular.module('starter.controllers', ['client-recon.services'])
   })
 
   // Eventually will just directly query server for posts
+<<<<<<< dc78ff17ccd7bb623f08bdafe433635b59ab441c
   Friends.getPosts($stateParams.id)
   .then(function(posts) {
     $scope.loading = false;
     $scope.posts = posts;
   });
+=======
+  // $scope.posts = Friends.getPosts($stateParams.friendId)
+  // .then(function(posts) {
+  //   $scope.loading = false;
+  //   $scope.posts = posts;
+  // });
+
+>>>>>>> ionic styling posts
 })
 
 .controller('EditCtrl', function($scope, $location, $stateParams, Friends) {
