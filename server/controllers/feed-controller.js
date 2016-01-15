@@ -110,13 +110,13 @@ module.exports = {
     console.log('trying to get gifts');
     var interests = friend.client_interests;
     module.exports.getAmazon(interests, function(amazonResults) {
-      var data = {
-        amazon: formatAmazon(amazonResults),
-        message: friend.client_name+"'s birthday is "+ getBirthdayMessage(friend.client_birthday) +'! Think about '
-          + 'how you can make their day special.'
-      };
-      console.log('got gifts data');
-      res.json(data);
+      // var data = {
+      //   amazon: formatAmazon(amazonResults),
+        // message: friend.client_name+"'s birthday is "+ getBirthdayMessage(friend.client_birthday) +'! Think about '
+        //   + 'how you can make their day special.'
+      // };
+      // console.log('got gifts data');
+      res.json(formatAmazon(amazonResults));
     });
   }
 };

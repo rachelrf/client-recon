@@ -1,7 +1,3 @@
-//default - should be modified for production
-var USER_ID = 1;
-var CLIENT_ID = 1;
-
 angular.module('starter.controllers', ['client-recon.services'])
 
 .controller('LoginCtrl', function(){
@@ -25,9 +21,35 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('FriendsCtrl', function($scope, $stateParams, FriendsService){
-  $scope.friendId = $stateParams.id;
-  $scope.friends = FriendsService.getFriend($stateParams.id);
+.controller('EditCtrl', function($stateParams, $scope, $timeout, ClientsApi) {
+  // TEMPLATE FOR DATA
+  //this.data = AppState.state;
+  var successfulPost = this.success;
+  var currentClient = null;//this.data.currentClient;
+
+  this.newData = currentClient;
+
+  this.putClient = function () {
+    //DETECT USER ID FROM APP STATE
+    console.log('about to send updated client to server');
+    ClientsApi.editOne($stateParams.friendId, currentClient)
+    .then(function(res){
+      // CALLED AFTER SUCCESSFUL POST
+      successfulPost = true;
+
+      // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
+      // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
+      // $timeout(function(){
+      //   successfulPost = false;
+      //   $state.go('client-profile.bio');
+      // }, 2000);
+    })
+  };
+})
+
+.controller('PostsCtrl', function($stateParams, $scope, FriendsService){
+  $scope.friendId = $stateParams.friendId;
+  $scope.friends = FriendsService.getFriend($stateParams.friendId);
 
   // rachel's code for a dummy data
   $scope.settings = {
@@ -108,26 +130,15 @@ angular.module('starter.controllers', ['client-recon.services'])
   // end rachel's code
 })
 
-.controller('EditCtrl', function($scope) {
-
+.controller('EventsCtrl', function($stateParams, $scope) {
 })
 
-.controller('EventsCtrl', function($scope) {
-
-})
-
-.controller('GiftsCtrl', function($scope, ClientsApi) {
+.controller('GiftsCtrl', function($stateParams, $scope, ClientsApi) {
   $scope.loading = true;
-  $scope.gifts = 'Loading gift suggestions...';
-  //$scope.subscriptions = AppState.state.currentClient.feed;
   
-  console.log('running');
-  ClientsApi.getGifts(USER_ID, CLIENT_ID)
+  ClientsApi.getGifts($stateParams.userId, $stateParams.friendId)
   .then(function(gifts) {
-    console.log('got gifts');
     $scope.loading = false;
     $scope.gifts = gifts;
-
-    //should input client_interest? or client_team || whatever you want
   });
 });
