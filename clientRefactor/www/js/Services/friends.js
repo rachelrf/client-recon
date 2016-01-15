@@ -64,7 +64,7 @@ angular.module('client-recon.services', [])
     };
 
     var getPosts = function(friendId) {
-      return $http.get(SERVER_ROOT + '/api/users/' + friendId + '/posts')
+      return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/posts')
       .then(function(res) {
         return res.data;
       });
