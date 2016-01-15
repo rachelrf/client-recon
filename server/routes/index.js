@@ -9,7 +9,6 @@ module.exports = function(app, express, passport) {
 		controller.dashboard.get(req,res);
 	});
 
-
 /* =============== LOGIN & AUTHENTICATION ================ */
 	// THIS ROUTE WILL REDIRECT THE USER TO GOOGLE'S LOGIN PAGE
 	app.get('/login', passport.authenticate('google', 
@@ -39,11 +38,12 @@ module.exports = function(app, express, passport) {
 
 	// ROUTE FOR DISPLAYING PARTICULAR FRIEND
 	app.get('/api/users/:user_id/clients/:friend_id', function (req,res) {
+	// app.get('/api/clients/:friend_id', function (req,res) {
 		controller.friend.get(res, req.params.friend_id, req.params.user_id);
 	});
 
 	// ROUTE FOR UPDATING A PARTICULAR FRIENDS'S INFORMATION
-	app.put('/api/users/:user_id/clients/:friend_id', function (req, res) {
+	app.put('/api/clients/:friend_id', function (req, res) {
 		controller.friend.put(res, req.body, req.params.friend_id, req.params.user_id);
 	});
 

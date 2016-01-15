@@ -2,7 +2,7 @@ var queryString = require('../../db/psql/index.js');
 var db = require('../../db/config.js');
 var _ = require('lodash');
 
-//SAVES NEW USER TO THE DATABASE.
+//rename to addOne
 module.exports.insertUser = function (data, callback) {
 	db.query(queryString.insertUser, data)
 	.then(function (result) {
@@ -13,7 +13,7 @@ module.exports.insertUser = function (data, callback) {
 	});
 };
 
-//GET USER FROM DATABASE
+//rename to getOne
 module.exports.getUserById = function (id, callback) {
 	db.query(queryString.getUserById, id)
 	.then(function (result) {
