@@ -10,15 +10,18 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // GOOGLE CREDENTIALS
 var GOOGLE_CLIENT_ID = "615669438819-m1ilq060a5u3grritkida3edigottqa0.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "EF8r-qDLn-4LQ0UnuYwJ9aKs";
+var GOOGLE_CLIENT_SECRET = "LHzp14JwYUpuKn50eAbr4Xn3";
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  console.log(user);
+  done(null, user);
 });
 passport.deserializeUser(function (id, done) {
+  console.log("DESERIALIZING!!!!! ", id);
   User.getUserById(id, function (err, user) {
   	done(err, user);
   });
+//done(null, user);
 });
 
 passport.use(new GoogleStrategy({
@@ -27,9 +30,23 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/login-verify"
   },
   function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
+    console.log(profile);
+  	User.getUserById(profile.id, function (err, result) {
+      console.log("RESULT IS NOW: ", result);
+  		if (result.length === 0) {
+        console.log('... inserting');
+  			User.insertUser([profile.displayName ,profile.id], function (err, result) {
+          if (err) {
+            console.log("ERROR: ", err);
+          } else {
+            console.log("RESULTS: ", result);
+          }
+  				done(null, result);
+  			});
+  		} else {
+  			done(null, result[0]);
+  		};
+  	});
   }
 ));
 

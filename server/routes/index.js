@@ -17,11 +17,14 @@ module.exports = function(app, express, passport) {
 
 	app.get('/login-verify', passport.authenticate('google', 
 		{
-			successRedirect: '/home',
-			failureRedirect: '/login'
+			successRedirect: 'http://localhost:3000/home',
+			failureRedirect: '/'
 		}));
 
-
+	app.get('/api/loginfo', function (req, res) {
+		console.log(req.session.passport.user);
+		res.redirect('/home');
+	})
 
 /* =============== FRIEND ROUTES ========================= */
 	// ROUTE FOR CREATING A NEW FRIEND
