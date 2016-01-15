@@ -118,7 +118,7 @@ Module.exports = function(username, smCallback) {
     });
   }], function() {
     console.log('ASYNC COMPLETE', results.length, results);
-    smCallback(results);
+    smCallback(shuffle(results));
   });
 
 }; // final closing
