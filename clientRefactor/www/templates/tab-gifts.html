@@ -17,7 +17,28 @@
       </ul>
     </ion-list>
 
-    {{ gifts }}
+  <div class='client-container row'>
+    <div class="col-sm-12">
+      <h4 class="feed-headline">Suggested Gifts:<h4>
+      <div class="row">
+        <table>
+          <tr ng-repeat="item in gifts track by $index" class="col-sm-12 article">
+            <td>
+              <a href="{{item.pageUrl}}" target="_blank" class="article-headline">
+                <img src="{{item.imageUrl}}">
+              </a>
+            </td>
+            <td class="article-description">
+              {{item.title}}<br>
+              {{item.type}}<br>
+              {{item.price}}
+            </td>
+            </p>
+          </tr>
+        </table>
+      </div>  
+    </div>
+  </div>
     <!-- <div class="row" ng-repeat="image in images" ng-if="$index % 3 === 0">
         <div class="col col-33" ng-if="$index < images.length">
             <img ng-src="{{images[$index].src}}" width="100%" />
