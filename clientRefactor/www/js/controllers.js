@@ -51,6 +51,9 @@ angular.module('starter.controllers', ['client-recon.services'])
   $scope.friendId = $stateParams.friendId;
   $scope.friends = FriendsService.getFriend($stateParams.friendId);
 
+  // assuming stateParams contains social media usernames
+  $scope.posts = FriendsService.getPosts($statParams);
+
   // rachel's code for a dummy data
   $scope.settings = {
     enableFriends: true
