@@ -47,6 +47,25 @@ angular.module('client-recon.services', [])
         });
     }
 
+<<<<<<< d0488f2ff80791b285db2f707b9bd5833267bf13:client/app/services/clientApi.js
+=======
+    // Gets Amazon results (only)
+    var getGifts = function(user_id, client_id) {
+      return $http.get(SERVER_ROOT + '/api/users/' + user_id + '/clients/' + client_id + '/gifts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
+
+    var getPosts = function(friend_id) {
+      console.log('2. in ClientsApi, about to call route')
+      return $http.get(SERVER_ROOT + '/api/clients/' + friend_id + '/posts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
+
+>>>>>>> add route following for social media:clientRefactor/www/js/Services/clientApi.js
     return {
       getAll: getAll,
       addOne: addOne,

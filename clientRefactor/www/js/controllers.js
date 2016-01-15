@@ -63,10 +63,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   console.log('Friend ID' + $scope.friendsId);
   $scope.friends = FriendsService.getFriend($stateParams.id);
 
-  $scope.settings = {
-    enableFriends: true
-  };
-
   // Maybe needed? unclear from merge conflict
   // $scope.posts = Friends.getPosts($stateParams.friendId)
   // .then(function(posts) {
@@ -144,6 +140,26 @@ angular.module('starter.controllers', ['client-recon.services'])
     type: 'photo',
     text: 'Re-blogged: My blind, three-legged dog had been slipping on floors a lot. So we bought her these grippy socks! (Source:...',
     imageUrl: 'http://i.imgur.com/RMUDK4n.png' } ]);
+
+  $scope.posts = Friends.getPosts($stateParams.id)
+  .then(function(posts) {
+    $scope.loading = false;
+    $scope.posts = posts;
+  });
+  
+  // rachel's code for a dummy data
+  // $scope.images = [{ source: 'twitter',
+  //   type: 'text',
+  //   text: 'Anyone loving TAPIR as much as I am?!? https://t.co/KHduurvQRw',
+  //   imageUrl: 'http://i.imgur.com/kRkImN3.png' },
+  // { source: 'twitter',
+  //   type: 'text',
+  //   text: 'after acting, modeling, and philanthropy my favorite thing to do is hack on containerized deployment scripts! #nerd https://t.co/JR2XWwkPYe',
+  //   imageUrl: 'http://i.imgur.com/kRkImN3.png' },
+  // { source: 'twitter',
+  //   type: 'text',
+  //   text: '#casual #hautecouture #nofuckstogive https://t.co/iCmqVc5YON',
+  //   imageUrl: 'http://i.imgur.com/kRkImN3.png' }];
   // end rachel's code
 })
 
