@@ -33,35 +33,35 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
-  // TEMPLATE FOR DATA
-  //this.data = AppState.state;
-  var successfulPost = this.success;
-  var currentClient = null;//this.data.currentClient;
+// .controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
+//   // TEMPLATE FOR DATA
+//   //this.data = AppState.state;
+//   var successfulPost = this.success;
+//   var currentClient = null;//this.data.currentClient;
 
-  this.newData = currentClient;
+//   this.newData = currentClient;
 
-  this.putClient = function () {
-    //DETECT USER ID FROM APP STATE
-    console.log('about to send updated client to server');
-    Friends.updateOne($stateParams.friendId, currentClient)
-    .then(function(res){
-      // CALLED AFTER SUCCESSFUL POST
-      successfulPost = true;
+//   this.putClient = function () {
+//     //DETECT USER ID FROM APP STATE
+//     console.log('about to send updated client to server');
+//     Friends.updateOne($stateParams.friendId, currentClient)
+//     .then(function(res){
+//       // CALLED AFTER SUCCESSFUL POST
+//       successfulPost = true;
 
-      // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
-      // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
-      // $timeout(function(){
-      //   successfulPost = false;
-      //   $state.go('client-profile.bio');
-      // }, 2000);
-    })
-  };
-})
+//       // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
+//       // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
+//       // $timeout(function(){
+//       //   successfulPost = false;
+//       //   $state.go('client-profile.bio');
+//       // }, 2000);
+//     })
+//   };
+// })
 
-.controller('PostsCtrl', function($stateParams, $scope, FriendsService, Friends){
-  $scope.friendId = $stateParams.friendId;
-  $scope.friends = FriendsService.getFriend($stateParams.friendId);
+.controller('PostsCtrl', function($stateParams, $scope, FriendsService){
+  console.log('Friend ID' + $scope.friendsId);
+  $scope.friends = FriendsService.getFriend($stateParams.id);
 
   $scope.settings = {
     enableFriends: true
@@ -161,24 +161,28 @@ angular.module('starter.controllers', ['client-recon.services'])
 })
 
 .controller('EventsCtrl', function($scope, $stateParams, FriendsService) {
-  $scope.friendId = $stateParams.id;
   console.log($stateParams);
+  $scope.friendId = $stateParams.id;
   $scope.friends = FriendsService.getFriend($stateParams.id);
+
+
 })
 
-.controller('GiftsCtrl', function($scope, ClientsApi, $stateParams, FriendsService) {
+.controller('GiftsCtrl', function($scope, $stateParams, FriendsService) {
   $scope.loading = true;
   $scope.gifts = 'Loading gift suggestions...';
   $scope.friendId = $stateParams.id;
   console.log($stateParams);
   $scope.friends = FriendsService.getFriend($stateParams.id);
+
+
   //$scope.subscriptions = AppState.state.currentClient.feed;
 
   // Friends.getGifts($stateParams.friendId) somethign like that
-  console.log('running');
-  ClientsApi.getGifts(USER_ID, CLIENT_ID)
-  .then(function(gifts) {
-    $scope.loading = false;
-    $scope.gifts = gifts;
-  });
+  // console.log('running');
+  // ClientsApi.getGifts(USER_ID, CLIENT_ID)
+  // .then(function(gifts) {
+  //   $scope.loading = false;
+  //   $scope.gifts = gifts;
+  // });
 });
