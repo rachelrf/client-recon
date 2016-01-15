@@ -7,7 +7,7 @@ var twitterClient = require('./twitter-api-key.js');
 ///////////////////////////////////////////////////////////////////
 
 
-module.exports = function(username, smCallback) {
+module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
   var oauth = {
     consumer_key: tumblrOath.CONSUMER_KEY,
     consumer_secret: tumblrOath.CONSUMER_SECRET,
@@ -26,9 +26,9 @@ module.exports = function(username, smCallback) {
 
   var results = [];
 
-  var tumblrUsername = usernames.tumblr || 'rachel6bilson';
-  var twitterUsername = usernames.twitter || 'rachelbilson_6';
-  var instagramUsername = usernames.instagram || 'rachel6bilson';
+  var tumblrUrl = tumblrUrl || 'http://rachel6bilson.tumblr.com/';
+  var twitterUrl = twitterUrl || 'https://twitter.com/rachelbilson_6/';
+  var instagramUrl = instagramUrl || 'https://www.instagram.com/rachel6bilson/';
 
   ////////////////////////////
 
@@ -40,7 +40,7 @@ module.exports = function(username, smCallback) {
   async.parallel([
     function(callback) {
       console.log('IN TUMBLR');
-      var blog = new tumblr.Blog(tumblrUsername + '.tumblr.com', oauth);
+      var blog = new tumblr.Blog(tumblrUrl, oauth);
       blog.posts({limit: 6}, function(error, response) {
 
       if (error) {
@@ -55,7 +55,8 @@ module.exports = function(username, smCallback) {
             source: 'tumblr',
             type: 'photo',
             text: 'Re-blogged: ' + item.summary,
-            imageUrl: 'http://i.imgur.com/RMUDK4n.png'
+            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
+            postUrl: item.post_url
           });
 
         } else if (item.type === 'text') {
@@ -63,7 +64,8 @@ module.exports = function(username, smCallback) {
             source: 'tumblr',
             type: 'text',
             text: 'New post: ' + item.summary,
-            imageUrl: 'http://i.imgur.com/RMUDK4n.png'
+            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
+            postUrl: item.post_url
           });
         }
       });
@@ -73,7 +75,7 @@ module.exports = function(username, smCallback) {
 
   function(callback) {
     console.log('IN TWITTER');
-    params = { screen_name: twitterUsername};
+    params = { screen_name: twitterUrl.slice(20)};
 
     client.get('statuses/user_timeline', params, function(error, tweets, response){
       if (error) {
@@ -85,7 +87,8 @@ module.exports = function(username, smCallback) {
             source: 'twitter',
             type: 'text',
             text: 'Just tweeted: ' + item.text,
-            imageUrl: 'http://i.imgur.com/kRkImN3.png'
+            imageUrl: 'http://i.imgur.com/kRkImN3.png',
+            postUrl: twitterUrl + 'status/' + item.id_str
           });
         });
         callback();
@@ -95,7 +98,7 @@ module.exports = function(username, smCallback) {
 
   function(callback) {
     console.log('IN INSTAGRAM')
-    var url = 'https://www.instagram.com/' + instagramUsername;
+    var url = instagramUrl;
 
     var request = require('request');
     var util = require('util');
@@ -111,7 +114,8 @@ module.exports = function(username, smCallback) {
             source: 'instagram',
             type: 'photo',
             text: 'New Instagram post!',
-            imageUrl: post.display_src
+            imageUrl: post.display_src,
+            postUrl: 'https://www.instagram.com/p/' + post.code
           });
       });
       callback();
