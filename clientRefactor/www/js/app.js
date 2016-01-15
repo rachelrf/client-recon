@@ -44,54 +44,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+  // .state('tab', {
+  //   url: '/tab',
+  //   abstract: true,
+  //   templateUrl: 'templates/tabs.html'
+  // })
 
-  .state('tab.edit', {
+  .state('edit', {
     url: '/edit/:id',
-    views: {
-      'tab-edit': {
-        templateUrl: 'templates/tab-edit.html',
-        controller: 'EditCtrl',
+    templateUrl: 'templates/tab-edit.html',
+    controller: 'EditCtrl',
         // authenticate: true
-      }
-    }
   })
 
-  .state('tab.posts', {
+  .state('posts', {
     url: '/posts/:id',
-    views: {
-      'tab-posts': {
-        templateUrl: 'templates/tab-posts.html',
-        controller: 'PostsCtrl',
-        // authenticate: true
-      }
-    }
+    templateUrl: 'templates/tab-posts.html',
+    controller: 'PostsCtrl',
   })
 
-  .state('tab.events', {
+  .state('events', {
     url: '/events/:id',
-    views: {
-      'tab-events': {
-        templateUrl: 'templates/tab-events.html',
-        controller: 'EventsCtrl',
+    templateUrl: 'templates/tab-events.html',
+    controller: 'EventsCtrl',
         // authenticate: true
-      }
-    }
+
   })
 
-  .state('tab.gifts', {
+  .state('gifts', {
     url: '/gifts/:id',
-    views: {
-      'tab-gifts': {
-        templateUrl: 'templates/tab-gifts.html',
-        controller: 'GiftsCtrl',
+    templateUrl: 'templates/tab-gifts.html',
+    controller: 'GiftsCtrl',
         // authenticate: true
-      }
-    }
+
   });
 
   $urlRouterProvider.otherwise('tempTab/login');
