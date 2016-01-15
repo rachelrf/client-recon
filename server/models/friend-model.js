@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 // THIS METHOD INSERTS A FRIEND INTO THE FRIENDS TABLE. IT THEN ADDS THAT FRIEND, AND THE USER ASSOCIATED WITH IT, 
 // INTO A JOIN TABLE. 
-module.exports.insertFriend = function (friend, userId, callback) {
+exports.insertFriend = function (friend, userId, callback) {
 	var queryParameters = [friend.client_name, friend.client_email, friend.client_birthday, 
   friend.client_company, friend.client_zipcode, friend.client_title, friend.client_image, friend.client_interests];
 
@@ -24,7 +24,7 @@ module.exports.insertFriend = function (friend, userId, callback) {
 
 // THIS METHOD RETURNS FRIENDS ASSOCIATED WITH A GIVEN USER(userId). IF 'friendId' IS PROVIDED, IT WILL RETURN A SINGLE USER.
 // IF NOT, IT WILL RETURN ALL FRIENDS.
-module.exports.getFriends = function (friendId, userId, callback) {
+exports.getFriends = function (friendId, userId, callback) {
   if (friendId === null) {
     return db.query(queryString.getAllFriends, userId)
     .then(function (friendsList) {
@@ -48,7 +48,7 @@ module.exports.getFriends = function (friendId, userId, callback) {
 };
 
 // THIS METHOD UPDATES THE DATA OF A FRIEND ASSOCIATED WITH A GIVEN USER.
-module.exports.updateFriend = function (data, friendId, userId, callback) {
+exports.updateFriend = function (data, friendId, userId, callback) {
   // take the data and make the SQL arguments
   var init = { columns: [], values: [] };
   var query = _.reduce(data, function(acc, val, key) {
