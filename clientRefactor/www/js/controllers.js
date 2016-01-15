@@ -5,7 +5,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('HomeCtrl', function($scope, FriendsService) {
+.controller('HomeCtrl', function($scope, $stateParams, Friends) {
 
   $scope.moveText = "Move";
 
@@ -20,7 +20,11 @@ angular.module('starter.controllers', ['client-recon.services'])
       }
   };
 
-  $scope.friends = FriendsService.friends;
+  Friends.getAllForUser($stateParams.id)
+  .then(function(friends) {
+    console.dir(friends);
+    $scope.friends = friends;
+  });
 
   $scope.destroyFriend = function($index){
     $scope.friends.splice($index, 1);
@@ -77,7 +81,6 @@ angular.module('starter.controllers', ['client-recon.services'])
 })
 
 .controller('EditCtrl', function($scope, $location, $stateParams, FriendsService, Friends) {
-
   $scope.friendId = $stateParams.id;
   console.log($stateParams);
   $scope.friends = FriendsService.getFriend($stateParams.id);

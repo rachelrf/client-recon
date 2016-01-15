@@ -3,6 +3,7 @@ var User = require('../models/user-model.js');
 module.exports = {
 	//POST A NEW USER TO THE DATABASE
 	addOne: function(data, res) {
+		console.log("in user model: data is", data);
 		User.addOne(data, function (err, response) {
 			if (err) {
 				console.log("Error saving user: ", err);

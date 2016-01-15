@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tempTab.home', {
-    url: '/home',
+    url: '/home/:id', //user id
     views: {
       'home': {
         templateUrl: 'templates/home.html',
