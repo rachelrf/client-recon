@@ -1,3 +1,4 @@
+// This file likely can be deleted
 'use strict';
 
 var db = require('../../db');
