@@ -63,13 +63,12 @@ angular.module('starter.controllers', ['client-recon.services'])
 // })
 
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
+  console.log('got to posts controller');
   $scope.loading = true;
 
-  console.log($stateParams.id);
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
-    console.log($scope.friend);
   })
 
   // Eventually will just directly query server for posts
@@ -80,10 +79,12 @@ angular.module('starter.controllers', ['client-recon.services'])
   // });
 })
 
-.controller('EditCtrl', function($scope, $location, $stateParams, FriendsService, Friends) {
-  $scope.friendId = $stateParams.id;
-  console.log($stateParams);
-  $scope.friends = FriendsService.getFriend($stateParams.id);
+.controller('EditCtrl', function($scope, $location, $stateParams, Friends) {
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  })
 
   $scope.goHome = function(path){
      console.log("Going Home");
@@ -118,29 +119,30 @@ angular.module('starter.controllers', ['client-recon.services'])
   // end gloria
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, FriendsService) {
-  console.log($stateParams);
-  $scope.friendId = $stateParams.id;
-  $scope.friends = FriendsService.getFriend($stateParams.id);
-
+.controller('EventsCtrl', function($scope, $stateParams, Friends) {
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  })
 
 })
 
-.controller('GiftsCtrl', function($scope, $stateParams, FriendsService) {
+.controller('GiftsCtrl', function($scope, $stateParams, Friends) {
   $scope.loading = true;
   $scope.gifts = 'Loading gift suggestions...';
-  $scope.friendId = $stateParams.id;
-  console.log($stateParams);
-  $scope.friends = FriendsService.getFriend($stateParams.id);
-
 
   //$scope.subscriptions = AppState.state.currentClient.feed;
 
-  // Friends.getGifts($stateParams.friendId) somethign like that
-  // console.log('running');
-  // ClientsApi.getGifts(USER_ID, CLIENT_ID)
-  // .then(function(gifts) {
-  //   $scope.loading = false;
-  //   $scope.gifts = gifts;
-  // });
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  });
+
+  Friends.getGifts($stateParams.id)
+  .then(function(gifts) {
+    $scope.loading = false;
+    $scope.gifts = gifts;
+  });
 });

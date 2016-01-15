@@ -4,15 +4,22 @@ var Amazon = require('amazon-product-api');
 var _ = require('underscore');
 
 exports.format = function(amazonObj) {
-  return _.map(amazonObj, function(item) {
-    return {
-      title: item.ItemAttributes[0].Title[0],
-      type: item.ItemAttributes[0].ProductGroup[0],
-      price: '$' + item.OfferSummary[0].LowestNewPrice[0].Amount[0] / 100,
-      imageUrl: item.SmallImage[0].URL[0],
-      pageUrl: item.DetailPageURL[0]
-    };
-  })
+  var results = _.map(amazonObj, function(item) {
+    try {
+      return {
+        title: item.ItemAttributes[0].Title[0],
+        type: item.ItemAttributes[0].ProductGroup[0],
+        price: '$' + item.OfferSummary[0].LowestNewPrice[0].Amount[0] / 100,
+        imageUrl: item.SmallImage[0].URL[0],
+        pageUrl: item.DetailPageURL[0]
+      };
+    } catch (error) {
+      return undefined;
+    }
+  });
+  return _.reject(results, function(result) {
+    return result === undefined;
+  });
 };
 
 exports.request = function(queryStr, callback){
