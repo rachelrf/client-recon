@@ -68,11 +68,11 @@ module.exports = function(app, express, passport) {
 	app.get('/api/users/:user_id/clients/:client_id/gifts', function(req, res) {
 		controller.feed.getOneFriend(req, res, controller.feed.getGifts);
 	});
-};
-
+	
 /* ============= AUTHENTICAITON HELPER ============= */
 	function ensureAuthenticated(req, res, next) {
 	  if (req.isAuthenticated()) { return next(); }
 	  res.redirect('/login');
 	}
 };
+
