@@ -1,6 +1,7 @@
 <ion-view view-title="Edit">
-  <ion-nav-buttons side="secondary">
-    <button class="button button-clear" ng-click="logout()"> Logout </button>
+ 
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ui-sref="tempTab.home"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -8,78 +9,22 @@
       <ul class="friendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" href="#">
-            <img ng-src="./img/gloria.jpg">
-            <h2>Namey Namerson</h2>
-            <p>Hack Reactor</p>
-            <p>January 1st, 1991</p>
+            <img ng-src="{{friends.img}}">
+            <h2>{{friends.name}}</h2>
+            <p>{{friends.company}}</p>
+            <p>{{friends.birthday}}</p>
           </a>
+          
         </li>
       </ul>
     </ion-list>
 
-    <!-- Edit Form -->
-    <div class="container box-style">
-      <form class="new-client-form" name='editClientForm'>
-        <div class='row client-name-input'>
-          <div class="col-sm-12">
-            <h4>Name</h4>
-            <input class="client-input" type='text' placeholder="e.g.  John Smith" ng-model='editClientCtrl.newData.client_name'>
-          </div>
-        </div>
-        <div class='row client-email-input'>
-          <div class="col-sm-12">
-            <h4>Email</h4>
-            <input class="client-input" type='text' placeholder="name@company.com" ng-model='editClientCtrl.newData.client_email'>
-          </div>
-        </div>
-        <div class='row client-company-input'>
-          <div class="col-sm-12">
-            <h4>Company</h4>
-            <input class="client-input" type='text' placeholder="Company" ng-model='editClientCtrl.newData.client_company'>
-          </div>
-        </div>
-        <div class='row client-company-input'>
-          <div class="col-sm-12">
-            <h4>Title</h4>
-            <input class="client-input" type='text' placeholder="Title" ng-model='editClientCtrl.newData.client_title'>
-          </div>
-        </div>
-        <div class='row client-zipcode-input'>
-          <div class="col-sm-12">
-            <h4>Zipcode</h4>
-            <input class="client-input" type='text' placeholder="e.g.  94105" ng-model='editClientCtrl.newData.client_zipcode'>
-          </div>
-        </div>
-        <div class='row client-birthday-input'>
-          <div class="col-sm-12">
-            <h4>Birthday</h4>
-            <input class="client-input" type='text' ng-model='editClientCtrl.newData.client_birthday'>
-          </div>
-        </div>
-        <div class='row client-image-input'>
-          <div class="col-sm-12">
-            <h4>Image Url</h4>
-            <input class="client-input" placeholder="http://website.com/image.png" type='text' ng-model='editClientCtrl.data.client_image'>
-          </div>
-        </div>
-        <div class='row client-image-input'>
-          <div class="col-sm-12">
-            <h4>Interests</h4>
-            <input class="client-input" placeholder="San Francisco 49ers" type='text' ng-model='editClientCtrl.newData.client_interests'>
-          </div>
-        </div>
-        <!--  -->
-        <div class='row client-form-submit'>
-          <div class="col-sm-12">
-            <input class="client-input" type='submit' ng-show='editClientForm.$valid' ng-click='editClientCtrl.putClient()'>
-          </div>
-        </div>
-      </form>
-      <div class='successfulPostNotification' ng-show='editClientCtrl.succesfulPost'>
-        New Client Successfully Added!
-      </div>
-    <div>
-    <!-- end Edit Form -->
+    <div class="button-bar">
+      <a class="button" ui-sref="tab.edit({id: friends.id})">Social</a>
+      <a class="button" ui-sref="tab.events({id: friends.id})">Events</a>
+      <a class="button" ui-sref="tab.gifts({id: friends.id})">Gifts</a>
+    </div>
+
   </ion-content>
     
 </ion-view>

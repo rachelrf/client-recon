@@ -1,23 +1,35 @@
 <ion-view view-title="Events">
-  <ion-nav-buttons side="secondary">
-    <button class="button button-clear" ng-click="logout()"> Logout </button>
+
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ui-sref="tempTab.home"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
+
+<!--   <ion-nav-buttons side="secondary">
+    <button class="button button-clear" ng-click="logout()"> Logout </button>
+  </ion-nav-buttons> -->
 
   <ion-content>
     <ion-list>
       <ul class="friendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" href="#">
-            <img ng-src="./img/gloria.jpg">
-            <h2>Namey Namerson</h2>
-            <p>Hack Reactor</p>
-            <p>January 1st, 1991</p>
+            <img ng-src="{{friends.img}}">
+            <h2>{{friends.name}}</h2>
+            <p>{{friends.company}}</p>
+            <p>{{friends.birthday}}</p>
           </a>
         </li>
       </ul>
     </ion-list>
 
-  Hello world for Events Page
+    <div class="button-bar">
+      <a class="button" ui-sref="tab.edit({id: friends.id})">Social</a>
+      <a class="button" ui-sref="tab.events({id: friends.id})">Events</a>
+      <a class="button" ui-sref="tab.gifts({id: friends.id})">Gifts</a>
+    </div>
+
+
+  {{friends.name}}'s Events stuff goes here
   </ion-content>
-    
+
 </ion-view>

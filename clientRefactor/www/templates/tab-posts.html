@@ -5,13 +5,9 @@
 </ion-view>
  -->
  <ion-view view-title="Friend">
-  <ion-nav-buttons side="secondary">
-  <button class="button button-clear" ng-click="logout()"> Logout </button>
-  </ion-nav-buttons>
-
-
-  <ion-nav-buttons side="secondary">
-    <button class="button button-clear" ng-click="logout()"> Logout </button>
+  
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ui-sref="tempTab.home"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -19,14 +15,20 @@
       <ul class="firendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" href="#">
-            <img ng-src="./img/rachel.jpg"> <!--  {{user.imageUrl}} -->
-            <h2>Rachel Bilson</h2> <!--  {{user.name}} -->
-            <p>Hack Reactor</p> <!--  {{user.Company}} -->
-            <p>June 13th, 1991</p> <!--  {{user.birthday}} -->
+            <img ng-src="{{friends.img}}"> 
+            <h2>{{friends.name}}</h2> 
+            <p>{{friends.company}}</p> 
+            <p>{{friends.birthday}}</p> 
           </a>
         </li>
       </ul>
-    </ion-list>
+  </ion-list>
+
+    <div class="button-bar">
+      <a class="button" ui-sref="tab.edit({id: friends.id})">Social</a>
+      <a class="button" ui-sref="tab.events({id: friends.id})">Events</a>
+      <a class="button" ui-sref="tab.gifts({id: friends.id})">Gifts</a>
+    </div>
 
 <!-- .................................. -->
 
@@ -64,31 +66,31 @@
 
 
 
+  
 
+<!-- ...............NAVBAR................... -->
 
+    <!-- <ion-content>  -->
+   <!--    <div class="tabs tabs-icon-top">
+        <a class="tab-item">
+          <i class="icon ion-edit"></i>
+          Edit
+        </a>
+        <a class="tab-item">
+          <i class="icon ion-ios-paper"></i>
+          Local News
+        </a>
+        <a class="tab-item">
+          <i class="icon ion-calendar"></i>
+          Events
+        </a>
+        <a class="tab-item">
+          <i class="icon ion-ios-heart"></i>
+          Gifts
+        </a>
+      </div> -->
+   <!--   </ion-content>   -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- .................................. -->
 
 
