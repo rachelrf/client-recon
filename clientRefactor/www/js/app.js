@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Edit page that allows updating of their information
   .state('tab.edit', {
     // url: '/friends/:id/edit',
-    url: '/friends/:friendId/edit',
+    url: '/users/:userId/friends/:friendId/edit',
     views: {
       'tab-edit': {
         templateUrl: 'templates/tab-edit.html',
@@ -81,7 +81,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Posts page that displays their recent social media posts
   .state('tab.posts', {
-    url: '/friends/:friendId/posts',
+    url: '/users/:userId/friends/:friendId/posts',
     views: {
       'tab-posts': {
         templateUrl: 'templates/tab-posts.html',
@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Events page that displays their upcoming events
   // Also allows user to add new events
   .state('tab.events', {
-    url: '/friends/:friendId/events',
+    url: '/users/:userId/friends/:friendId/events',
     views: {
       'tab-events': {
         templateUrl: 'templates/tab-events.html',
@@ -106,7 +106,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Gifts page that displays suggested Amazon products
   .state('tab.gifts', {
-    url: '/friends/:friendId/gifts',
+    url: '/users/:userId/friends/:friendId/gifts',
     views: {
       'tab-gifts': {
         templateUrl: 'templates/tab-gifts.html',

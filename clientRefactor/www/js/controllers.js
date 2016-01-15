@@ -1,7 +1,3 @@
-//default - should be modified for production
-var USER_ID = 1;
-var CLIENT_ID = 1;
-
 angular.module('starter.controllers', ['client-recon.services'])
 
 .controller('LoginCtrl', function(){
@@ -117,10 +113,9 @@ angular.module('starter.controllers', ['client-recon.services'])
 })
 
 .controller('GiftsCtrl', function($stateParams, $scope, ClientsApi) {
-  $scope.client_id = $stateParams.friendId;
   $scope.loading = true;
   
-  ClientsApi.getGifts(USER_ID, CLIENT_ID)
+  ClientsApi.getGifts($stateParams.clientId, $stateParams.friendId)
   .then(function(gifts) {
     $scope.loading = false;
     $scope.gifts = gifts;
