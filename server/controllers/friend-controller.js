@@ -1,46 +1,45 @@
 var Friend = require('../models/friend-model.js');
 
+var makeCallback = function(res, actionString) {
+  actionString = actionString || '';
+  return function(err, results) {
+    if (err) {
+      console.log(actionString, 'failed:', err);
+      res.send(500);
+    } else {
+      console.log(actionString, 'succeeded:', results);
+      res.json(results);
+    }
+  };
+};
+
 module.exports = {
-	// GET FRIEND FROM THE DATABASE.
-	get: function (res, friendId, userId) {
-		if (typeof friendId !== 'string' || friendId.length < 1) {
-			friendId = null;
-		};
-
-		Friend.getFriends(friendId, userId, function (err, response) {
-			if (err) {
-				console.log("Get failed: ", err);
-				res.send(500);
-			} else {
-				console.log("Friend retrieved! ", response);
-				res.json(response);
-			}
-		});
-	},
-
-  // INSERT NEW FRIEND TO THE DATABASE AND UPDATE THE FRIEND-USER TABLE TO REFLECT THE CHANGE.
-  post: function (res, data, userId) {
-    Friend.insertFriend(data, userId, function (err, response) {
-      if (err) {
-        console.log("Insert failed: ", err);
-        res.send(500);
-      } else {
-        console.log("Friend inserted.");
-        res.send(201, response);
-      };
-    });
+	addOne: function(userId, friendObj, res) {
+    Friend.addOne(userId, friendObj, makeCallback(res, 'add one friend for user ' + userId));
   },
 
-	// UPDATE A FRIEND'S INFORMATION IN THE DATABASE
-	put: function (res, data, friendId, userId) {
-		Friend.updateFriend(data, friendId, userId, function (err, response) {
-			if(err) {
-				console.log("Update failed: ", err);
-			} else {
-				console.log("Friend updated! ", response);
-				res.json(response);
-			}
-		});
-	}
+  getAllForUser: function(userId, res) {
+    Friend.getAllForUser(userId, makeCallback(res, 'get all friends for user ' + userId));
+  },
+
+	getOne: function(friendId, res) {
+		Friend.getOne(friendId, makeCallback(res, 'get one friend'));
+	},
+
+	updateOne: function(friendId, data, res) {
+		Friend.updateOne(friendId, data, makeCallback(res, 'update one friend'));
+	},
+
+  deleteOne: function(friendId, res) {
+    Friend.deleteOne(friendId, makeCallback(res, 'delete one friend'));
+  },
+
+  getPosts: function(friendId, res) {
+    Friend.getPosts(friendId, makeCallback(res, 'get posts for friend'));
+  },
+  
+  getGifts: function(friendId, res) {
+    Friend.getGifts(friendId, makeCallback(res, 'get gifts for friend'));
+  }
 };
 
