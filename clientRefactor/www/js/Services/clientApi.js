@@ -1,5 +1,7 @@
 'use strict';
 
+var SERVER_ROOT = 'http://localhost:3000';
+
 angular.module('client-recon.services', [])
   .factory('ClientsApi', function($http, $q){
 
@@ -13,7 +15,6 @@ angular.module('client-recon.services', [])
     }
 
     var addOne = function(user_id, clientObj){
-      console.log('posting to server with clientObj:', clientObj);
       return $http.post('/api/users/' + user_id + '/clients', clientObj)
         .then(function(res){
           return res.data;
@@ -22,13 +23,13 @@ angular.module('client-recon.services', [])
 
     var editOne = function(user_id, editedClient){
       //currently user is hard coded
-      console.log('PUT-ing to server with clientObj:', editedClient);
       return $http.put('/api/users/' + user_id + '/clients/' + editedClient.client_id, editedClient)
         .then(function(res){
           return res.data;
         });
     }
 
+    //Gets Amazon, Bing, and Weather results
     var getFeed = function(user_id, client_id) {
       //currently user is hard coded
         console.log('here: ', user_id, client_id)
@@ -47,12 +48,29 @@ angular.module('client-recon.services', [])
         });
     }
 
+    // Gets Amazon results (only)
+    var getGifts = function(user_id, client_id) {
+      return $http.get(SERVER_ROOT + '/api/users/' + user_id + '/clients/' + client_id + '/gifts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
+
+    var getPosts = function(friend_id) {
+      console.log('2. in ClientsApi, about to call route')
+      return $http.get(SERVER_ROOT + '/api/clients/' + friend_id + '/posts')
+      .then(function(res) {
+        return res.data;
+      });
+    };
 
     return {
       getAll: getAll,
       addOne: addOne,
       editOne: editOne,
       getFeed: getFeed,
-      getTickets: getTickets
+      getTickets: getTickets,
+      getGifts: getGifts,
+      getPosts: getPosts
     }
   });
