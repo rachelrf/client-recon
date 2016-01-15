@@ -1,0 +1,35 @@
+<ion-view view-title="Gifts">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear" ng-click="logout()"> Logout </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ul class="friendHeader">
+        <li class="friendInfo">
+           <a class="item item-thumbnail-left" href="#">
+            <img ng-src="./img/gloria.jpg">
+            <h2>Namey Namerson</h2>
+            <p>Hack Reactor</p>
+            <p>January 1st, 1991</p>
+          </a>
+        </li>
+      </ul>
+    </ion-list>
+
+    {{ gifts }}
+    <!-- <div class="row" ng-repeat="image in images" ng-if="$index % 3 === 0">
+        <div class="col col-33" ng-if="$index < images.length">
+            <img ng-src="{{images[$index].src}}" width="100%" />
+        </div>
+        <div class="col col-33" ng-if="$index + 1 < images.length">
+            <img ng-src="{{images[$index + 1].src}}" width="100%" />
+        </div>
+        <div class="col col-33" ng-if="$index + 2 < images.length">
+            <img ng-src="{{images[$index + 2].src}}" width="100%" />
+        </div>
+    </div> -->
+
+  </ion-content>
+    
+</ion-view>

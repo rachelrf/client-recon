@@ -46,6 +46,10 @@ module.exports = function(app, express) {
 		// LOOK AT THE COLUMNS IN THE CLIENT RECORD, CREATE A PARAMS OBJECT BASED ON THAT
 		// SEND THAT TO CONTROLLER.FEED.GET
 		// PARAMS OBJ: {'client_company':'Togos', 'client_zipcode':'94303'}
-		controller.feed.getOneClient(req,res);
-	})
+		controller.feed.getOneFriend(req,res, controller.feed.getFeed);
+	});
+
+	app.get('/api/users/:user_id/clients/:client_id/gifts', function(req, res) {
+		controller.feed.getOneFriend(req, res, controller.feed.getGifts);
+	});
 };
