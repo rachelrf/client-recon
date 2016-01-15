@@ -36,7 +36,23 @@ module.exports = {
   },
 
   getPosts: function(friendId, res) {
-    Friend.getPosts(friendId, makeCallback(res, 'get posts for friend'));
+    var actionString = 'get gifts for friend';
+    Friend.getOne(friendId, function(err, results) {
+      if (err) {
+        console.log(actionString, 'failed:', err);
+        res.send(500);
+      } else {
+        console.log(actionString, 'succeeded:', results);
+        actionString = 'search social media for posts';
+        // see getGifts below for an example of how to complete this
+        // Useful info:
+        //   -the friend object is at results[0]
+        //   -make your api call(s)
+        //   -pass your data as a parameter to res.json()
+        console.log(actionString, 'not done: functionality not added yet');
+        res.json({});
+      }
+    });
   },
   
   getGifts: function(friendId, res) {
