@@ -3,7 +3,7 @@ var db = require('./config.js');
 
 //SCHEMAS ---------------------------------------------
 //Cannot use USER as a table name || forbidden words: http://www.postgresql.org/docs/current/interactive/sql-keywords-appendix.html
-db.query("CREATE TABLE IF NOT EXISTS salespersons (salesperson_name VARCHAR(40),salesperson_id SERIAL PRIMARY KEY);")
+db.query("CREATE TABLE IF NOT EXISTS salespersons (salesperson_name VARCHAR(255),salesperson_id VARCHAR(255) PRIMARY KEY);")
  .then(function(){
    console.log('sales created');
    return db.query("CREATE TABLE IF NOT EXISTS clients (client_name VARCHAR(40),"
