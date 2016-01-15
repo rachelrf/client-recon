@@ -1,12 +1,62 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var User = require('./models/user-model.js');
 
+
+/* ============= GOOGLE AUTHENTICATION & PASSPORT CONFIG ================= */
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+// GOOGLE CREDENTIALS
+var GOOGLE_CLIENT_ID = "615669438819-m1ilq060a5u3grritkida3edigottqa0.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = "LHzp14JwYUpuKn50eAbr4Xn3";
+
+passport.serializeUser(function (user, done) {
+  console.log(user);
+  done(null, user);
+});
+passport.deserializeUser(function (id, done) {
+  console.log("DESERIALIZING!!!!! ", id);
+  User.getUserById(id, function (err, user) {
+  	done(err, user);
+  });
+//done(null, user);
+});
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/login-verify"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+  	User.getUserById(profile.id, function (err, result) {
+      console.log("RESULT IS NOW: ", result);
+  		if (result.length === 0) {
+        console.log('... inserting');
+  			User.insertUser([profile.displayName ,profile.id], function (err, result) {
+          if (err) {
+            console.log("ERROR: ", err);
+          } else {
+            console.log("RESULTS: ", result);
+          }
+  				done(null, result);
+  			});
+  		} else {
+  			done(null, result[0]);
+  		};
+  	});
+  }
+));
+
+
+/* ==================== MIDDLEWARE ================== */
 var app = express();
-
-// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Allow cross origin requests;
 
@@ -21,7 +71,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 //Set up routes
-require('./routes/index.js')(app, express);
+require('./routes/index.js')(app, express, passport);
 
 
 //Set up static files
