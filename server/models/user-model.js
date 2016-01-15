@@ -3,7 +3,7 @@ var db = require('../../db/config.js');
 var _ = require('lodash');
 
 //rename to addOne
-module.exports.insertUser = function (data, callback) {
+module.exports.addOne = function (data, callback) {
 	db.query(queryString.insertUser, data)
 	.then(function (result) {
 		callback(null, result);
@@ -14,7 +14,7 @@ module.exports.insertUser = function (data, callback) {
 };
 
 //rename to getOne
-module.exports.getUserById = function (userId, callback) {
+module.exports.getOne = function (userId, callback) {
 	db.query(queryString.getUserById, userId)
 	.then(function (result) {
 		callback(null, result);

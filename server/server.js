@@ -16,7 +16,8 @@ passport.serializeUser(function (user, done) {
   done(null, user);
 });
 passport.deserializeUser(function (id, done) {
-  User.getUserById(id, function (err, user) {
+  console.log("DESERIALIZING!!!!! ", id);
+  User.getOne(id, function (err, user) {
   	done(err, user);
   });
 });
@@ -28,9 +29,9 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/login-verify"
   },
   function(accessToken, refreshToken, profile, done) {
-  	User.getUserById(profile.id, function (err, result) {
+  	User.getOne(profile.id, function (err, result) {
   		if (result.length === 0) {
-  			User.insertUser([profile.displayName ,profile.id], function (err, result) {
+  			User.addOne([profile.displayName ,profile.id], function (err, result) {
           if (err) {
             console.log("ERROR: ", err);
           } else {
