@@ -47,6 +47,7 @@ angular.module('client-recon.services', [])
         });
     }
 
+
     return {
       getAll: getAll,
       addOne: addOne,

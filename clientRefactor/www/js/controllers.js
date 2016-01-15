@@ -30,7 +30,6 @@ angular.module('starter.controllers', ['client-recon.services'])
     $scope.friends.splice(fromIndex, 1);
     $scope.friends.splice(toIndex, 0, friend);
   };
-
 })
 
 // .controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
@@ -63,10 +62,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   console.log('Friend ID' + $scope.friendsId);
   $scope.friends = FriendsService.getFriend($stateParams.id);
 
-  $scope.settings = {
-    enableFriends: true
-  };
-
   // Maybe needed? unclear from merge conflict
   // $scope.posts = Friends.getPosts($stateParams.friendId)
   // .then(function(posts) {
@@ -79,6 +74,12 @@ angular.module('starter.controllers', ['client-recon.services'])
     return o;
   }
 
+  console.log('1. in js/controllers.js, about to call Friends.getPosts', $stateParams.friendId) // currently set to 1?
+  $scope.posts = Friends.getPosts($stateParams.id)
+  .then(function(posts) {
+    $scope.loading = false;
+    $scope.posts = posts;
+  });
 
   // images
   // $scope.images = [{id: 0, src:'http://bit.ly/1PszWnJ'}, {id: 1, src:'http://bit.ly/1RFfeaG'},{id: 2, src:'http://bit.ly/1SjoUY3'},{id: 3, src:'//bit.ly/1OQefBQ'},{id: 4, src: 'http://bit.ly/1n0ynaa'}, {id: 5, src:'http://bit.ly/1RFfeaG'},{id: 6, src:'http://bit.ly/1SjoUY3'},{id: 7, src: 'http://bit.ly/1PszWnJ'},{id: 8, src:'//bit.ly/1OQefBQ'},{id: 9, src: 'http://bit.ly/1n0ynaa'}, {id: 10, src:'http://bit.ly/1RFfeaG'},{id: 11, src:'//bit.ly/1OQefBQ'},{id: 12, src:'http://bit.ly/1SjoUY3'},{id: 13, src:'//bit.ly/1OQefBQ'}];
@@ -144,7 +145,6 @@ angular.module('starter.controllers', ['client-recon.services'])
     type: 'photo',
     text: 'Re-blogged: My blind, three-legged dog had been slipping on floors a lot. So we bought her these grippy socks! (Source:...',
     imageUrl: 'http://i.imgur.com/RMUDK4n.png' } ]);
-  // end rachel's code
 })
 
 .controller('EditCtrl', function($scope, $location, $stateParams, FriendsService) {

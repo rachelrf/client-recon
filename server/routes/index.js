@@ -63,7 +63,6 @@ module.exports = function(app, express, passport) {
 		controller.friend.getGifts(req.params.friendId, res);
 	});
 	
-/* ============= AUTHENTICATION HELPER ============= */
 	function ensureAuthenticated(req, res, next) {
 	  if (req.isAuthenticated()) { return next(); }
 	  res.redirect('/login');
