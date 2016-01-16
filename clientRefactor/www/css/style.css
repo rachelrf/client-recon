@@ -85,3 +85,8 @@ img {
     width:auto;
     z-index: 1;
 }
+
+.wrapping-list .item-content, .wrapping-list .item {
+    overflow: initial;
+    white-space: initial;
+}
