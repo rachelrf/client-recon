@@ -118,7 +118,7 @@ angular.module('starter.controllers', ['client-recon.services'])
     // console.log('sending', $scope.friend);
     Friends.updateOne($stateParams.id, $scope.friend)
     .then(function(res){
-      $location.path('/tempTab/home/' + $scope.friend.userid);
+      $location.path('/posts/' + $scope.friend.id);
     });
   };
 
