@@ -44,7 +44,26 @@ img {
 }
 
 .gift {
-    width:48%;
+    width: 91%;
+}
+
+.giftPic {
+    display:inline-block;
+    height: 50px;
+    width: auto;
+}
+
+.giftInfo {
+    padding: 5px;
+    display:inline-block;
+    word-wrap: break-word;
+    height: 50px;
+    width: auto;
+    vertical-align: top;
+}
+
+p { 
+    word-break: break-all;
 }
 
 .social {

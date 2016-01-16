@@ -28,11 +28,16 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
 
   var results = [];
 
-  var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
-  var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
-  var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
+  // var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
+  // var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
+  // var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
 
   ////////////////////////////
+
+  var tumblrUrl = ('rachel6bilson') + '.tumblr.com';
+  var twitterUrl = 'https://twitter.com/' + ('rachelbilson_6');
+  var instagramUrl = 'https://www.instagram.com/' + ('rachel6bilson');
+
 
   var shuffle = function(o){
     for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -128,3 +133,5 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
   });
 
 }; // final closing
+
+// module.exports('','','',function(){})
