@@ -87,7 +87,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   //   })
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, Friends, Events) {
+.controller('EventsCtrl', function($scope, $stateParams, Friends, Events, $location) {
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
@@ -105,6 +105,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   }
 
   $scope.submitForm = function() {
+    console.log("submitting form");
     Events.addOne($stateParams.id, $scope.newEvent)
     .then(function(res) {
       $location.path('/events/' + $scope.friend.id);

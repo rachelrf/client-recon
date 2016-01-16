@@ -11,8 +11,8 @@ servicesModule
   };
 
   // ---- Export functions ----
-  var addOne = function(friendId, clientObj){
-    return $http.post(SERVER_ROOT + '/api/friends/' + friendId + '/clients', clientObj)
+  var addOne = function(friendId, eventObj){
+    return $http.post(SERVER_ROOT + '/api/friends/' + friendId + '/events', eventObj)
     .then(getData);
   };
 
