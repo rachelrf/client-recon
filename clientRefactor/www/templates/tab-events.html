@@ -74,7 +74,7 @@
   <ion-list show-delete="false" can-swipe="true">
     <ion-item ng-repeat="event in events">
     <h2>{{event.name}}</h2>
-    <p>{{event.date}}</p>
+    <p>{{event.prettifiedDate}}</p>
     <ion-option-button class="button-assertive icon ion-trash-a" ng-click="destroyEvent($index)"></ion-option-button>
     </ion-item>
   </ion-list>

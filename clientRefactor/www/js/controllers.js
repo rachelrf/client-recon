@@ -165,7 +165,10 @@ angular.module('starter.controllers', ['client-recon.services'])
   var getEvents = function() {
     Events.getAllForFriend($stateParams.id)
     .then(function(events) {
-      $scope.events = events;
+      $scope.events = _.map(events, function(event) {
+        event.prettifiedDate = Events.prettifyDate(event.date);
+        return event;
+      });
     });
   }
 
