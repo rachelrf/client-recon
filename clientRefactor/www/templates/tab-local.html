@@ -15,10 +15,10 @@
     <ul class="friendHeader">
       <li class="friendInfo">
          <a class="item item-thumbnail-left" ui-sref="posts({id: friend.id})">
-          <img ng-src="{{friend.img}}"> 
+          <img ng-src="{{friend.image_url}}"> 
           <h2>{{friend.name}}</h2> 
+          <p>{{friend.phone}}</p> 
           <p>{{friend.email}}</p> 
-          <p>{{friend.birthday}}</p> 
         </a>
       </li>
     </ul>
