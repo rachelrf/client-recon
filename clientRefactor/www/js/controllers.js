@@ -87,7 +87,13 @@ angular.module('starter.controllers', ['client-recon.services'])
   //   })
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, Events) {
+.controller('EventsCtrl', function($scope, $stateParams, Friends, Events) {
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  });
+  
   Events.getAllForFriend($stateParams.id)
   .then(function(events) {
     $scope.events;
