@@ -9,7 +9,7 @@ var twitterClient = require('./twitter-api-key.js');
 ///////////////////////////////////////////////////////////////////
 
 
-module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
+module.exports = function(tumblrUsername, twitterUsername, instagramUsername, smCallback) {
   var oauth = {
     consumer_key: tumblrOath.CONSUMER_KEY,
     consumer_secret: tumblrOath.CONSUMER_SECRET,
@@ -31,9 +31,9 @@ module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
   // var tumblrUrl = tumblrUrl || 'http://rachel6bilson.tumblr.com/';
   // var twitterUrl = twitterUrl || 'https://twitter.com/rachelbilson_6/';
   // var instagramUrl = instagramUrl || 'https://www.instagram.com/rachel6bilson/';
-  var tumblrUrl = 'rachel6bilson.tumblr.com';
-  var twitterUrl = 'https://twitter.com/rachelbilson_6';
-  var instagramUrl = 'https://www.instagram.com/rachel6bilson';
+  var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
+  var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
+  var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
 
   ////////////////////////////
 
