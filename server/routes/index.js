@@ -64,6 +64,27 @@ module.exports = function(app, express, passport) {
 	app.get('/api/friends/:friendId/gifts', function(req, res) {
 		controller.friend.getGifts(req.params.friendId, res);
 	});
+
+	/* =============== EVENT ROUTES ========================= */
+	app.post('/api/friends/:friendId/events', function (req, res) {
+		 controller.event.addOne(req.params.friendId, req.body, res);
+	});
+
+	app.get('/api/friends/:friendId/events', function (req, res) {
+		controller.event.getAllForUser(req.params.friendId, res);
+	});
+
+	app.get('/api/events/:eventId', function (req, res) {
+		controller.event.getOne(req.params.eventId, res);
+	});
+
+	app.put('/api/events/:eventId', function (req, res) {
+		controller.event.updateOne(req.params.eventId, req.body, res);
+	});
+
+	app.delete('/api/events/:eventId', function (req, res) {
+		controller.event.deleteOne(req.params.eventId, req.body, res);
+	});	
 	
 	function ensureAuthenticated(req, res, next) {
 	  if (req.isAuthenticated()) { return next(); }
