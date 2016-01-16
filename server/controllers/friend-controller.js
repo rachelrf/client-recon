@@ -45,7 +45,7 @@ module.exports = {
       } else {
         console.log(actionString, 'succeeded:', results);
         actionString = 'search social media for posts';
-        socialMediaAggregator(results[0].tumblrurl, results[0].twitterurl, results[0].instagramurl, function(results) {
+        socialMediaAggregator(results[0].tumblr_url, results[0].twitter_url, results[0].instagram_url, function(results) {
           console.log(actionString, 'probably succeeded:', results);
           res.json(results);
         })
