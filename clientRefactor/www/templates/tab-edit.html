@@ -1,7 +1,7 @@
 <ion-view view-title="Edit">
  
   <ion-nav-buttons side="primary">
-    <button class="button button-clear" ui-sref="tempTab.home({id: friend.userid})"> <i class="icon ion-home"></i></button>
+    <button class="button button-clear" ui-sref="home({id: friend.user_id})"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -10,10 +10,10 @@
       <ul class="friendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" ui-sref="posts({id: friend.id})">
-            <img ng-src="{{friend.img}}"> 
+            <img ng-src="{{friend.image_url}}"> 
             <h2>{{friend.name}}</h2> 
+            <p>{{friend.phone}}</p> 
             <p>{{friend.email}}</p> 
-            <p>{{friend.birthday}}</p> 
           </a>
         </li>
       </ul>
@@ -35,27 +35,17 @@
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Title</span>
-        <input type="text" ng-model="friend.title">
-      </label>
-      <br>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Company</span>
-        <input type="text" ng-model="friend.company">
-      </label>
-      <br>
-      <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
         <input type="email" ng-model="friend.email">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Phone number</span>
+        <span class="input-label">Phone</span>
         <input type="number" ng-model="friend.phone">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Date of Birth</span>
+        <span class="input-label">Birthday</span>
         <input type="date" ng-model="friend.birthday">
       </label>
       <br>
@@ -65,23 +55,23 @@
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Image url</span>
-        <input type="text" ng-model="friend.img">
+        <span class="input-label">Image URL</span>
+        <input type="text" ng-model="friend.image_url">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <i class="icon ion-social-twitter-outline"></i><span class="input-label">&nbsp Twitter url</span>
-        <input type="text" ng-model="friend.twitterurl">
+        <i class="icon ion-social-twitter-outline"></i><span class="input-label">&nbsp; Twitter Username</span>
+        <input type="text" ng-model="friend.twitter_username">
       </label>
       <br>
       <label class="item item item-input item-stacked-label">
-        <i class="icon ion-social-instagram-outline"></i><span class="input-label">&nbsp Instagram url</span>
-        <input type="text" ng-model="friend.instagramurl">
+        <i class="icon ion-social-instagram-outline"></i><span class="input-label">&nbsp; Instagram username</span>
+        <input type="text" ng-model="friend.instagram_username">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <i class="icon ion-social-tumblr-outline"></i><span class="input-label">&nbsp Tumblr url</span>
-        <input type="text" ng-model="friend.tumblrurl">
+        <i class="icon ion-social-tumblr-outline"></i><span class="input-label">&nbsp; Tumblr username</span>
+        <input type="text" ng-model="friend.tumblr_username">
       </label>
 
     <button class="button button-full button-positive" ng-click="submitForm()">Save Changes</button>

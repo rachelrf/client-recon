@@ -1,7 +1,7 @@
 <ion-view view-title="Gifts">
  
   <ion-nav-buttons side="primary">
-    <button class="button button-clear" ui-sref="tempTab.home({id: friend.userid})"> <i class="icon ion-home"></i></button>
+    <button class="button button-clear" ui-sref="home({id: friend.user_id})"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
   <ion-nav-buttons side="secondary">
@@ -12,17 +12,18 @@
 
   <ion-content>
     <ion-list>
+    <!-- Current Friend -->
       <ul class="friendHeader">
         <li class="friendInfo">
            <a class="item item-thumbnail-left" ui-sref="posts({id: friend.id})">
-            <img ng-src="{{friend.img}}"> 
+            <img ng-src="{{friend.image_url}}"> 
             <h2>{{friend.name}}</h2> 
+            <p>{{friend.phone}}</p> 
             <p>{{friend.email}}</p> 
-            <p>{{friend.birthday}}</p> 
           </a>
         </li>
       </ul>
-  </ion-list>
+    </ion-list>
 
   <div class="button-bar">
       <a class="button" ui-sref="posts({id: friend.id})"><i class="icon ion-social-twitter-outline"></i></a>

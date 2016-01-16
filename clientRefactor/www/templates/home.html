@@ -15,10 +15,10 @@
   <ion-content>
     <ion-list show-delete="false" show-reorder="showOrderButton" can-swipe="true" class="card">
       <ion-item class="item item-thumbnail-left item-remove-animate" ng-repeat="data in friends" ui-sref="posts({id: data.id})">
-      <img src="{{data.img}}"/>
+      <img src="{{data.image_url}}"/>
       <h2>{{data.name}}</h2>
-      <p>{{data.email}}</p>
       <p>{{data.phone}}</p>
+      <p>{{data.email}}</p>
       </a>
       <ion-option-button class="button-assertive icon ion-trash-a" ng-click="destroyFriend($index)"></ion-option-button>
       <ion-reorder-button class="ion-navicon" on-reorder="moveFriend(data, $fromIndex, $toIndex)"></ion-reorder-button>

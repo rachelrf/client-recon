@@ -90,7 +90,6 @@ angular.module('starter.controllers', ['client-recon.services'])
 // })
 
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
-  console.log('got to posts controller');
   $scope.loading = true;
 
   Friends.getOne($stateParams.id)
@@ -153,7 +152,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   }
 
   $scope.submitForm = function() {
-    console.log("submitting form", $stateParams);
+    console.log("submitting form", $scope.newEvent);
 
     Events.addOne($stateParams.id, $scope.newEvent)
     .then(function(res) {
