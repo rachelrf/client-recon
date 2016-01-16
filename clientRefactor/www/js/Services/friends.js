@@ -11,8 +11,8 @@ servicesModule
   };
 
   // ---- Export functions ----
-  var addOne = function(user_id, clientObj){
-    return $http.post(SERVER_ROOT + '/api/users/' + user_id + '/clients', clientObj)
+  var addOne = function(user_id, friendObj){
+    return $http.post(SERVER_ROOT + '/api/users/' + user_id + '/friends', friendObj)
     .then(getData);
   };
 
@@ -37,11 +37,11 @@ servicesModule
   }
 
   // //Gets Amazon, Bing, and Weather results
-  // var getFeed = function(user_id, client_id) {
+  // var getFeed = function(user_id, friend_id) {
   //   //currently user is hard coded
-  //     console.log('here: ', user_id, client_id)
+  //     console.log('here: ', user_id, friend_id)
     
-  //   return $http.get(SERVER_ROOT + '/api/users/' + user_id + '/clients/' + client_id + '/feed')
+  //   return $http.get(SERVER_ROOT + '/api/users/' + user_id + '/friends/' + friend_id + '/feed')
   //     .then(function(res){
   //       return res.data;
   //     });
