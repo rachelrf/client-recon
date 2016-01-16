@@ -43,7 +43,7 @@
       <input type="text" placeholder="Date" ng-model="newEvent.date" required> 
     </label>
     <br>
-    <button class="button button-small" >
+    <button class="button button-small" ng-click="submitForm()" >
       Submit
     </button>
   </div>
@@ -51,9 +51,9 @@
   <!-- NEEDS NG REPEAT IN ION ITEM FOR DATA -->
 
   <ion-list show-delete="false" can-swipe="true">
-    <ion-item>
-    <h2>Event</h2>
-    <p>Date</p>
+    <ion-item ng-repeat="event in events">
+    <h2>{{event.name}}</h2>
+    <p>{{event.date}}</p>
     <ion-option-button class="button-assertive icon ion-trash-a" ng-click="destroyEvent($index)"></ion-option-button>
     </ion-item>
   </ion-list>
