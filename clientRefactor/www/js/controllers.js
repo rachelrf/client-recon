@@ -3,7 +3,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 .controller('LoginCtrl', function($scope){
   $scope.login = function () {
 
-  }
+  };
 
 })
 .controller('HomeCtrl', function($scope, $stateParams, Friends) {
@@ -205,13 +205,18 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 .controller('LocalCtrl', function($scope, $stateParams, Friends) {
 
+  $scope.loading = true;
+  $scope.local = "Loading Users Local Data...";
+
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
     console.log($scope.friend);
   });
 
-  
-
-
+  Friends.getLocal($stateParams.id)
+  .then(function(local) {
+    $scope.loading = false;
+    $scope.local = weather;
+  });
 });

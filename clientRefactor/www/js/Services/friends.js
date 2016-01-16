@@ -70,15 +70,8 @@ servicesModule
     });
   };
 
-  var getWeather = function(friendId) {
-    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/weather')
-    .then(function(res) {
-      return res.data;
-    });
-  };
-
-  var getLocalNews = function(friendId) {
-    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/news')
+  var getLocal = function(friendId) {
+    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/local')
     .then(function(res) {
       return res.data;
     });
@@ -92,7 +85,6 @@ servicesModule
     deleteOne: deleteOne,
     getGifts: getGifts,
     getPosts: getPosts,
-    getWeather: getWeather,
-    getLocalNews: getLocalNews
-  }
+    getLocal: getLocal
+  };
 });
