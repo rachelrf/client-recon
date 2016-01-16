@@ -70,6 +70,10 @@ module.exports = function(app, express, passport) {
 		controller.friend.getWeather(req.params.friendId, res);
 	});
 
+	app.get('/api/friends/:friendId/local', function(req, res) {
+		controller.friend.getLocal(req.params.friendId, res);
+	});
+
 	/* =============== EVENT ROUTES ========================= */
 	app.post('/api/friends/:friendId/events', function (req, res) {
 		 controller.event.addOne(req.params.friendId, req.body, res);
