@@ -5,7 +5,8 @@ var db = require('./config.js');
 db.query(
   "CREATE TABLE IF NOT EXISTS users ("
   + "id VARCHAR(255) PRIMARY KEY,"
-  + "name VARCHAR(255)"
+  + "name VARCHAR(255),"
+  + "phone VARCHAR(40)"
   + ");"
 )
 .then(function(){
@@ -13,16 +14,17 @@ db.query(
   return db.query(
     "CREATE TABLE IF NOT EXISTS friends ("
     + "id SERIAL PRIMARY KEY,"
-    + "userId VARCHAR(255),"
-    + "FOREIGN KEY (userId) REFERENCES users(id),"
+    + "user_id VARCHAR(255),"
+    + "FOREIGN KEY (user_id) REFERENCES users(id),"
     + "name VARCHAR(40),"
     + "email VARCHAR(40)," 
+    + "phone VARCHAR(40),"
     + "birthday DATE,"
     + "zipcode VARCHAR(5)," 
-    + "imageUrl VARCHAR(1000),"
-    + "twitterUrl VARCHAR(1000),"
-    + "instagramUrl VARCHAR(1000),"
-    + "tumblrUrl VARCHAR(1000),"
+    + "image_url VARCHAR(1000),"
+    + "twitter_username VARCHAR(1000),"
+    + "instagram_username VARCHAR(1000),"
+    + "tumblr_username VARCHAR(1000),"
     + "interests VARCHAR(200)"
     + ");"
   );
@@ -32,8 +34,8 @@ db.query(
   return db.query(
     "CREATE TABLE IF NOT EXISTS events ("
     + "id SERIAL PRIMARY KEY,"
-    + "friendId INT,"
-    + "FOREIGN KEY (friendId) REFERENCES friends(id),"
+    + "friend_id INT,"
+    + "FOREIGN KEY (friend_id) REFERENCES friends(id),"
     + "name VARCHAR(255),"
     + "date TIMESTAMP"
     + ");"
