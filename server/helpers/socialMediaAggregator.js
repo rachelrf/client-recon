@@ -95,7 +95,7 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
             type: 'text',
             text: 'New tweet: ' + item.text,
             imageUrl: 'http://i.imgur.com/klg52Ih.png',
-            postUrl: twitterUrl + 'status/' + item.id_str,
+            postUrl: twitterUrl + '/status/' + item.id_str,
             logoImage: 'data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
           });
         });

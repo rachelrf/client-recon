@@ -10,8 +10,8 @@ angular.module('starter.controllers', ['client-recon.services'])
 
   $scope.moveText = "Move";
   $scope.userId = $stateParams.id;
-
   $scope.showOrderButton = false;
+  
   $scope.changeReorder = function(){
       if($scope.showOrderButton === true) {
         $scope.moveText = "Move";

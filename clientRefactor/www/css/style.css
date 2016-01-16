@@ -5,6 +5,10 @@
     background-size: cover;
 }
 
+.feed-headline {
+    padding-left: 15px;
+}
+
 
 div.col{  
     float:left; /* important */  
@@ -43,7 +47,7 @@ img {
 }
 
 .gift {
-    width: 91%;
+    width: 102%;
 }
 
 .giftPic {
