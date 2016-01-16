@@ -225,6 +225,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   Friends.getLocal($stateParams.id)
   .then(function(local) {
     $scope.loading = false;
-    $scope.local = weather;
+    $scope.local = local;
   });
 });
