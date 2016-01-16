@@ -19,13 +19,14 @@ exports.addOne = function (userId, friendObj, callback) {
     userId,
     friendObj.name,
     friendObj.email,
+    friendObj.phone,
     friendObj.birthday, 
     friendObj.zipcode,
-    friendObj.imageUrl,
+    friendObj.image_url,
     friendObj.interests,
-    friendObj.twitterUrl,
-    friendObj.instagramUrl,
-    friendObj.tumblrUrl
+    friendObj.twitter_username,
+    friendObj.instagram_username,
+    friendObj.tumblr_username
   ];
 
   var promise = db.query(queryString.addOneFriend, queryParameters);

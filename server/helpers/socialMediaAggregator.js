@@ -28,15 +28,15 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
 
   var results = [];
 
-  // var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
-  // var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
-  // var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
+  var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
+  var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
+  var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
 
   ////////////////////////////
 
-  var tumblrUrl = ('rachel6bilson') + '.tumblr.com';
-  var twitterUrl = 'https://twitter.com/' + ('rachelbilson_6');
-  var instagramUrl = 'https://www.instagram.com/' + ('rachel6bilson');
+  // var tumblrUrl = ('rachel6bilson') + '.tumblr.com';
+  // var twitterUrl = 'https://twitter.com/' + ('rachelbilson_6');
+  // var instagramUrl = 'https://www.instagram.com/' + ('rachel6bilson');
 
 
   var shuffle = function(o){

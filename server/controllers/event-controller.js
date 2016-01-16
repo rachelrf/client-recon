@@ -18,7 +18,7 @@ var makeCallback = function(res, actionString) {
 
 module.exports = {
   addOne: function(friendId, eventObj, res) {
-    console.log('HERE',friendId, eventObj);
+    console.log('HERE', friendId, eventObj);
     var date = eventObj.date;
     var eventName = eventObj.name;
     var friendName = 'Rachel Bilson'; // hard coded

@@ -1,5 +1,5 @@
 -- $1 the user id
 SELECT * FROM friends
   -- INNER JOIN users
-  -- ON friends.userId = users.id
-  WHERE userId = $1;
+  -- ON friends.user_id = users.id
+  WHERE user_id = $1;

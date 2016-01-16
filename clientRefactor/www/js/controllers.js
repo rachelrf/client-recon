@@ -90,7 +90,6 @@ angular.module('starter.controllers', ['client-recon.services'])
 // })
 
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
-  console.log('got to posts controller');
   $scope.loading = true;
 
   Friends.getOne($stateParams.id)
@@ -118,7 +117,7 @@ angular.module('starter.controllers', ['client-recon.services'])
     // console.log('sending', $scope.friend);
     Friends.updateOne($stateParams.id, $scope.friend)
     .then(function(res){
-      $location.path('/tempTab/home/' + $scope.friend.userid);
+      $location.path('/posts/' + $scope.friend.id);
     });
   };
 
@@ -153,13 +152,18 @@ angular.module('starter.controllers', ['client-recon.services'])
   }
 
   $scope.submitForm = function() {
-    console.log("submitting form", $stateParams);
+    console.log("submitting form", $scope.newEvent);
 
     Events.addOne($stateParams.id, $scope.newEvent)
-    .then(function(res) {
-      getEvents();
-    });
+    .then(getEvents);
   };
+
+  $scope.destroyEvent = function($index) {
+    var event = $scope.events[$index];
+    console.log("about to delete", event);
+    Events.deleteOne(event.id)
+    .then(getEvents);
+  }
 
   Friends.getOne($stateParams.id)
   .then(function(friends) {

@@ -1,3 +1,3 @@
 -- $1 the friend id
 SELECT * FROM events
-  WHERE friendId = $1;
+  WHERE friend_id = $1;
