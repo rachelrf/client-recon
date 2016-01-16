@@ -70,6 +70,13 @@ servicesModule
     });
   };
 
+  var getLocal = function(friendId) {
+    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/local')
+    .then(function(res) {
+      return res.data;
+    });
+  };
+
   return {
     addOne: addOne,
     getAllForUser: getAllForUser,
@@ -77,6 +84,7 @@ servicesModule
     updateOne: updateOne,
     deleteOne: deleteOne,
     getGifts: getGifts,
-    getPosts: getPosts
-  }
+    getPosts: getPosts,
+    getLocal: getLocal
+  };
 });

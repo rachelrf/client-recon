@@ -11,8 +11,28 @@
 
   <ion-content>
 
+	<ion-list>
+    <ul class="friendHeader">
+      <li class="friendInfo">
+         <a class="item item-thumbnail-left" ui-sref="posts({id: friend.id})">
+          <img ng-src="{{friend.img}}"> 
+          <h2>{{friend.name}}</h2> 
+          <p>{{friend.email}}</p> 
+          <p>{{friend.birthday}}</p> 
+        </a>
+      </li>
+    </ul>
+  </ion-list>
 
-  
+  <div class="button-bar">
+      <a class="button" ui-sref="posts({id: friend.id})"><i class="icon ion-social-twitter-outline"></i></a>
+      <a class="button" ui-sref="local({id: friend.id})"><i class="icon ion-ios-partlysunny-outline"></i></a>
+      <a class="button" ui-sref="events({id: friend.id})"><i class="icon ion-ios-calendar-outline"></i></a>
+      <a class="button" ui-sref="gifts({id: friend.id})"><i class="icon ion-ios-cart-outline"></i></a>
+    </div>
+
+    
+
 
   </ion-content>
     
