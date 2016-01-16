@@ -155,10 +155,15 @@ angular.module('starter.controllers', ['client-recon.services'])
     console.log("submitting form", $scope.newEvent);
 
     Events.addOne($stateParams.id, $scope.newEvent)
-    .then(function(res) {
-      getEvents();
-    });
+    .then(getEvents);
   };
+
+  $scope.destroyEvent = function($index) {
+    var event = $scope.events[$index];
+    console.log("about to delete", event);
+    Events.deleteOne(event.id)
+    .then(getEvents);
+  }
 
   Friends.getOne($stateParams.id)
   .then(function(friends) {
