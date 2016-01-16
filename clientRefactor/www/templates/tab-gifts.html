@@ -30,14 +30,34 @@
       <a class="button" ui-sref="gifts({id: friend.id})">Gifts</a>
     </div>
     
-    <div class='client-container row'>
+    <div class='client-container row' ng-controller='LinkController'>
     <div class="col-sm-12">
       <h4 class="feed-headline">Suggested Gifts:<h4>
-      <div class="row">
+
+          <ion-list>
+
+      <!--     <div ng-style= "{'background-image':'url(/api/getImage?site='+ story.url + '&topic=' + story.topic + ')'}"> -->
+
+            <ion-item class="gift item item-thumbnail-left" ng-repeat="item in gifts track by $index" class="col-sm-12 article">
+                <a href="#" onclick="window.open('http://www.amazon.com', '_system', 'location=yes'); return false;">
+                  <img ng-src="{{item.imageUrl}}"> 
+                  <h2>{{item.title}}</h2> 
+                  <p>{{item.type}}</p> 
+                  <p>{{item.price}}</p>
+                </a>
+              </ion-item>
+            
+        </ion-list>
+
+
+
+
+
+     <!--  <div class="row">
         <table>
           <tr ng-repeat="item in gifts track by $index" class="col-sm-12 article">
             <td>
-              <a href="{{item.pageUrl}}" target="_blank" class="article-headline">
+              <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
                 <img ng-src="{{item.imageUrl}}">
               </a>
             </td>
@@ -49,7 +69,9 @@
             </p>
           </tr>
         </table>
-      </div>  
+      </div>   -->
+
+
     </div>
   </div>
 
