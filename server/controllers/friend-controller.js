@@ -1,6 +1,8 @@
 var Friend = require('../models/friend-model.js');
 var socialMediaAggregator = require('../helpers/socialMediaAggregator.js');
 var amazon = require('../helpers/amazon-api.js');
+var weather = require('../helpers/weather-api.js');
+var news = require('../helpers/bing-search-api.js');
 
 var makeCallback = function(res, actionString) {
   actionString = actionString || '';
@@ -72,6 +74,27 @@ module.exports = {
         })
       }
     });
-  }
+  },
+
+  getLocal: function(friendId, res) {
+    Friend.getOne(friendId, function (err, results) {
+      if (err) {
+        console.log('failed:', err);
+      } else {
+        weather.request(results[0].zipcode, function(body) {
+          var data = {};
+          data.weather = weather.format(body);
+          news.request(data.weather.name, function (results) {
+            data.news = news.format(results);
+            console.log(data);
+            res.json(data);
+          });
+        });
+      }
+    });
+  },
 };
+
+
+
 
