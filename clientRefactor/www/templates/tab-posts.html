@@ -11,6 +11,7 @@
 
 
   <ion-content>
+  
     <ion-list>
       <ul class="friendHeader">
         <li class="friendInfo">
@@ -22,13 +23,14 @@
           </a>
         </li>
       </ul>
-  </ion-list>
+    </ion-list>
 
-    <div class="button-bar">
-      <a class="button" ui-sref="posts({id: friend.id})">Posts</a>
-      <a class="button" ui-sref="events({id: friend.id})">Events</a>
-      <a class="button" ui-sref="gifts({id: friend.id})">Gifts</a>
-    </div>
+  <div class="button-bar">
+      <a class="button" ui-sref="posts({id: friend.id})"><i class="icon ion-social-twitter-outline"></i></a>
+      <a class="button" ui-sref="local({id: friend.id})"><i class="icon ion-ios-partlysunny-outline"></i></a>
+      <a class="button" ui-sref="events({id: friend.id})"><i class="icon ion-ios-calendar-outline"></i></a>
+      <a class="button" ui-sref="gifts({id: friend.id})"><i class="icon ion-ios-cart-outline"></i></a>
+  </div>
 
 <!-- .................................. -->
 
