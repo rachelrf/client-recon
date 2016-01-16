@@ -49,11 +49,10 @@ angular.module('starter.controllers', ['client-recon.services'])
 
   $scope.newFriend = {
     name: null,
-    title: null,
-    company: null,
     email: null,
     phone: null,
     birthday: null,
+    zipcode: null,
     interests: null,
     image_url: null,
     instagram_username: null,
@@ -166,7 +165,10 @@ angular.module('starter.controllers', ['client-recon.services'])
   var getEvents = function() {
     Events.getAllForFriend($stateParams.id)
     .then(function(events) {
-      $scope.events = events;
+      $scope.events = _.map(events, function(event) {
+        event.prettifiedDate = Events.prettifyDate(event.date);
+        return event;
+      });
     });
   }
 

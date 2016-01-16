@@ -36,12 +36,31 @@ servicesModule
     .then(getData);
   }
 
+  var prettifyDate = function(dateStr) { //date is of format TIMESTAMP from sql
+    var dateObj = new Date(dateStr);
+    var month = (dateObj.getUTCMonth()+1 % 12);
+    var date = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+    var hours = (dateObj.getHours() + 4) % 24; // 24 hour clock, but then plus 4 for timezone
+    var minutes = dateObj.getMinutes();
+
+    var monthString = month;
+    var dateString = date;
+    var yearString = year;
+
+    var hoursString = (hours % 12 === 0 ? 12 : hours % 12).toString();
+    var minutesString = ((minutes <= 10) ? '0' : '') + minutes.toString();
+    var suffix = (hours <= 12) ? 'am' : 'pm';
+    console.log(hoursString + ":" + minutesString + suffix);
+    return monthString + '/' + dateString + '/' + yearString + ', ' + hoursString + ":" + minutesString + suffix;
+  };
+
   return {
     addOne: addOne,
     getAllForFriend: getAllForFriend,
     getOne: getOne,
     updateOne: updateOne,
     deleteOne: deleteOne,
- 
+    prettifyDate: prettifyDate
   }
 });
