@@ -183,7 +183,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   $scope.gifts = 'Loading gift suggestions...';
 
   //$scope.subscriptions = AppState.state.currentClient.feed;
-
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
@@ -195,4 +194,17 @@ angular.module('starter.controllers', ['client-recon.services'])
     $scope.loading = false;
     $scope.gifts = gifts;
   });
+})
+
+.controller('LocalCtrl', function($scope, $stateParams, Friends) {
+
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  });
+
+  
+
+
 });

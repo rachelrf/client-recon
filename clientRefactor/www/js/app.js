@@ -28,7 +28,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/home.html',
     controller: 'HomeCtrl',
         // authenticate: true
-
   })
 
   // .state('tab', {
@@ -65,11 +64,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         // authenticate: true
   })
 
+
   .state('addFriend', {
     url: '/addFriend/:id',
     templateUrl: 'templates/add-friend.html',
-    controller: 'AddFriendCtrl',
+    controller: 'AddFriendCtrl'
       // authenticate: true
+  })
+
+  .state('local', {
+    url: '/local/:id',
+    templateUrl: 'templates/tab-local.html',
+    controller: 'LocalCtrl',
+        // authenticate: true
+
   });
 
   $urlRouterProvider.otherwise('/login');
