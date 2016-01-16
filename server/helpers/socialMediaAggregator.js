@@ -28,6 +28,8 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
 
   var results = [];
 
+  console.log( tumblrUsername,twitterUsername,instagramUsername)
+
   var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
   var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
   var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');

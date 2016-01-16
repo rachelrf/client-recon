@@ -2,7 +2,7 @@ var Agenda = require('agenda');
 var twilio = require('./twilio/twilio-api.js');
 
 module.exports = function(date, userPhoneNumber, friendName, eventName) {
-  console.log('TWILLLLIIIOOOOOOOO');
+  console.log('TWILLLLIIIOOOOOOOO', date);
 
   // agenda scheduling stuff https://github.com/rschmukler/agenda
   var agenda = new Agenda({db: {address: "mongodb://127.0.0.1/agenda"}});
