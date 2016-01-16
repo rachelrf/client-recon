@@ -38,12 +38,14 @@
 
       <!--     <div ng-style= "{'background-image':'url(/api/getImage?site='+ story.url + '&topic=' + story.topic + ')'}"> -->
 
-            <ion-item class="gift item item-thumbnail-left" ng-repeat="item in gifts track by $index" class="col-sm-12 article">
+            <ion-item class='gift' ng-repeat="item in gifts track by $index" class="col-sm-12 article">
                 <a href="#" onclick="window.open('http://www.amazon.com', '_system', 'location=yes'); return false;">
-                  <img ng-src="{{item.imageUrl}}"> 
-                  <h2>{{item.title}}</h2> 
-                  <p>{{item.type}}</p> 
-                  <p>{{item.price}}</p>
+                  <div class='giftPic'><img ng-src="{{item.imageUrl}}"></div>
+                  <div class='giftInfo'>
+                    <h2>{{item.title.substring(0, 30)}}...</h2> 
+                    <p>{{item.type}}</p> 
+                    <p>{{item.price}}</p>
+                  </div>
                 </a>
               </ion-item>
             

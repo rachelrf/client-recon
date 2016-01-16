@@ -7,6 +7,6 @@
  */
 module.exports = {
   user: require('./user-controller'),
-	friend: require('./friend-controller'),
-	event: require('./event-controller')
+  friend: require('./friend-controller'),
+  event: require('./event-controller')
 };

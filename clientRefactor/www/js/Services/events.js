@@ -42,5 +42,6 @@ servicesModule
     getOne: getOne,
     updateOne: updateOne,
     deleteOne: deleteOne,
+ 
   }
 });

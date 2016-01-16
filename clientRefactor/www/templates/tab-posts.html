@@ -41,10 +41,11 @@ B</div> -->
       
         <div class="col col-33" border-radius='15px' ng-if="$index < posts.length">
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;"> <!-- {{item.imageUrl}} -->
-            <img ng-src="{{posts[$index].imageUrl}}" width="100%" />
+            <!-- <img class='overlap' ng-src="{{posts[$index].logoImage}}" width="100%" /> -->
+            <img class='underlap' ng-src="{{posts[$index].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index].text.substring(0,45)}}...</p>
+             
             </div>
           </a>
         </div>
@@ -52,20 +53,22 @@ B</div> -->
 
         <div class="col col-33" ng-if="$index + 1 < posts.length">
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
-            <img ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
+            <!-- <img class='overlap' ng-src="{{posts[$index + 1].logoImage}}" width="100%" /> -->
+            <img class='underlap' ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index+1].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index+1].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index+1].text.substring(0,45)}}...</p>
+            
             </div>
           </a>
         </div>
 
         <div class="col col-33" ng-if="$index + 2 < posts.length">
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
-            <img ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
+            <!-- <img class='overlap' ng-src="{{posts[$index + 2].logoImage}}" width="100%" /> -->
+            <img class='underlap' ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index+2].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index+2].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index+2].text.substring(0,45)}}...</p>
+           
             </div>
           </a>
         </div>
