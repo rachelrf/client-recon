@@ -97,7 +97,19 @@ angular.module('starter.controllers', ['client-recon.services'])
   Events.getAllForFriend($stateParams.id)
   .then(function(events) {
     $scope.events;
-  })
+  });
+
+  $scope.newEvent = {
+    name: null,
+    date: null
+  }
+
+  $scope.submitForm = function() {
+    Events.addOne($stateParams.id, $scope.newEvent)
+    .then(function(res) {
+      $location.path('/events/' + $scope.friend.id);
+    });
+  };
 
 })
 
