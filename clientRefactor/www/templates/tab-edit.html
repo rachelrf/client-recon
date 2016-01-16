@@ -29,60 +29,60 @@
     <div class="list list-inset padding">
       <label class="item item-input item-stacked-label">
       <span class="input-label">Name</span>
-        <input type="text" placeholder="{{friends.name}}">
+        <input type="text" ng-model="friend.name">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Title</span>
-        <input type="text" placeholder="{{friends.title}}">
+        <input type="text" ng-model="friend.title">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Company</span>
-        <input type="text" placeholder="{{friends.company}}">
+        <input type="text" ng-model="friend.company">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
-        <input type="email" placeholder="{{friends.email}}">
+        <input type="email" ng-model="friend.email">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Phone number</span>
-        <input type="number" placeholder="{{friends.phone}}">
+        <input type="number" ng-model="friend.phone">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Date of Birth</span>
-        <input type="date" placeholder="{{friends.birthday}}">
+        <input type="date" ng-model="friend.birthday">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Interests</span>
-        <input type="text" placeholder="{{friends.interests}}">
+        <input type="text" ng-model="friend.interests">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Image url</span>
-        <input type="text" placeholder="{{friends.img}}">
+        <input type="text" ng-model="friend.img">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <i class="icon ion-social-twitter-outline"></i><span class="input-label">&nbsp Twitter url</span>
-        <input type="text" placeholder="{{friends.twitterUrl}}">
+        <input type="text" ng-model="friend.twitterUrl">
       </label>
       <br>
       <label class="item item item-input item-stacked-label">
         <i class="icon ion-social-instagram-outline"></i><span class="input-label">&nbsp Instagram url</span>
-        <input type="text" placeholder="{{friends.instagramUrl}}">
+        <input type="text" ng-model="friend.instagramUrl">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <i class="icon ion-social-tumblr-outline"></i><span class="input-label">&nbsp Tumblr url</span>
-        <input type="text" placeholder="{{friends.tumblrUrl}}">
+        <input type="text" ng-model="friend.tumblrUrl">
       </label>
 
-    <button class="button button-full button-positive" ng-click="">Save Changes</button>
+    <button class="button button-full button-positive" ng-click="submitForm()">Save Changes</button>
 
   </ion-content> 
 </ion-view>

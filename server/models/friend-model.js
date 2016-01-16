@@ -62,8 +62,9 @@ exports.updateOne = function (friendId, data, callback) {
       return value;
     }
   }).join(', ');
-  // console.log("COLUMNS:", "typeof", typeof columns, columns);
-  // console.log("VALUES:", "typeof", typeof values, values);
+
+  // console.log("COLUMNS:", columns);
+  // console.log("VALUES:", values);
 
   // performe the db transaction
   var promise = db.query(queryString.updateOneFriend, [friendId, columns, values]);

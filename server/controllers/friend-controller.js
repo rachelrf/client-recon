@@ -1,4 +1,5 @@
 var Friend = require('../models/friend-model.js');
+var socialMediaAggregator = require('../helpers/socialMediaAggregator.js');
 var amazon = require('../helpers/amazon-api.js');
 
 var makeCallback = function(res, actionString) {
@@ -44,13 +45,10 @@ module.exports = {
       } else {
         console.log(actionString, 'succeeded:', results);
         actionString = 'search social media for posts';
-        // see getGifts below for an example of how to complete this
-        // Useful info:
-        //   -the friend object is at results[0]
-        //   -make your api call(s)
-        //   -pass your data as a parameter to res.json()
-        console.log(actionString, 'not done: functionality not added yet');
-        res.json({});
+        socialMediaAggregator(results[0].tumblrurl, results[0].twitterurl, results[0].instagramurl, function(results) {
+          console.log(actionString, 'probably succeeded:', results);
+          res.json(results);
+        })
       }
     });
   },
