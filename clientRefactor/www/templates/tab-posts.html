@@ -36,14 +36,16 @@
 <!-- .................................. -->
 
 
-    <div class="row" ng-repeat="image in posts" ng-if="$index % 3 === 0">
+    <div class="row" ng-repeat="image in posts" ng-if="$index % 3 === 0" ng-controller='LinksCtrl'>
  <!--        <div class="col col-33" ng-style= "{'background-image':'url(' + posts[$index].imageUrl + ')'}"  ng-if="$index < posts.length"> 
             <h11>{{posts[$index].text.substring(0,40)}} + ...</h11>
 B</div> -->
 
       
         <div class="col col-33" border-radius='15px' ng-if="$index < posts.length">
-          <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;"> <!-- {{item.imageUrl}} -->
+          <!-- <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">  -->
+          <a href="#" ng-click="clickLink(posts[$index].postUrl)"> 
+         
             <!-- <img class='overlap' ng-src="{{posts[$index].logoImage}}" width="100%" /> -->
             <img class='underlap' ng-src="{{posts[$index].imageUrl}}" width="100%" />
             <div class='description'>
@@ -55,7 +57,7 @@ B</div> -->
      
 
         <div class="col col-33" ng-if="$index + 1 < posts.length">
-          <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
+          <a href="#" ng-click="clickLink(posts[$index + 1].postUrl)"> 
             <!-- <img class='overlap' ng-src="{{posts[$index + 1].logoImage}}" width="100%" /> -->
             <img class='underlap' ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
             <div class='description'>
@@ -66,7 +68,7 @@ B</div> -->
         </div>
 
         <div class="col col-33" ng-if="$index + 2 < posts.length">
-          <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
+          <a href="#" ng-click="clickLink(posts[$index + 2].postUrl)"> 
             <!-- <img class='overlap' ng-src="{{posts[$index + 2].logoImage}}" width="100%" /> -->
             <img class='underlap' ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
             <div class='description'>

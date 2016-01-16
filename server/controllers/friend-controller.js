@@ -43,7 +43,7 @@ module.exports = {
         console.log(actionString, 'failed:', err);
         res.send(500);
       } else {
-        console.log(actionString, 'succeeded:', results);
+        // console.log(actionString, 'succeeded:', results);
         actionString = 'search social media for posts';
         socialMediaAggregator(results[0].tumblr_url, results[0].twitter_url, results[0].instagram_url, function(results) {
           console.log(actionString, 'probably succeeded:', results);
@@ -66,7 +66,7 @@ module.exports = {
           if (err) {
             console.log(actionString, 'failed:', err);
           } else {
-            console.log(actionString, 'succeeded:', results);
+            // console.log(actionString, 'succeeded:', results);
             res.json(amazon.format(results));
           }
         })
