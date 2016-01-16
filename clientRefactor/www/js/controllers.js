@@ -88,30 +88,33 @@ angular.module('starter.controllers', ['client-recon.services'])
 })
 
 .controller('EventsCtrl', function($scope, $stateParams, Friends, Events, $location) {
-  Friends.getOne($stateParams.id)
-  .then(function(friends) {
-    $scope.friend = friends[0];
-    console.log($scope.friend);
-  });
-  
-  Events.getAllForFriend($stateParams.id)
-  .then(function(events) {
-    $scope.events;
-  });
-
   $scope.newEvent = {
     name: null,
     date: null
+  };
+  
+  var getEvents = function() {
+    Events.getAllForFriend($stateParams.id)
+    .then(function(events) {
+      $scope.events = events;
+    });
   }
 
   $scope.submitForm = function() {
     console.log("submitting form");
     Events.addOne($stateParams.id, $scope.newEvent)
     .then(function(res) {
-      $location.path('/events/' + $scope.friend.id);
+      getEvents();
     });
   };
 
+  Friends.getOne($stateParams.id)
+  .then(function(friends) {
+    $scope.friend = friends[0];
+    console.log($scope.friend);
+  });
+
+  getEvents();
 })
 
 .controller('LinkController', function($scope, $stateParams) {
