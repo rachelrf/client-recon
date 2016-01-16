@@ -22,20 +22,26 @@ angular.module('starter.controllers', ['client-recon.services'])
       }
   };
 
-  Friends.getAllForUser($stateParams.id)
-  .then(function(friends) {
-    console.dir(friends);
-    $scope.friends = friends;
-  });
+  var getFriends = function() {
+    Friends.getAllForUser($stateParams.id)
+    .then(function(friends) {
+      $scope.friends = friends;
+    });
+  }
 
   $scope.destroyFriend = function($index){
-    $scope.friends.splice($index, 1);
+    // $scope.friends.splice($index, 1);
+    var friend = $scope.friends[$index];
+    Friends.deleteOne(friend.id)
+    .then(getFriends);
   };
 
   $scope.moveFriend = function (friend, fromIndex, toIndex){
     $scope.friends.splice(fromIndex, 1);
     $scope.friends.splice(toIndex, 0, friend);
   };
+
+  getFriends();
 })
 
 .controller('AddFriendCtrl', function($scope, $stateParams, $location, Friends) {
