@@ -90,3 +90,15 @@ img {
     overflow: initial;
     white-space: initial;
 }
+
+
+.localCL {
+    margin-top: 10px;
+    margin-left: 10px
+
+}
+
+.localIMG {
+    float: left;
+    margin-right: 10px
+}
