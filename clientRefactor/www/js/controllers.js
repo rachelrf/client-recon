@@ -122,7 +122,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 
 })
 
-.controller('LinkContoller', function($scope, $stateParams) {
+.controller('LinkController', function($scope, $stateParams) {
   
   $scope.clickLink = function(input) {
     console.log('CLICKED LIIIINNNNNKKKKKKKKK!');

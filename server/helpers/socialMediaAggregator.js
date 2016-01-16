@@ -24,114 +24,81 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
     access_token_secret: twitterClient.TOKEN_SECRET,
   });
 
+  ////////////////////////////
 
-module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
-
+  var results = [];
 
   var tumblrUrl = (tumblrUsername || 'rachel6bilson') + '.tumblr.com';
   var twitterUrl = 'https://twitter.com/' + (twitterUsername || 'rachelbilson_6');
   var instagramUrl = 'https://www.instagram.com/' + (instagramUsername || 'rachel6bilson');
 
+  ////////////////////////////
 
-///////////////////////////////////////////////////////////////////
+  var shuffle = function(o){
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+  };
 
-var result = [];
-var tumblrUsername = 'rachel6bilson';
-var twitterUsername = 'rachelbilson_6';
-var instagramUsername = 'rachel6bilson';
-
-async.parallel([
-    function(callback) {
-        if(!tumblrUsername) {
-          callback();
-        }        
-        console.log('IN TUMBLR')
-
-        var blog = new tumblr.Blog('rachel6bilson' + '.tumblr.com', oauth);
-        blog.posts({limit: 6}, function(error, response) {
-          if (error) {
-            throw new Error(error);
-          }
-         
-          var posts = response.posts;
-            posts.forEach(function(item) {
-                if (item.type === 'photo') {
-
-                  result.push({
-                    source: 'tumblr',
-                    type: 'photo',
-                    text: 'Re-blogged: ' + item.summary,
-                    imageUrl: 'http://i.imgur.com/RMUDK4n.png',
-                    postUrl: item.post_url
-                  });
-
-                } else if (item.type === 'text') {
-                  result.push({
-                    source: 'tumblr',
-                    type: 'text',
-                    text: 'New post: ' + item.summary,
-                    imageUrl: 'http://i.imgur.com/RMUDK4n.png',
-                    postUrl: item.post_url
-                  });
-                }
-            })
-
-
-        console.log('CALLING BACK NOW')
-        callback()
-
+  var tumblrAsync = function(callback) {
+    console.log('IN TUMBLR');
+    var blog = new tumblr.Blog(tumblrUrl, oauth);
+    blog.posts({limit: 6}, function(error, response) {
       if (error) {
         throw new Error(error);
       }
 
       var posts = response.posts;
-
       posts.forEach(function(item) {
         if (item.type === 'photo') {
-    });
+          results.push({
+            source: 'tumblr',
+            type: 'photo',
+            text: 'Re-blogged: ' + item.summary,
+            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
+            postUrl: item.post_url
+          });
+        } else if (item.type === 'text') {
+          results.push({
+            source: 'tumblr',
+            type: 'text',
+            text: 'New post: ' + item.summary,
+            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
+            postUrl: item.post_url
+          });
+        }
+      });
 
-
-},
-
-function(callback) {
-    console.log('IN TWITTER')
-    if(!twitterUsername) {
       callback();
-    } 
-    params = { screen_name: 'rachelbilson_6'}
+    });
+  };
 
-
-  function(callback) {
+  var twitterAsync = function(callback) {
     console.log('IN TWITTER');
     console.log('SCREENNAME', twitterUrl.slice(20) )
     params = { screen_name: twitterUrl.slice(20)};
 
-
     client.get('statuses/user_timeline', params, function(error, tweets, response){
-        if (error) {
-            return;
-        } else  {
-            tweets.forEach(function(item) {
-              result.push({
-                source: 'twitter',
-                type: 'text',
-                text: item.text,
-                imageUrl: 'http://i.imgur.com/kRkImN3.png',
-                postUrl: 'https://twitter.com/rachelbilson_6/status/' + item.id_str
-              });
-            });
-
-            callback();
-        }
+      if (error) {
+        console.log('Error getting friend tweets', error);
+        return;
+      } else  {
+        tweets.forEach(function(item) {
+          results.push({
+            source: 'twitter',
+            type: 'text',
+            text: 'Just tweeted: ' + item.text,
+            imageUrl: 'http://i.imgur.com/kRkImN3.png',
+            postUrl: twitterUrl + 'status/' + item.id_str
+          });
+        });
+        callback();
+      }
     });
-},
+  };
 
-function(callback) {
+  var instagramAsync = function(callback) {
     console.log('IN INSTAGRAM')
-    if(!instagramUsernam) {
-      callback();
-    } 
-    var url = 'https://www.instagram.com/' + 'rachel6bilson';
+    var url = instagramUrl;
 
     var request = require('request');
     var util = require('util');
@@ -143,20 +110,21 @@ function(callback) {
       var data = JSON.parse(instagramJsonString);
 
       data.entry_data.ProfilePage[0].user.media.nodes.forEach(function(post) {
-         result.push({
+         results.push({
             source: 'instagram',
             type: 'photo',
             text: 'New Instagram post!',
             imageUrl: post.display_src,
-            postUrl: 'https://www.instagram.com/p/' + post.code 
+            postUrl: 'https://www.instagram.com/p/' + post.code
           });
       });
-      
-    callback();
+      callback();
     });
+  };
+
+  async.parallel([tumblrAsync, twitterAsync, instagramAsync], function() {
+    console.log('ASYNC COMPLETE', results.length, results);
+    smCallback(shuffle(results));
+  });
 
 }; // final closing
-
-], function() {console.log('ASYNC COMPLETE', result.length, result)});
-}
-
