@@ -49,11 +49,10 @@ angular.module('starter.controllers', ['client-recon.services'])
 
   $scope.newFriend = {
     name: null,
-    title: null,
-    company: null,
     email: null,
     phone: null,
     birthday: null,
+    zipcode: null,
     interests: null,
     image_url: null,
     instagram_username: null,
