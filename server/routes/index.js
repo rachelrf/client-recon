@@ -66,6 +66,10 @@ module.exports = function(app, express, passport) {
 		controller.friend.getGifts(req.params.friendId, res);
 	});
 
+	app.get('/api/friends/:friendId/weather', function(req, res) {
+		controller.friend.getWeather(req.params.friendId, res);
+	});
+
 	/* =============== EVENT ROUTES ========================= */
 	app.post('/api/friends/:friendId/events', function (req, res) {
 		 controller.event.addOne(req.params.friendId, req.body, res);

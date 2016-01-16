@@ -1,6 +1,7 @@
 var Friend = require('../models/friend-model.js');
 var socialMediaAggregator = require('../helpers/socialMediaAggregator.js');
 var amazon = require('../helpers/amazon-api.js');
+var weather = require('../helpers/weather-api.js');
 
 var makeCallback = function(res, actionString) {
   actionString = actionString || '';
@@ -72,6 +73,19 @@ module.exports = {
         })
       }
     });
+  },
+
+  getWeather: function(friendId, res) {
+    Friend.getOne(friendId, function (err, results) {
+      if (err) {
+        console.log('failed:', err);
+      } else {
+        console.log('searching weather at zip: ', results.zipcode);
+        weather.request(results.zipcode, function(body) {
+          res.json(weather.format(body));
+        });
+      }
+    })
   }
 };
 
