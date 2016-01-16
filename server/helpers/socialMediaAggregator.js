@@ -92,7 +92,7 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
             source: 'twitter',
             type: 'text',
             text: 'Just tweeted: ' + item.text,
-            imageUrl: 'http://i.imgur.com/kRkImN3.png',
+            imageUrl: 'http://i.imgur.com/klg52Ih.png',
             postUrl: twitterUrl + 'status/' + item.id_str
           });
         });
@@ -118,7 +118,7 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
          results.push({
             source: 'instagram',
             type: 'photo',
-            text: 'New Instagram post!',
+            text: 'New Instagram!',
             imageUrl: post.display_src,
             postUrl: 'https://www.instagram.com/p/' + post.code
           });

@@ -21,8 +21,7 @@ div.description{
     width:85%;  
     /* styling bellow */  
     background-color:rgba(255,255,255,0.8); 
-    font-family: 'tahoma';  
-    font-size:9px; 
+    font-size:10px; 
     line-height: 110%; 
     color:black;
     font-weight: bold;  

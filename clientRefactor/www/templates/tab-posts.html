@@ -43,8 +43,8 @@ B</div> -->
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;"> <!-- {{item.imageUrl}} -->
             <img ng-src="{{posts[$index].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index].text.substring(0,45)}}...</p>
+             
             </div>
           </a>
         </div>
@@ -54,8 +54,8 @@ B</div> -->
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
             <img ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index+1].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index+1].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index+1].text.substring(0,45)}}...</p>
+            
             </div>
           </a>
         </div>
@@ -64,8 +64,8 @@ B</div> -->
           <a href="#" onclick="window.open('http://www.google.com', '_system', 'location=yes'); return false;">
             <img ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
             <div class='description'>
-              <p class='description_content'>{{posts[$index+2].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{posts[$index+2].text.substring(0,75)}}...</p>
+              <p class='description_content'>{{posts[$index+2].text.substring(0,45)}}...</p>
+           
             </div>
           </a>
         </div>
