@@ -20,7 +20,7 @@ div.description{
     
     width:85%;  
     /* styling bellow */  
-    background-color:rgba(255,255,255,0.8); 
+    background-color:rgba(255,255,255,0.8);  
     font-size:10px; 
     line-height: 110%; 
     color:black;
@@ -55,16 +55,29 @@ img {
 .giftInfo {
     padding: 5px;
     display:inline-block;
-    word-wrap: break-word;
     height: 50px;
     width: auto;
     vertical-align: top;
 }
 
-p { 
-    word-break: break-all;
-}
-
 .social {
    margin-right: 5px;
+}
+
+.underlap {
+    margin-left:auto;
+    margin-right:auto;
+    position:relative; 
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px 0px rgba(10, 10, 10, .9);
+    
+} 
+
+.overlap {
+    height:35px;
+    left:1px; 
+    position:absolute;
+    top:5px; 
+    width:auto;
+    z-index: 1;
 }

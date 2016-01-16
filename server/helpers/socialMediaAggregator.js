@@ -59,16 +59,18 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
             source: 'tumblr',
             type: 'photo',
             text: 'Re-blogged: ' + item.summary,
-            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
-            postUrl: item.post_url
+            imageUrl: 'http://i.imgur.com/H0Ojc8f.png',
+            postUrl: item.post_url,
+            logoImage: 'data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
           });
         } else if (item.type === 'text') {
           results.push({
             source: 'tumblr',
             type: 'text',
             text: 'New post: ' + item.summary,
-            imageUrl: 'http://i.imgur.com/RMUDK4n.png',
-            postUrl: item.post_url
+            imageUrl: 'http://i.imgur.com/H0Ojc8f.png',
+            postUrl: item.post_url,
+            logoImage: 'data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
           });
         }
       });
@@ -91,9 +93,10 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
           results.push({
             source: 'twitter',
             type: 'text',
-            text: 'Just tweeted: ' + item.text,
+            text: 'New tweet: ' + item.text,
             imageUrl: 'http://i.imgur.com/klg52Ih.png',
-            postUrl: twitterUrl + 'status/' + item.id_str
+            postUrl: twitterUrl + 'status/' + item.id_str,
+            logoImage: 'data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
           });
         });
         callback();
@@ -120,7 +123,8 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
             type: 'photo',
             text: 'New Instagram!',
             imageUrl: post.display_src,
-            postUrl: 'https://www.instagram.com/p/' + post.code
+            postUrl: 'https://www.instagram.com/p/' + post.code,
+            logoImage: 'http://orig09.deviantart.net/bef7/f/2015/017/a/c/instagram_logo__transparent_background__by_instahack-d8e94oc.png'
           });
       });
       callback();

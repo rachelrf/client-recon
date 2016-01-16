@@ -101,7 +101,8 @@ angular.module('starter.controllers', ['client-recon.services'])
   }
 
   $scope.submitForm = function() {
-    console.log("submitting form");
+    console.log("submitting form", $stateParams);
+
     Events.addOne($stateParams.id, $scope.newEvent)
     .then(function(res) {
       getEvents();

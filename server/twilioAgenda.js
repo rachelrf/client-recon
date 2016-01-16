@@ -2,9 +2,7 @@ var Agenda = require('agenda');
 var twilio = require('./twilio/twilio-api.js');
 
 module.exports = function(date, userPhoneNumber, friendName, eventName) {
-
-  var date = '2016-01-15';
-  var phoneNumber = '+16507131142';
+  console.log('TWILLLLIIIOOOOOOOO');
 
   // agenda scheduling stuff https://github.com/rschmukler/agenda
   var agenda = new Agenda({db: {address: "mongodb://127.0.0.1/agenda"}});
@@ -22,13 +20,14 @@ module.exports = function(date, userPhoneNumber, friendName, eventName) {
   var now = new Date();
   var timeInMilliseconds = dateFormatted - now; 
   // var timeInSeconds = Math.floor(timeInMilliseconds/1000); 
-  var timeInSeconds = Math.floor(timeInMilliseconds/1000) - 86400; // 86400 is number of seconds in a day
-  console.log('time', timeInSeconds);
+  var timeInSeconds = Math.floor(timeInMilliseconds/1000) - 86400; // 86400 is number of seconds in a day, subtract - 48000 to test
+  var delay = 'in ' + timeInSeconds + ' seconds';
+  console.log('delay', delay); // this logs the correct delay
 
   // Make sure agenda is connected to mongo
   agenda.on('ready', function() {
     agenda.start();
-    agenda.schedule('in ' + timeInSeconds + ' seconds', 'twilio', {clientName: clientName, clientEvent: eventName, clientNumber: userPhoneNumber});
+    agenda.schedule(delay, 'twilio', {clientName: friendName, clientEvent: eventName, clientNumber: userPhoneNumber});
   });
 
 };

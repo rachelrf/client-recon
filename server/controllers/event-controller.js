@@ -1,6 +1,7 @@
 var Event = require('../models/event-model.js');
 var socialMediaAggregator = require('../helpers/socialMediaAggregator.js');
 var amazon = require('../helpers/amazon-api.js');
+var twilio = require('../twilioAgenda.js');
 
 var makeCallback = function(res, actionString) {
   actionString = actionString || '';
@@ -17,6 +18,13 @@ var makeCallback = function(res, actionString) {
 
 module.exports = {
   addOne: function(friendId, eventObj, res) {
+    console.log('HERE',friendId, eventObj);
+    var date = eventObj.date;
+    var eventName = eventObj.name;
+    var friendName = 'Rachel Bilson'; // hard coded
+    var phoneNumber = '+16507131142'; // hard coded
+
+    twilio(date, phoneNumber, friendName, eventName);
     Event.addOne(friendId, eventObj, makeCallback(res, 'add one event for friend ' + friendId));
   },
 
