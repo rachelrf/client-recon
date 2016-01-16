@@ -55,7 +55,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	app.delete('/api/friends/:friendId', function (req, res) {
-		controller.friend.deleteOne(req.params.friendId, req.body, res);
+		controller.friend.deleteOne(req.params.friendId, res);
 	});	
 
 	app.get('/api/friends/:friendId/posts', function(req, res) {
@@ -92,7 +92,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	app.delete('/api/events/:eventId', function (req, res) {
-		controller.event.deleteOne(req.params.eventId, req.body, res);
+		controller.event.deleteOne(req.params.eventId, res);
 	});	
 	
 	function ensureAuthenticated(req, res, next) {

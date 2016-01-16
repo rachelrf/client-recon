@@ -22,27 +22,32 @@ angular.module('starter.controllers', ['client-recon.services'])
       }
   };
 
-  Friends.getAllForUser($stateParams.id)
-  .then(function(friends) {
-    console.dir(friends);
-    $scope.friends = friends;
-  });
+  var getFriends = function() {
+    Friends.getAllForUser($stateParams.id)
+    .then(function(friends) {
+      $scope.friends = friends;
+    });
+  }
 
   $scope.destroyFriend = function($index){
-    $scope.friends.splice($index, 1);
+    // $scope.friends.splice($index, 1);
+    var friend = $scope.friends[$index];
+    Friends.deleteOne(friend.id)
+    .then(getFriends);
   };
 
   $scope.moveFriend = function (friend, fromIndex, toIndex){
     $scope.friends.splice(fromIndex, 1);
     $scope.friends.splice(toIndex, 0, friend);
   };
+
+  getFriends();
 })
 
-.controller('AddFriendCtrl', function($scope, $stateParams, Friends) {
+.controller('AddFriendCtrl', function($scope, $stateParams, $location, Friends) {
   $scope.userId = $stateParams.id;
 
-  $scope.friends = {
-    user_id: $stateParams.id,
+  $scope.newFriend = {
     name: null,
     title: null,
     company: null,
@@ -50,16 +55,19 @@ angular.module('starter.controllers', ['client-recon.services'])
     phone: null,
     birthday: null,
     interests: null,
-    img: null,
+    image_url: null,
     instagram_username: null,
-    twitter_username:null,
-    tumblr_username:null
+    twitter_username: null,
+    tumblr_username: null
   };
 
-  $scope.submit = function() {
-    console.log($scope.friends);
-    Friends.addOne($stateParams.id, $scope.friends);
-    console.log('Saving...');
+  $scope.submitForm = function() {
+    // console.log($scope.friends);
+    console.log('adding new friend:', $scope.newFriend);
+    Friends.addOne($stateParams.id, $scope.newFriend)
+    .then(function(res) {
+      $location.path('/home/' + $stateParams.id);
+    });
   };
 
 })
