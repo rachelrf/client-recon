@@ -42,6 +42,9 @@ var instagramUsername = 'rachel6bilson';
 
 async.parallel([
     function(callback) {
+        if(!tumblrUsername) {
+          callback();
+        }        
         console.log('IN TUMBLR')
 
         var blog = new tumblr.Blog('rachel6bilson' + '.tumblr.com', oauth);
@@ -92,6 +95,9 @@ async.parallel([
 
 function(callback) {
     console.log('IN TWITTER')
+    if(!twitterUsername) {
+      callback();
+    } 
     params = { screen_name: 'rachelbilson_6'}
 
 
@@ -122,6 +128,9 @@ function(callback) {
 
 function(callback) {
     console.log('IN INSTAGRAM')
+    if(!instagramUsernam) {
+      callback();
+    } 
     var url = 'https://www.instagram.com/' + 'rachel6bilson';
 
     var request = require('request');
@@ -150,5 +159,4 @@ function(callback) {
 
 ], function() {console.log('ASYNC COMPLETE', result.length, result)});
 }
-
 
