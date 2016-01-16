@@ -4,6 +4,8 @@ var Twitter = require('twitter');
 var tumblrOath = require('./tumblr-api-key.js');
 var twitterClient = require('./twitter-api-key.js');
 
+
+
 ///////////////////////////////////////////////////////////////////
 
 
@@ -18,17 +20,20 @@ module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
   var client = new Twitter({
     consumer_key: twitterClient.CONSUMER_KEY,
     consumer_secret: twitterClient.CONSUMER_SECRET,
-    token: twitterClient.TOKEN,
-    token_secret: twitterClient.TOKEN_SECRET,
+    access_token_key: twitterClient.TOKEN,
+    access_token_secret: twitterClient.TOKEN_SECRET,
   });
 
   ////////////////////////////
 
   var results = [];
 
-  var tumblrUrl = tumblrUrl || 'http://rachel6bilson.tumblr.com/';
-  var twitterUrl = twitterUrl || 'https://twitter.com/rachelbilson_6/';
-  var instagramUrl = instagramUrl || 'https://www.instagram.com/rachel6bilson/';
+  // var tumblrUrl = tumblrUrl || 'http://rachel6bilson.tumblr.com/';
+  // var twitterUrl = twitterUrl || 'https://twitter.com/rachelbilson_6/';
+  // var instagramUrl = instagramUrl || 'https://www.instagram.com/rachel6bilson/';
+  var tumblrUrl = 'rachel6bilson.tumblr.com';
+  var twitterUrl = 'https://twitter.com/rachelbilson_6';
+  var instagramUrl = 'https://www.instagram.com/rachel6bilson';
 
   ////////////////////////////
 
@@ -48,6 +53,7 @@ module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
       }
 
       var posts = response.posts;
+
       posts.forEach(function(item) {
         if (item.type === 'photo') {
 
@@ -75,6 +81,7 @@ module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
 
   function(callback) {
     console.log('IN TWITTER');
+    console.log('SCREENNAME', twitterUrl.slice(20) )
     params = { screen_name: twitterUrl.slice(20)};
 
     client.get('statuses/user_timeline', params, function(error, tweets, response){
@@ -126,4 +133,3 @@ module.exports = function(tumblrUrl, twitterUrl, instagramUrl, smCallback) {
   });
 
 }; // final closing
-  

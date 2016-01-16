@@ -73,11 +73,11 @@ angular.module('starter.controllers', ['client-recon.services'])
   })
 
   // Eventually will just directly query server for posts
-  // $scope.posts = Friends.getPosts($stateParams.friendId)
-  // .then(function(posts) {
-  //   $scope.loading = false;
-  //   $scope.posts = posts;
-  // });
+  Friends.getPosts($stateParams.id)
+  .then(function(posts) {
+    $scope.loading = false;
+    $scope.posts = posts;
+  });
 })
 
 .controller('EditCtrl', function($scope, $location, $stateParams, Friends) {
