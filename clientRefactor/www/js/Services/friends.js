@@ -70,6 +70,20 @@ servicesModule
     });
   };
 
+  var getWeather = function(friendId) {
+    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/weather')
+    .then(function(res) {
+      return res.data;
+    });
+  };
+
+  var getLocalNews = function(friendId) {
+    return $http.get(SERVER_ROOT + '/api/friends/' + friendId + '/news')
+    .then(function(res) {
+      return res.data;
+    });
+  };
+
   return {
     addOne: addOne,
     getAllForUser: getAllForUser,
@@ -77,6 +91,8 @@ servicesModule
     updateOne: updateOne,
     deleteOne: deleteOne,
     getGifts: getGifts,
-    getPosts: getPosts
+    getPosts: getPosts,
+    getWeather: getWeather,
+    getLocalNews: getLocalNews
   }
 });
