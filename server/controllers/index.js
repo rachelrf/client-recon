@@ -6,8 +6,7 @@
  * @type {Object}
  */
 module.exports = {
-	// dashboard: require('./dashboard-controller'),
+  user: require('./user-controller'),
 	friend: require('./friend-controller'),
-	user: require('./user-controller'),
-	// feed:require('./feed-controller')
+	event: require('./event-controller')
 };

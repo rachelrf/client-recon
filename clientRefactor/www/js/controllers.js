@@ -37,32 +37,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   };
 })
 
-// .controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
-//   // TEMPLATE FOR DATA
-//   //this.data = AppState.state;
-//   var successfulPost = this.success;
-//   var currentClient = null;//this.data.currentClient;
-
-//   this.newData = currentClient;
-
-//   this.putClient = function () {
-//     //DETECT USER ID FROM APP STATE
-//     console.log('about to send updated client to server');
-//     Friends.updateOne($stateParams.friendId, currentClient)
-//     .then(function(res){
-//       // CALLED AFTER SUCCESSFUL POST
-//       successfulPost = true;
-
-//       // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
-//       // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
-//       // $timeout(function(){
-//       //   successfulPost = false;
-//       //   $state.go('client-profile.bio');
-//       // }, 2000);
-//     })
-//   };
-// })
-
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
   console.log('got to posts controller');
   $scope.loading = true;
@@ -113,16 +87,33 @@ angular.module('starter.controllers', ['client-recon.services'])
   //   })
 })
 
-.controller('EventsCtrl', function($scope, $stateParams, Friends) {
+.controller('EventsCtrl', function($scope, $stateParams, Friends, Events) {
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
     console.log($scope.friend);
-  })
+  });
+  
+  Events.getAllForFriend($stateParams.id)
+  .then(function(events) {
+    $scope.events;
+  });
+
+  $scope.newEvent = {
+    name: null,
+    date: null
+  }
+
+  $scope.submitForm = function() {
+    Events.addOne($stateParams.id, $scope.newEvent)
+    .then(function(res) {
+      $location.path('/events/' + $scope.friend.id);
+    });
+  };
 
 })
 
-.controller('LinkContoller', function($scope, $stateParams) {
+.controller('LinkController', function($scope, $stateParams) {
   
   $scope.clickLink = function(input) {
     console.log('CLICKED LIIIINNNNNKKKKKKKKK!');

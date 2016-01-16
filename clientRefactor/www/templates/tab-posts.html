@@ -5,7 +5,7 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="secondary">
-    <button class="button button-clear" ui-sref="edit({id: friends.id})"> <i class="icon ion-edit"></i>
+    <button class="button button-clear" ui-sref="edit({id: friend.id})"> <i class="icon ion-edit"></i>
     </button>
   </ion-nav-buttons>
 
@@ -33,9 +33,9 @@
 <!-- .................................. -->
 
 
-    <div class="row" ng-repeat="image in images" ng-if="$index % 3 === 0">
- <!--        <div class="col col-33" ng-style= "{'background-image':'url(' + images[$index].imageUrl + ')'}"  ng-if="$index < images.length"> 
-            <h11>{{images[$index].text.substring(0,40)}} + ...</h11>
+    <div class="row" ng-repeat="image in posts" ng-if="$index % 3 === 0">
+ <!--        <div class="col col-33" ng-style= "{'background-image':'url(' + posts[$index].imageUrl + ')'}"  ng-if="$index < posts.length"> 
+            <h11>{{posts[$index].text.substring(0,40)}} + ...</h11>
 B</div> -->
 
       
@@ -44,7 +44,7 @@ B</div> -->
             <img ng-src="{{posts[$index].imageUrl}}" width="100%" />
             <div class='description'>
               <p class='description_content'>{{posts[$index].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{images[$index].text.substring(0,75)}}...</p>
+              <p class='description_content'>"{{posts[$index].text.substring(0,75)}}...</p>
             </div>
           </a>
         </div>
@@ -55,7 +55,7 @@ B</div> -->
             <img ng-src="{{posts[$index + 1].imageUrl}}" width="100%" />
             <div class='description'>
               <p class='description_content'>{{posts[$index+1].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{images[$index+1].text.substring(0,75)}}...</p>
+              <p class='description_content'>"{{posts[$index+1].text.substring(0,75)}}...</p>
             </div>
           </a>
         </div>
@@ -65,7 +65,7 @@ B</div> -->
             <img ng-src="{{posts[$index + 2].imageUrl}}" width="100%" />
             <div class='description'>
               <p class='description_content'>{{posts[$index+2].text.substring(0,25)}}...</p>
-              <p class='description_content'>"{{images[$index+2].text.substring(0,75)}}...</p>
+              <p class='description_content'>"{{posts[$index+2].text.substring(0,75)}}...</p>
             </div>
           </a>
         </div>
