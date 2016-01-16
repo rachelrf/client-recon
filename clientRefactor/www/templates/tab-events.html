@@ -3,7 +3,6 @@
   <ion-nav-buttons side="primary">
     <button class="button button-clear" ui-sref="tempTab.home({id: friend.userid})"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
-
   <ion-nav-buttons side="secondary">
     <button class="button button-clear" ui-sref="edit({id: friend.id})"> <i class="icon ion-edit"></i>
     </button>
@@ -34,19 +33,39 @@
 
 <!-- FORM NEEDS NG-CLICK FOR POST -->
 
-  <div class="item item-input-inset">
+<!--   <div class="item item-input-inset">
     <label class="item-input-wrapper social">
       <input type="text" placeholder="Event Name" ng-model="newEvent.name" required> 
     </label>
-    
+    <br>
     <label class="item-input-wrapper">
-      <input type="text" placeholder="Date" ng-model="newEvent.date" required> 
+      <input type="datetime-local" placeholder="Date" ng-model="newEvent.date" required> 
     </label>
     <br>
     <button class="button button-small" ng-click="submitForm()" >
       Submit
     </button>
   </div>
+  <div>
+
+  </div> -->
+
+  
+
+  <div class="list list-inset" >
+      <label class="item item-input">
+          <input ng-model="newEvent.name" type="text" placeholder="Event Name" required ng-minlength="2" ng-maxlength="70">
+      </label>
+      <label class="item item-input">
+          <input ng-model="newEvent.date" type="datetime-local" placeholder="Date and Time" required>
+      </label>
+  </div>
+  <div class="padding">
+    <button class="button button-small" ng-click="submitForm()" >
+      Submit
+    </button>
+  </div>
+
 
   <!-- NEEDS NG REPEAT IN ION ITEM FOR DATA -->
 
@@ -58,7 +77,5 @@
     </ion-item>
   </ion-list>
 
-  
   </ion-content>
-
 </ion-view>

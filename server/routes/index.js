@@ -16,9 +16,9 @@ module.exports = function(app, express, passport) {
 	app.get('/login-verify', passport.authenticate('google', 
 		{
 			//successRedirect: ('/home/'),
-			failureRedirect: '/tempTab/login'
+			failureRedirect: '/login'
 		}), function (req, res) {
-		res.redirect('http://localhost:8100/#/tempTab/home/' + req.user.id);
+		res.redirect('http://localhost:8100/#/home/' + req.user.id);
 	});
 
 	// THIS IS JUNK I CONJURED UP FOR THE SAKE OF FIXING THE ERROR
