@@ -30,13 +30,12 @@
       <a class="button" ui-sref="gifts({id: friend.id})"><i class="icon ion-ios-cart-outline"></i></a>
   </div>
   
-  <div>
-
-   <img src="{{local.weather.iconUrl}}" style="float: left; margin-right: 10px"/> 
+  <div class="localCL">
+   <img src="{{local.weather.iconUrl}}" class="localIMG"/> 
      Temp: {{local.weather.temp}} <br>
      Conditions: {{local.weather.description}}
   </div>
-  <div class="card" ng-repeat="story in local.news">
+  <div class="card" ng-repeat="story in local.news" style="margin-top: 20px;">
   <a href="{{story.link.Url}}"
     <div class="item item-text-wrap">
         <h2>{{story.title}}</h2> 
@@ -47,3 +46,4 @@
 
   </ion-content>
 </ion-view>
+
