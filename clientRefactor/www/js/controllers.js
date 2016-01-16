@@ -1,10 +1,11 @@
 angular.module('starter.controllers', ['client-recon.services'])
 
-.controller('LoginCtrl', function(){
+.controller('LoginCtrl', function($scope){
+  $scope.login = function () {
 
+  }
 
 })
-
 .controller('HomeCtrl', function($scope, $stateParams, Friends) {
 
   $scope.moveText = "Move";
