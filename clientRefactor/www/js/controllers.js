@@ -87,20 +87,13 @@ angular.module('starter.controllers', ['client-recon.services'])
     console.log($scope.friend);
   })
 
-  $scope.goHome = function(path){
-     console.log("Going Home");
-     $location.path(path);
+  $scope.submitForm = function(){
+    // console.log('sending', $scope.friend);
+    Friends.updateOne($stateParams.id, $scope.friend)
+    .then(function(res){
+      $location.path('/tempTab/home/' + $scope.friend.userid);
+    });
   };
-
-  // gloria
-  // TEMPLATE FOR DATA
-  // var successfulPost = false;
-  // $scope.friend = null;
-  // Friends.getOne($stateParams.friendId)
-  // .then(function(res) {
-  //   console.log(res);
-  //   $scope.friend = res[0];
-  // })
 
   // $scope.updateFriend = function () {
   //   //DETECT USER ID FROM APP STATE
@@ -117,7 +110,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   //     //   $state.go('client-profile.bio');
   //     // }, 2000);
   //   })
-  // end gloria
 })
 
 .controller('EventsCtrl', function($scope, $stateParams, Friends) {
