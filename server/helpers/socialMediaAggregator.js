@@ -132,7 +132,7 @@ module.exports = function(tumblrUsername, twitterUsername, instagramUsername, sm
   };
 
   async.parallel([tumblrAsync, twitterAsync, instagramAsync], function() {
-    console.log('ASYNC COMPLETE', results.length, results);
+    // console.log('ASYNC COMPLETE', results.length, results);
     smCallback(shuffle(results));
   });
 

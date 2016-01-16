@@ -92,6 +92,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
   $scope.loading = true;
 
+
   Friends.getOne($stateParams.id)
   .then(function(friends) {
     $scope.friend = friends[0];
@@ -101,9 +102,19 @@ angular.module('starter.controllers', ['client-recon.services'])
 
   Friends.getPosts($stateParams.id)
   .then(function(posts) {
+    console.log('FINAL POSTS', posts.length, posts)
     $scope.loading = false;
     $scope.posts = posts;
   });
+})
+
+.controller('LinksCtrl', function($stateParams, $scope) {
+
+  $scope.clickLink = function(link) {
+    window.open(link, '_system', 'location=yes'); 
+    return false;
+  };
+
 })
 
 .controller('EditCtrl', function($scope, $location, $stateParams, Friends) {
@@ -172,14 +183,6 @@ angular.module('starter.controllers', ['client-recon.services'])
   });
 
   getEvents();
-})
-
-.controller('LinkController', function($scope, $stateParams) {
-  
-  $scope.clickLink = function(input) {
-    console.log('CLICKED LIIIINNNNNKKKKKKKKK!');
-  };
-
 })
 
 .controller('GiftsCtrl', function($scope, $stateParams, Friends) {
