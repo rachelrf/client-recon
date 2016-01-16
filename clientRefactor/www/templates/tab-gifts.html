@@ -4,11 +4,17 @@
     <button class="button button-clear" ui-sref="tempTab.home({id: friend.userid})"> <i class="icon ion-home"></i></button>
   </ion-nav-buttons>
 
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear" ui-sref="edit({id: friends.id})"> <i class="icon ion-edit"></i>
+    </button>
+  </ion-nav-buttons>
+
+
   <ion-content>
     <ion-list>
       <ul class="friendHeader">
         <li class="friendInfo">
-           <a class="item item-thumbnail-left" ui-sref="tab.posts({id: friend.id})">
+           <a class="item item-thumbnail-left" ui-sref="posts({id: friend.id})">
             <img ng-src="{{friend.img}}"> 
             <h2>{{friend.name}}</h2> 
             <p>{{friend.email}}</p> 
@@ -19,9 +25,9 @@
   </ion-list>
 
     <div class="button-bar">
-      <a class="button" ui-sref="tab.posts({id: friend.id})">Posts</a>
-      <a class="button" ui-sref="tab.events({id: friend.id})">Events</a>
-      <a class="button" ui-sref="tab.gifts({id: friend.id})">Gifts</a>
+      <a class="button" ui-sref="posts({id: friend.id})">Posts</a>
+      <a class="button" ui-sref="events({id: friend.id})">Events</a>
+      <a class="button" ui-sref="gifts({id: friend.id})">Gifts</a>
     </div>
     
     <div class='client-container row'>

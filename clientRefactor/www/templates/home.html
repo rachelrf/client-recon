@@ -1,4 +1,10 @@
 <ion-view class="pane" view-title="Legacy"> 
+  
+<ion-nav-buttons side="primary">
+    <button class="button button-clear" ui-sref="tempTab.login"> <i class="icon ion-ios-plus-outline"></i>
+    </button>
+</ion-nav-buttons>
+
 
   <ion-nav-buttons side="secondary">
     <button class="button" ng-click="changeReorder()">
@@ -8,7 +14,7 @@
 
   <ion-content>
     <ion-list show-delete="false" show-reorder="showOrderButton" can-swipe="true" class="card">
-      <ion-item class="item item-thumbnail-left item-remove-animate" ng-repeat="data in friends" ui-sref="tab.posts({id: data.id})">
+      <ion-item class="item item-thumbnail-left item-remove-animate" ng-repeat="data in friends" ui-sref="posts({id: data.id})">
       <img src="{{data.img}}"/>
       <h2>{{data.name}}</h2>
       <p>{{data.email}}</p>
