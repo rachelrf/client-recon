@@ -71,7 +71,7 @@ module.exports = function(app, express, passport) {
 	});
 
 	app.get('/api/friends/:friendId/events', function (req, res) {
-		controller.event.getAllForUser(req.params.friendId, res);
+		controller.event.getAllForFriend(req.params.friendId, res);
 	});
 
 	app.get('/api/events/:eventId', function (req, res) {

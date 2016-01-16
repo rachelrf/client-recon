@@ -20,8 +20,8 @@ module.exports = {
     Event.addOne(friendId, eventObj, makeCallback(res, 'add one event for friend ' + friendId));
   },
 
-  getAllForUser: function(friendId, res) {
-    Event.getAllForUser(friendId, makeCallback(res, 'get all events for friend ' + friendId));
+  getAllForFriend: function(friendId, res) {
+    Event.getAllForFriend(friendId, makeCallback(res, 'get all events for friend ' + friendId));
   },
 
   getOne: function(eventId, res) {
