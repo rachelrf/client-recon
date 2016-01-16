@@ -73,6 +73,7 @@ angular.module('starter.controllers', ['client-recon.services'])
   })
 
   // Eventually will just directly query server for posts
+
   Friends.getPosts($stateParams.id)
   .then(function(posts) {
     $scope.loading = false;
@@ -118,6 +119,14 @@ angular.module('starter.controllers', ['client-recon.services'])
     $scope.friend = friends[0];
     console.log($scope.friend);
   })
+
+})
+
+.controller('LinkContoller', function($scope, $stateParams) {
+  
+  $scope.clickLink = function(input) {
+    console.log('CLICKED LIIIINNNNNKKKKKKKKK!');
+  };
 
 })
 
