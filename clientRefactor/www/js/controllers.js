@@ -9,6 +9,7 @@ angular.module('starter.controllers', ['client-recon.services'])
 .controller('HomeCtrl', function($scope, $stateParams, Friends) {
 
   $scope.moveText = "Move";
+  $scope.userId = $stateParams.id;
 
   $scope.showOrderButton = false;
   $scope.changeReorder = function(){
@@ -36,6 +37,57 @@ angular.module('starter.controllers', ['client-recon.services'])
     $scope.friends.splice(toIndex, 0, friend);
   };
 })
+
+.controller('AddFriendCtrl', function($scope, $stateParams, Friends) {
+  $scope.userId = $stateParams.id;
+
+  $scope.friends = {
+    user_id: $stateParams.id,
+    name: null,
+    title: null,
+    company: null,
+    email: null,
+    phone: null,
+    birthday: null,
+    interests: null,
+    img: null,
+    instagram_username: null,
+    twitter_username:null,
+    tumblr_username:null
+  };
+
+  $scope.submit = function() {
+    console.log($scope.friends);
+    Friends.addOne($stateParams.id, $scope.friends);
+    console.log('Saving...');
+  };
+
+})
+// .controller('EditCtrl', function($stateParams, $scope, $timeout, Friends) {
+//   // TEMPLATE FOR DATA
+//   //this.data = AppState.state;
+//   var successfulPost = this.success;
+//   var currentClient = null;//this.data.currentClient;
+
+//   this.newData = currentClient;
+
+//   this.putClient = function () {
+//     //DETECT USER ID FROM APP STATE
+//     console.log('about to send updated client to server');
+//     Friends.updateOne($stateParams.friendId, currentClient)
+//     .then(function(res){
+//       // CALLED AFTER SUCCESSFUL POST
+//       successfulPost = true;
+
+//       // THE PURPOSE OF THE BELOW IS TO HAVE THE SUCCESSFUL POST 
+//       // NOTIFICATION ONLY SHOW FOR A FEW SECONDS AND DISAPPEAR
+//       // $timeout(function(){
+//       //   successfulPost = false;
+//       //   $state.go('client-profile.bio');
+//       // }, 2000);
+//     })
+//   };
+// })
 
 .controller('PostsCtrl', function($stateParams, $scope, Friends){
   console.log('got to posts controller');
