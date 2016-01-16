@@ -16,65 +16,55 @@
     <div class="list list-inset padding">
       <label class="item item-input item-stacked-label">
       <span class="input-label">Name</span>
-        <input type="text" ng-model="friends.name">
-      </label>
-      <br>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Title</span>
-        <input type="text" ng-model="friends.title">
-      </label>
-      <br>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Company</span>
-        <input type="text" ng-model="friends.company">
+        <input type="text" ng-model="newFriend.name">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Email</span>
-        <input type="email" ng-model="friends.email">
+        <input type="email" ng-model="newFriend.email">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Date of Birth</span>
-        <input type="date" ng-model="friends.birthday">
+        <span class="input-label">Phone</span>
+        <input type="number" ng-model="newFriend.phone">
+      </label>
+      <br>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Birthday</span>
+        <input type="date" ng-model="newFriend.birthday">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Zipcode</span>
-        <input type="number" ng-model="friends.zipcode">
-      </label>
-      <br>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Phone number</span>
-        <input type="number" ng-model="friends.phone">
+        <input type="number" ng-model="newFriend.zipcode">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Interests</span>
-        <input type="text" ng-model="friends.interests">
+        <input type="text" ng-model="newFriend.interests">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Image url</span>
-        <input type="text" ng-model="friends.img">
+        <span class="input-label">Image URL</span>
+        <input type="text" ng-model="newFriend.image_url">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <i class="icon ion-social-twitter-outline"></i><span class="input-label">&nbsp Twitter username</span>
-        <input type="text" ng-model="friends.twitter_username">
+        <i class="icon ion-social-twitter-outline"></i><span class="input-label">&nbsp; Twitter username</span>
+        <input type="text" ng-model="newFriend.twitter_username">
       </label>
       <br>
       <label class="item item item-input item-stacked-label">
-        <i class="icon ion-social-instagram-outline"></i><span class="input-label">&nbsp Instagram username</span>
-        <input type="text" ng-model="friends.instagram_username">
+        <i class="icon ion-social-instagram-outline"></i><span class="input-label">&nbsp; Instagram username</span>
+        <input type="text" ng-model="newFriend.instagram_username">
       </label>
       <br>
       <label class="item item-input item-stacked-label">
-        <i class="icon ion-social-tumblr-outline"></i><span class="input-label">&nbsp Tumblr username</span>
-        <input type="text" ng-model="friends.tumblr_username">
+        <i class="icon ion-social-tumblr-outline"></i><span class="input-label">&nbsp; Tumblr username</span>
+        <input type="text" ng-model="newFriend.tumblr_username">
       </label>
 
-    <button class="button button-full button-positive" ng-click="submit()">Save</button>
+    <button class="button button-full button-positive" ng-click="submitForm()">Save</button>
 
   </ion-content> 
 </ion-view>
