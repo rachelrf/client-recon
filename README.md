@@ -11,7 +11,7 @@ See IonicGuide.md for instructions on installing and using Ionic.
 
 ##Database Schema
 
-![Database Schema](./images/friendDBschema.tiff)
+![Database Schema](./images/friendDBschema.jpg)
 
 
 ##Existing API Endpoints
