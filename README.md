@@ -67,7 +67,7 @@ See IonicGuide.md for instructions on installing and using Ionic.
   "name": "string",
   "date": "date",
 }
-
+```
 
 ##Outgoing API Endpoints
 
