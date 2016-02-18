@@ -1,5 +1,13 @@
 # FriendDB
-Mobile-friendly platform for tracking friends’ social media, interests, and life events.
+Mobile-friendly platform for tracking friends’ social media, interests, and life events. 
+
+# Usage
+1. Fork and clone the repo
+2. 'npm install' from the root directory
+3. 'npm start' from the root directory
+4. 'ionic serve' from clientRefactor
+
+See IonicGuide.md for instructions on installing and using Ionic. 
 
 ##Database Schema
 
